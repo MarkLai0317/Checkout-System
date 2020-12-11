@@ -2,9 +2,9 @@ class GoodsActivity{
 
     public:
         
-        GoodsActivity(int id, int quantity, string name, int yy, int mm, int dd)
+        GoodsActivity(int id, int quantity, string name, time_t t)
             : goods(id, quantity, name),
-             year(yy), month(mm), date(dd)
+             time(t)
         {}
         
         int getYear() const;
@@ -17,6 +17,6 @@ class GoodsActivity{
 
     private:
     
-        int year, month, date;
+        time_t time;
         GoodsInInventory goods; 
 };
