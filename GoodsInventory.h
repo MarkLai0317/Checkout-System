@@ -1,7 +1,14 @@
+#ifndef _
+
+
+
 #include <string>
 #include <vector>
 
 using get = std::string (*)(void);
+
+
+const 
 
 class GoodsInventory{
     
@@ -15,22 +22,29 @@ class GoodsInventory{
          
         
         //return the id of the goods
-        std::string getId() const;
+        int getId() const;
 
         //return the quantity of the goods
-        std::string getQuantity() const;
+        int getQuantity() const;
         
+
+        //return the cotogory of the goods
+        int getcatogoy() const;
+        
+
         //return the name of the goods
         std::string getName() const;
+
+
 
 
 
     
     private:
     
-        int id, quantity;
+        int id, quantity, catogory;
 
-        std::string name, catogory;
+        std::string name;
 
          
 
