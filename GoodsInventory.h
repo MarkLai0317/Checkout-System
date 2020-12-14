@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
 
+using get = std::string (*)(void);
+
 class GoodsInventory{
     
     public:
@@ -13,17 +15,25 @@ class GoodsInventory{
          
         
         //return the id of the goods
-        int getId() const;
+        std::string getId() const;
 
         //return the quantity of the goods
-        int getQuantity() const;
+        std::string getQuantity() const;
         
         //return the name of the goods
         std::string getName() const;
+
+
+
     
     private:
-  
+    
         int id, quantity;
-        std::string name;
+
+        std::string name, catogory;
+
+         
+
+
 
 };
