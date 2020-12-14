@@ -13,6 +13,9 @@ class SupplierUI:: public UserInterFace{
 
 	
 public:
+	
+	// print out the goods that has been input 
+	// into activity_buffer
 	void printInterface();
 
 	// Get all the needed iput and put them into GoodsInventory.
@@ -36,11 +39,10 @@ private:
 
 
 	// get input and store the input catogory
-	// 
 	int inputCatogory();
 
-	// 3 function above is used in getGoods
 
+	// function above is used in getGoods
 
 
 	// A vector that temporary store the input

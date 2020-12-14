@@ -1,4 +1,5 @@
-#ifndef _
+#ifndef _GOODSINVENTORY_H_
+#define _GOODSINVENTORY_H_
 
 
 
@@ -18,7 +19,7 @@ class GoodsInventory{
         GoodsInventory(){};
         
         //Constructor
-        GoodsInventory(int id, int quantity, std::string name);
+        GoodsInventory(int id, int quantity, int catorory, std::string name);
          
         
         //return the id of the goods
@@ -51,3 +52,6 @@ class GoodsInventory{
 
 
 };
+
+
+#endif
