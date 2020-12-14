@@ -1,4 +1,9 @@
-class GoodsActivity{
+#ifndef _GOODSACTIVITY_H
+#define _GOODSACTIVITY_H
+
+#include "GoodsInventory.h"
+
+class GoodsActivity: {
 
     public:
     
@@ -18,5 +23,5 @@ class GoodsActivity{
     private:
 
         time_t time;
-        GoodsInInventory goods; 
+        GoodsInventory goods; 
 };
