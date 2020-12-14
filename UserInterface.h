@@ -1,9 +1,8 @@
 class UserInterface{
 
     public:
-        virtual void printInterface();
 
-        virtual 
+        virtual void printInterface();
 
     private:
         char screen[50][100];

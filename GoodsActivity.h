@@ -1,7 +1,7 @@
 class GoodsActivity{
 
     public:
-        
+    
         GoodsActivity(int id, int quantity, string name, time_t t)
             : goods(id, quantity, name),
              time(t)
@@ -16,7 +16,7 @@ class GoodsActivity{
 
 
     private:
-    
+
         time_t time;
         GoodsInInventory goods; 
 };
