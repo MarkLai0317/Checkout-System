@@ -1,7 +1,10 @@
+#ifndef _GOODSINVENTORY_H_
+#define _GOODSINVENTORY_H_
+
 #include <string>
 #include <vector>
 
-enum feature { categories, type}
+using get = std::string (*)(void);
 
 class GoodsInventory{
     
@@ -11,7 +14,7 @@ class GoodsInventory{
         GoodsInventory(){};
         
         //Constructor
-        GoodsInventory(int id, int quantity, std::string name);
+        GoodsInventory(int id, int quantity, int catorory, std::string name);
          
         
         //return the id of the goods
@@ -20,13 +23,20 @@ class GoodsInventory{
         //return the quantity of the goods
         int getQuantity() const;
         
+
+        //return the cotogory of the goods
+        int getcatogoy() const;
+        
+
         //return the name of the goods
         std::string getName() const;
     
     private:
-  
+
         int id, quantity, category;
-        
         std::string name;
 
 };
+
+
+#endif
