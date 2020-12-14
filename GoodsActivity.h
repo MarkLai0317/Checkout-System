@@ -7,8 +7,8 @@ class GoodsActivity: {
 
     public:
     
-        GoodsActivity(int id, int quantity, int catogory,string name, time_t t)
-            : goods(id, quantity, catogory, name),
+        GoodsActivity(int id, int quantity, int category,string name, time_t t)
+            : goods(id, quantity, category, name),
              time(t)
         {}
         
@@ -25,8 +25,8 @@ class GoodsActivity: {
         int getQuantity() const;
         
 
-        //return the cotogory of the goods
-        int getcatogoy() const;
+        //return the category of the goods
+        int getCategory() const;
         
 
         //return the name of the goods

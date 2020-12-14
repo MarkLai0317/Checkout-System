@@ -38,7 +38,7 @@ private:
 	int inputQuantity();
 
 
-	// get input and store the input catogory
+	// get input and store the input category
 	int inputCatogory();
 
 
