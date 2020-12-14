@@ -4,7 +4,7 @@ class FileConnector{
 
     public:
 
-        
+        vector<GoodsInventory> searchInventory;
 
     private:
 

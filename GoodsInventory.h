@@ -2,15 +2,15 @@
 #include <string>
 #include <vector>
 
-class GoodsInInventory{
+class GoodsInventory{
     
     public:
  
         //Default Constructor
-        GoodsInInventory(){};
+        GoodsInventory(){};
         
         //Constructor
-        GoodsInInventory(int id, int quantity, std::string name);
+        GoodsInventory(int id, int quantity, std::string name);
          
         
         //return the id of the goods
