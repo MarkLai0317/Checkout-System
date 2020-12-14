@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
 
+enum feature { categories, type}
+
 class GoodsInventory{
     
     public:
@@ -23,7 +25,8 @@ class GoodsInventory{
     
     private:
   
-        int id, quantity;
+        int id, quantity, category;
+        
         std::string name;
 
 };
