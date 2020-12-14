@@ -1,10 +1,19 @@
+#ifndef _USERINTERFACE_H
+#define _USERINTERFACE_H
+
+#include ""
+
 class UserInterface{
 
     public:
 
-        virtual void printInterface();
+        virtual void printInterface() = 0;
 
-    private:
-        char screen[50][100];
+
+
+
 
 }
+
+
+#endif
