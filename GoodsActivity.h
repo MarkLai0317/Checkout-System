@@ -7,8 +7,8 @@ class GoodsActivity: {
 
     public:
     
-        GoodsActivity(int id, int quantity, ,string name, time_t t)
-            : goods(id, quantity, name),
+        GoodsActivity(int id, int quantity, int catogory,string name, time_t t)
+            : goods(id, quantity, catogory, name),
              time(t)
         {}
         
