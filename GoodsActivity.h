@@ -7,8 +7,8 @@ class GoodsActivity: {
 
     public:
     
-        GoodsActivity(int id, int quantity, int category,string name, time_t t)
-            : goods(id, quantity, category, name),
+        GoodsActivity(int id, int quantity, int category, int price, std::string name, time_t t)
+            : goods(id, quantity, category, name, price),
              time(t)
         {}
         
@@ -29,8 +29,12 @@ class GoodsActivity: {
         int getCategory() const;
         
 
+        int getPrice() const;
+
         //return the name of the goods
         std::string getName() const;
+
+
 
 
 

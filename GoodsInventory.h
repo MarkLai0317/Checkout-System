@@ -14,7 +14,7 @@ class GoodsInventory{
         GoodsInventory(){};
         
         //Constructor
-        GoodsInventory(int id, int quantity, int category, std::string name);
+        GoodsInventory(int id, int quantity, int category, int price, std::string name);
          
         
         //return the id of the goods
@@ -28,12 +28,17 @@ class GoodsInventory{
         int getCategoy() const;
         
 
+        //return the price of the good
+        int getPrice() const;
+
+
         //return the name of the goods
         std::string getName() const;
     
+    
     private:
 
-        int id, quantity, category;
+        int id, quantity, category, price;
         std::string name;
 
 };
