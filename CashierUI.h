@@ -73,9 +73,11 @@ private:
 	vector<GoodInventory> purchaseConfirm();
 
 
+	int category_now;
+
 	// the list of goods that buyer has choose
 	vector<GoodInventory> reciept;
-	
+
 
 
 
