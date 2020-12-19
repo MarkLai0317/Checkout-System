@@ -1,15 +1,18 @@
 #ifndef _GOOD_H_
 #define _GOOD_H_
 
+
+const catogoryString;
+
 class GoodsInventory{
     
     public:
  
         //Default Constructor
-        GoodsInventory(){};
+        GoodsInventory(){}
         
         //Constructor
-        GoodsInventory(int ID, string category, string name) : id(id), category(category) : name(name){}
+        GoodsInventory(int ID, string category, string name) : id(id), category(category) name(name){}
         
         //return the id of the goods
         int getId() const;
