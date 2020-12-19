@@ -6,6 +6,13 @@
 #include <vector>
 #include "GoodInventory.h"
 
+
+
+#define SNACK 0
+#define DRINK 1
+#define DAILY 2
+#define CLOTHES 3
+#define ELECTRONIC
 #define INVALID -100 
 #define BACK -1
 #define QUIT -2
@@ -74,6 +81,8 @@ private:
 
 
 	int category_now;
+
+	int id_now;
 
 	// the list of goods that buyer has choose
 	vector<GoodInventory> reciept;

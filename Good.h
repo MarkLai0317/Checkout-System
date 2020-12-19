@@ -2,7 +2,7 @@
 #define _GOOD_H_
 #include <string>
 
-const char *arr[5] = {"food", "drink", "daily product", " ", " "};
+const char *arr[5] = {"snack", "drink", "daily product", "clothes", "electronic product"};
 
 class Good{
     
