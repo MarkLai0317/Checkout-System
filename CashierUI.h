@@ -21,9 +21,13 @@
 #define RECIEPT -5
 
 
+<<<<<<< Updated upstream
 
 enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS};
 
+=======
+enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT};
+>>>>>>> Stashed changes
 
 class CashierUI {
 
@@ -88,6 +92,9 @@ private:
 	// things to do in quantity page
 	void recieptPage();
 
+	// things to do in quantity page
+	void recieptPage();
+
 	//delete one goods chosen by customer
 	void deleteOneGoodChoosed();
 
@@ -106,7 +113,11 @@ private:
 
 
 	int category_now;
+<<<<<<< Updated upstream
 
+=======
+    
+>>>>>>> Stashed changes
 	// check this variable to determine
 	// whether to print warning  
     bool input_invalid = false;
@@ -120,7 +131,11 @@ private:
 	vector<GoodInventory> reciept;
 
 	// use fuction of SearchSystem
+<<<<<<< Updated upstream
 	SearchSystem search;
+=======
+	SearchSystem search
+>>>>>>> Stashed changes
 
 
 
