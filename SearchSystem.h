@@ -17,8 +17,17 @@ class SearchSystem{
 
 
         // return all goodInvantory of the input category
-        vector<GoodInventory> findGoodsOfCategory(std::string input_category);
+        vector<GoodInventory> findGoodOfCategory(std::string input_category);
 
+        //return the goodInventory of tech input id
+        GoodInventory findGoodOfId(int input_id);
+
+
+        // Find the good of input id and set the quantity to input_quantity for reciept.     
+        GoodInventory findGoodOfIdAndSetQuantity(int input_id, int input_quantity);
+
+        // put the reciept to database for processing 
+        void purchaseConfirm(vector<GoodInventory> the_reciept);
 
         // see if the catogory input exist
         // if exist, return true.
