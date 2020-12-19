@@ -13,7 +13,7 @@ class SearchSystem{
 
 
 
-
+        
 
 
         // return all goodInvantory of the input category

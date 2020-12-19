@@ -80,10 +80,20 @@ void CashierUI::idPage(){
 
 
 	clearScreen();
+	// find the goods of chosen category and print it out 
+	vector<GoodInventory> good_need_print = findGoodsOfCategory(string(category_string[category_now]));
+	printMenu(good_need_print);
 
-	printMenu(vector<GoodInventory>);
+	int chosen_id = inputId();
 
-	int chosen_id = input;
+	while(chosen_category == INVALID){
+		// need to print the text to warn user
+		clearScreen();
+		printMenu(good_need_print);	
+		cout << "We don't have this product. please choose the valid id.\n";
+		chosen_category = inputCategory();
+
+	}
 
 
 
