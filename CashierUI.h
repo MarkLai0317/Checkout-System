@@ -1,14 +1,17 @@
 
 #include <vector>
 #include "GoodInventory.h"
-#include "file"
+
 
 
 class CashierUI {
 
 
 
-	CashierSystem();
+
+
+	
+	void CashierSystem();
 
 
 
@@ -64,7 +67,7 @@ private:
 	// the list of goods that buyer has choose
 	vector<GoodInventory> reciept;
 
-	
+
 
 
 };
