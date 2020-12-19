@@ -9,7 +9,7 @@ class GoodsInventory{
         GoodsInventory(){};
         
         //Constructor
-        GoodsInventory(int id, int category, string name);
+        GoodsInventory(int ID, string category, string name) : id(id), category(category) : name(name){}
         
         //return the id of the goods
         int getId() const;
@@ -22,8 +22,8 @@ class GoodsInventory{
     
     private:
 
-        int id, category;
-        string name;
+        int id;
+        string category, name;
 
 };
 
