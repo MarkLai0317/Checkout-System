@@ -1,7 +1,6 @@
 #ifndef _GOODSINVENTORY_H_
 #define _GOODSINVENTORY_H_
 
-#include <string>
 #include <vector>
 
 using get = std::string (*)(void);
@@ -14,6 +13,7 @@ class GoodsInventory{
         GoodsInventory(){};
         
         //Constructor
+
         GoodsInventory(int id, int quantity, int category, int price, std::string name);
          
         
@@ -34,14 +34,15 @@ class GoodsInventory{
 
         //return the name of the goods
         std::string getName() const;
+
     
     
     private:
 
+
         int id, quantity, category, price;
         std::string name;
 
-};
-
+}
 
 #endif

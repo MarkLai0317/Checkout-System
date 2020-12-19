@@ -6,10 +6,7 @@
 #include "UserInterface.h"
 #include "GoodsActivity.h"
 
-
-
-
-class SupplierUI:: public UserInterFace{
+class SupplierUI : public UserInterFace{
 
 	
 public:
@@ -21,7 +18,7 @@ public:
 	// Get all the needed iput and put them into GoodsInventory.
 	// The Good need to be put into activity_buffer for printing the table
 	// ,and return the Goods to the system
-	GoodsInvectory inputGoods();
+	GoodsInventory inputGoods();
 
 
 private:
@@ -50,8 +47,5 @@ private:
 	vector<GoodsInventory> activity_buffer;
 
 };
-
-
-
 
 #ifndef
