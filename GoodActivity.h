@@ -8,7 +8,7 @@ class GoodActivity: public GoodActivity{
     public:
     
 
-        GoodsActivity(std::string category, int id, std::string, int price, int quantity, time_t t);
+        GoodActivity(int id, std::string category, std::string, int price, int quantity, time_t t);
         
         int getYear() const;
 

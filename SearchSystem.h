@@ -41,7 +41,7 @@ class SearchSystem{
         vector<Good> categoryToGoods(int category);
 
         //find the specific id's status in Inventory
-        vector<GoodActivity> searchActivity(Good target);
+        vector<GoodActivity> searchInventory(Good target);
 
         //find the specific id's activiy
         vector<GoodActivity> searchActivity(Good target);
