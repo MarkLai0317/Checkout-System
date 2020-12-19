@@ -5,6 +5,7 @@
 
 #include <vector>
 #include "GoodInventory.h"
+#include "UserInterface.h"
 
 
 
@@ -26,7 +27,7 @@
 enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS};
 
 
-class CashierUI {
+class CashierUI: public UserInterface{
 
 
 
@@ -70,7 +71,7 @@ private:
 	int inputQuantity();
 
     
-	//1.Input 'd' means delete a chose good, return DELETE.
+	//1.Input the Nth order of the reciept that user want to delete and return N(數字) 
 	//  Input 'c' means comfirm the reciept, return CONFIRM.
 	//  Input 'b' means back to last page, return BACK.
     int inputReciept();
@@ -78,9 +79,11 @@ private:
 
 	// recieve list of goods and print with nice format
 	// need to show id, name, quantity, and price $  
-	void printMenu(vector<GoodInventory>);
+	void printMenu(&vector<GoodInventory>);
 
 	// print reciept with reciept format like 7
+	// 每項要有編號
+	// 最後需要print總價
 	void printReciept();
 
 	// things to do in category page
@@ -98,20 +101,15 @@ private:
 	void recieptPage();
 
 	//delete one goods chosen by customer
-	void deleteOneGoodChoosed();
+	void deleteOrder(int order);
 
 	// delete reciept when purchase is canceled
 	// the implement only need to delete reciept
 	void purchaseCancel();
 
-	// caculate the total price
+	// caculate the total price if needed
     int caculateTotalPrice();
 
-    // after choose the quantity
-    int addToReciept(int quantity);
-
-	//return the reciept to system and clean the reciept
-	vector<GoodInventory> purchaseConfirm();
 
 
 	int category_now;
@@ -123,7 +121,7 @@ private:
     // the recent chose id
 	int id_now;
 
-
+	bool terminate = false;
 
 	// 分辨現在在哪一層 
 	status page_status = CATEGORY_STATUS;
