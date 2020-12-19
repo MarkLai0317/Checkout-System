@@ -1,3 +1,7 @@
+#ifndef _CASHIER_H
+#define _CASHIER_H
+
+
 
 #include <vector>
 #include "GoodInventory.h"
@@ -71,6 +75,7 @@ private:
 
 	// the list of goods that buyer has choose
 	vector<GoodInventory> reciept;
+	
 
 
 
