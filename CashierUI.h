@@ -12,12 +12,14 @@
 #define DRINK 1
 #define DAILY 2
 #define CLOTHES 3
-#define ELECTRONIC
+#define ELECTRONIC 4
 #define INVALID -100 
 #define BACK -1
 #define QUIT -2
 #define DELETE -3 
 
+
+enum status {CategoryStatus, IdStatus, QuantityStatus};
 
 class CashierUI {
 
@@ -68,6 +70,9 @@ private:
 	void printReciept();
 
 
+	int categoryPage();
+
+
 	//delete one goods chosen by customer
 	void deleteOneGoodChoosed();
 
@@ -83,6 +88,8 @@ private:
 	int category_now;
 
 	int id_now;
+
+	status page_status = 
 
 	// the list of goods that buyer has choose
 	vector<GoodInventory> reciept;
