@@ -7,7 +7,7 @@ class UserInterface{
 
     public:
 
-        virtual void printInterface() = 0;
+        virtual void printMenu(&vector<GoodInventory>) = 0;
 
 
         void clearScreen(){
