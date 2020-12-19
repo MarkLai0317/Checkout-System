@@ -10,6 +10,13 @@ class UserInterface{
         virtual void printInterface() = 0;
 
 
+        void clearScreen(){
+        	std::cout << std::flush;
+        	system("clear");
+        }
+
+
+
 
 
 

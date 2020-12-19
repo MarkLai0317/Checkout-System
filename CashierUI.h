@@ -70,7 +70,6 @@ private:
 	void printReciept();
 
 
-	int categoryPage();
 
 
 	//delete one goods chosen by customer
