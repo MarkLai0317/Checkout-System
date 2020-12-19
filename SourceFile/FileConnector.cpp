@@ -1,87 +1,109 @@
-#include <FileConnector.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include "../HeaderFile/FileConnector.h"
 
-FileConnector::FileConnector(string name) : file_name("data\\"+name+".csv") {
-    ifstream file(file_name);
-    int count = 0;
-    char buffer[80];
-    file.getline(buffer, sizeof(buffer));
-
-    for(char *token=strtok(buffer, ","); token; token=strtok(NULL, ",")){
-        column[token] = count++;
+FileConnector::FileConnector(std::string name) : file_name("../data/"+name), input_file("../data/" + name), output_file("../data/" + name + ".tmp"){
+    table.clear();
+    if(input_file.fail()){
+        std::cout << "Fail to open file" << std::endl;
+        std::cout << "Creating new file" << std::endl;
+        system( ("touch " + file_name).c_str() );
+        std::cout << "Create new file successfully! " << std::endl;
     }
 
-    file.close();
+    readCsv();
+
+}
+
+void FileConnector::readCsv(){
+    std::cout << "Reading csv" << std::endl;
+    input_file.seekg(0,std::ios::beg);
+    int count = 0;
+    char buffer[80];
+    input_file.getline(buffer, sizeof(buffer));
+    std::vector<std::string> tmp_row;
+
+    for(char *token=strtok(buffer, ","); token; token=strtok(NULL, ",")){
+        tmp_row.push_back(token);
+        column[token] = count++;
+    }
+    table.push_back(tmp_row); 
+    tmp_row.clear();
+
+    while(input_file.getline(buffer, sizeof(buffer))){
+        for(char *token=strtok(buffer, ","); token; token=strtok(NULL, ",")){
+            tmp_row.push_back(token);
+        }
+        table.push_back(tmp_row); tmp_row.clear();
+    }
+    std::cout << "Finish reading" << std::endl;
 }
 
 FileConnector::~FileConnector(){
+    write();
+
+    input_file.close();
+    output_file.close();
+
+    system( ("rm " + file_name).c_str() );
+    system( ("mv " + file_name + ".tmp " + file_name).c_str() );
+
+}
+
+void FileConnector::write(){
+    for(int i=0; i<table.size(); i++){
+        output_file << table[i][0];
+        for(int j=1; j<table[i].size(); j++){
+            output_file << "," << table[i][j];
+        }
+        output_file << std::endl;
+    }
 }
 
 // return 哪一行
-int FileConnector::search(strng from, string target){
-    ifstream file(file_name);
-    char buffer[80];
-    int from_col = column[from], count = 0;
+std::vector<int> FileConnector::search(std::string property, std::string target){
+    int which_col = column[property];
 
-    while(file.getline(buffer, sizeof(buffer))){
-        char *token=strtok(buffer, ",");
-        for(int i=0; i<from_col; i++, token=strtok(buffer, ",")){};
-
-        if((std::string)token == target){
-            file.close();
-            return count;
-        }
-
-        count++;
-    }
+    std::vector<int> vec;
     
-    file.close();
-    return -1;
+    int cnt = 0;
+    while(cnt++ < table.size()-1){
+        if(table[cnt][which_col] == target){
+            vec.push_back(cnt);
+        }
+    }
+
+    return vec;
 }
 
 //找到那行的那個位置修改其值，如果找不到要回傳錯誤訊息
-void FileConnector::update(string from, string to_update, string which_col, string to_target){
-    ifstream file(file_name);
-    ofstream tmp_file(file_name + ".tmp");
+void FileConnector::update(std::string from_property, std::string which_is, std::string from_col, std::string change_to){
+    std::vector<int> which_row = search(from_property, which_is);
+    int which_col = column[from_col];
 
-    int which_row = search(from, to_update);
-    while(which_row--){ 
-        file.getline(buffer, sizeof(buffer));
-        tmp_file << buffer << std::endl;
+    for(int i : which_row){
+        table[i][which_col] = change_to;
     }
-
-    file.getline(buffer, sizeof(buffer));
-    int from_col = column[which_col];
-    for(char *token=strtok(buffer, ","); token; token=strtok(NULL, ","), count++){
-        if((std::string)token == to_update) vec.push_back(to_update);
-        else vec.push_back(token);
-    }
-
-    file << vec[0];
-    for(int i=1; i<vec.size(); i++){
-        file << "," << vec[i];
-    }
-    file << std::endl;
-
-    while(file.getline(buffer, sizeof(buffer)))
-        tmp_file << buffer << std::endl;
-
-    file.close();
-    tmp_file.close();
-
-    system( ("rm " + file_name).c_str() );
-    system( ("mv " + file_name + ".tmp " file_name).c_str() );
-
 }
 
 //vector裡面要裝有 id name price category (quantity) (time)
-void FileConnector::append(vector<string> vec){
-    ofstream file(file_name);
+void FileConnector::append(std::vector<std::string> vec){
+    if(vec.size() != column.size()){
+        std::cout << "invaild append (different column size)" << vec.size() << " " << column.size() << std::endl;
+        std::cout << "Each of the first row and your input row are belong:\n";
+        
+        for(std::string s : vec)
+            std::cout << s << " ";
+        std::cout << std::endl;
 
-    file << vec[0];
-    for(int i=1; i<vec.size(); i++){
-        file << "," << vec[i];
+        for(std::string s : table[0])
+            std::cout << s << " ";
+        std::cout << std::endl;
+
+        return ;
     }
-    file << endl;
 
-    file.close();
+    table.push_back(vec);
+    std::cout << "Append successfully!" << std::endl;
 }
