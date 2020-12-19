@@ -11,7 +11,7 @@ class Good{
     
         
         //Constructor
-        Good(std::string category, int id, std::string name, int price);
+        Good(int id, std::string category, std::string name, int price);
         
        
         //return the cotogory of the good

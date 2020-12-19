@@ -19,11 +19,6 @@ class SearchSystem{
         // return all goodInvantory of the input category
         vector<GoodInventory> findGoodsOfCategory(std::string input_category);
 
-
-        // see if the catogory input exist
-        // if exist, return true.
-        bool categoryExist(std::string input_category);
-
         // use id search the quantity of that good
         int findQuantityOfGood(int input_id);
 
@@ -37,8 +32,8 @@ class SearchSystem{
 
         GoodInventory findGood(Good target);
 
-        //find the specific category of goods
-        vector<Good> categoryToGoods(int category);
+        //find the specific category of goods, return empty vector if category is not exsist
+        vector<Good> categoryToGoods(string category);
 
         //find the specific id's status in Inventory
         vector<GoodActivity> searchInventory(Good target);

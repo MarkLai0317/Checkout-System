@@ -1,12 +1,8 @@
 #ifndef _CASHIER_H
 #define _CASHIER_H
 
-
-
 #include <vector>
 #include "GoodInventory.h"
-
-
 
 #define SNACK 0
 #define DRINK 1
