@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include "UserInterface.h"
-#include "GoodsActivity.h"
+#include "GoodInventory.h"
 
 class SupplierUI : public UserInterFace{
 
@@ -44,7 +44,7 @@ private:
 
 	// A vector that temporary store the input
 	// of user and need to be printed after input a object
-	vector<GoodsInventory> activity_buffer;
+	vector<GoodInventory> activity_buffer;
 
 };
 

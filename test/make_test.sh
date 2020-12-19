@@ -1,0 +1,1 @@
+g++ test_file_con.cpp ../SourceFile/FileConnector.cpp -o test_file_con

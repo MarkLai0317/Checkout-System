@@ -26,12 +26,14 @@ class SearchSystem{
         // Find the good of input id and set the quantity to input_quantity for reciept.     
         GoodInventory findGoodOfIdAndSetQuantity(int input_id, int input_quantity);
 
+
         // put the reciept to database for processing 
         void purchaseConfirm(vector<GoodInventory> the_reciept);
 
         // see if the catogory input exist
         // if exist, return true.
         bool categoryExist(std::string input_category);
+
 
         // use id search the quantity of that good
         int findQuantityOfGood(int input_id);
@@ -46,8 +48,8 @@ class SearchSystem{
 
         GoodInventory findGood(Good target);
 
-        //find the specific category of goods
-        vector<Good> categoryToGoods(int category);
+        //find the specific category of goods, return empty vector if category is not exsist
+        vector<Good> categoryToGoods(string category);
 
         //find the specific id's status in Inventory
         vector<GoodActivity> searchInventory(Good target);
