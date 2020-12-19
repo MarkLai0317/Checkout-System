@@ -1,5 +1,5 @@
-#ifndef _GOODSINVENTORY_H_
-#define _GOODSINVENTORY_H_
+#ifndef _GOODINVENTORY_H_
+#define _GOODINVENTORY_H_
 
 #include <vector>
 #include <string>
@@ -12,8 +12,7 @@ class GoodsInventory: public Good{
  
         
         //Constructor
-
-        GoodsInventory(std::string category, int id, std::string, int price, int quantity);
+        GoodInventory(int id, std::string category, std::string name, int price, int quantity);
          
         
    
@@ -23,7 +22,6 @@ class GoodsInventory: public Good{
     
     
     protected:
-
 
         int quantity;
 
