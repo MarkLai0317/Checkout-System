@@ -19,7 +19,7 @@
 #define DELETE -3 
 
 
-enum status {CategoryStatus, IdStatus, QuantityStatus};
+enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS};
 
 class CashierUI {
 
@@ -28,7 +28,7 @@ class CashierUI {
 
 
 	
-	void CashierSystem();
+	void cashierSystem();
 
 
 
@@ -43,6 +43,8 @@ private:
 	//   Input 'd' maens delete one goods have just choose, return DELETE
 	// 3.when implementation, using string to get the input will be easier to identify invalid input
 	//   so do other input
+	// 4.if category_invalid == true
+	//  --> print some text to tell the user
 	int inputCategory();
 
 	// 1.Need to see if we have the chosen ID
@@ -69,8 +71,14 @@ private:
 	// print reciept with reciept format like 7
 	void printReciept();
 
+	// things to do in category page
+	void categoryPage();
 
+	// things to do in id page
+	void idPage();
 
+	// things to do in quantity page
+	void quantityPage();
 
 	//delete one goods chosen by customer
 	void deleteOneGoodChoosed();
@@ -85,10 +93,17 @@ private:
 
 
 	int category_now;
+    
+
+    bool category_invalid = false;
+	
 
 	int id_now;
 
-	status page_status = 
+	
+	// tell system what page is now
+	// 分辨現在在哪一層 
+	status page_status = CategoryStatus;
 
 	// the list of goods that buyer has choose
 	vector<GoodInventory> reciept;
