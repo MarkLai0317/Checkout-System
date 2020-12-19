@@ -22,9 +22,13 @@
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS};
 
+=======
+enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT};
+>>>>>>> Stashed changes
 =======
 enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT};
 >>>>>>> Stashed changes
@@ -95,6 +99,9 @@ private:
 	// things to do in quantity page
 	void recieptPage();
 
+	// things to do in quantity page
+	void recieptPage();
+
 	//delete one goods chosen by customer
 	void deleteOneGoodChoosed();
 
@@ -114,7 +121,11 @@ private:
 
 	int category_now;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+    
+>>>>>>> Stashed changes
 =======
     
 >>>>>>> Stashed changes
@@ -132,7 +143,11 @@ private:
 
 	// use fuction of SearchSystem
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	SearchSystem search;
+=======
+	SearchSystem search
+>>>>>>> Stashed changes
 =======
 	SearchSystem search
 >>>>>>> Stashed changes
