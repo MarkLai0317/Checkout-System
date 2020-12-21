@@ -2,6 +2,7 @@
 #define _USERINTERFACE_H
 
 #include "GoodInventory.h"
+#include "searchSystem.h"
 
 #define SNACK 0
 #define DRINK 1
@@ -19,7 +20,7 @@ enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS};
 
 class UserInterface{
 
-    public:
+    protected:
 
         
     	virtual int inputCategory() = 0;
@@ -60,7 +61,7 @@ class UserInterface{
         	system("clear");
         }
 
-    private:
+    protected:
 
 
     	
