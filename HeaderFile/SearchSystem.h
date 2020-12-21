@@ -11,21 +11,17 @@ class SearchSystem{
 
     public:
 
-
-
-        
-
-
         // return all goodInvantory of the input category
-        vector<GoodInventory> findGoodOfCategory(std::string input_category);
+        vector<GoodInventory> findInventoryOfCategory(std::string input_category);
 
         //return the goodInventory of tech input id
-        GoodInventory findGoodOfId(int input_id);
+        GoodInventory findInventoryOfId(int input_id);
 
 
         // Find the good of input id and set the quantity to input_quantity for reciept.     
-        GoodInventory findGoodOfIdAndSetQuantity(int input_id, int input_quantity);
+        GoodInventory findInventoryOfIdAndSetQuantity(int input_id, int input_quantity);
 
+        
 
         // put the reciept to database for processing 
         void purchaseConfirm(vector<GoodInventory> the_reciept);
@@ -43,6 +39,7 @@ class SearchSystem{
 
     private:
     
+
         //find the specific id's good
         Good idToGood(int id);
 
@@ -51,11 +48,13 @@ class SearchSystem{
         //find the specific category of goods, return empty vector if category is not exsist
         vector<Good> categoryToGoods(string category);
 
-        //find the specific id's status in Inventory
         vector<GoodActivity> searchInventory(Good target);
 
-        //find the specific id's activiy
         vector<GoodActivity> searchActivity(Good target);
+
+        vector<Good> tableToGoods(std::vector<std::string>);
+        vector<GoodInventory> tableToInventories(std::vector<std::string>);
+        vector<GoodActivity> tableToActivities(std::vector<std::string>);
 
 }
 
