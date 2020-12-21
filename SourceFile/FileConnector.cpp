@@ -13,7 +13,6 @@ FileConnector::FileConnector(std::string name) : file_name("../data/"+name), inp
     }
 
     readCsv();
-
 }
 
 void FileConnector::readCsv(){
@@ -61,25 +60,34 @@ void FileConnector::write(){
     }
 }
 
-// return 哪一行
-std::vector<int> FileConnector::search(std::string property, std::string target){
+void FileConnector::search(std::string property, std::string target){
     int which_col = column[property];
 
-    std::vector<int> vec;
+    row_result.clear();
+    result.clear();
     
-    int cnt = 0;
-    while(cnt++ < table.size()-1){
-        if(table[cnt][which_col] == target){
-            vec.push_back(cnt);
+    if(which_col){
+        int cnt = 0;
+        while(cnt++ < table.size()-1){
+            if(table[cnt][which_col] == target){
+                row_result.push_back(cnt);
+                result.push_back(table[cnt]);
+            }
         }
+    }else{
+        row_result.push_back(stoi(target));
+        result.push_back(table[stoi(target)]);
     }
+}
 
-    return vec;
+std::vector< vector<std::string> > FileConnector::getResult(){
+    return result;
 }
 
 //找到那行的那個位置修改其值，如果找不到要回傳錯誤訊息
 void FileConnector::update(std::string from_property, std::string which_is, std::string from_col, std::string change_to){
-    std::vector<int> which_row = search(from_property, which_is);
+    search(from_property, which_is);
+    std::vector<int> which_row = row_result;
     int which_col = column[from_col];
 
     for(int i : which_row){
