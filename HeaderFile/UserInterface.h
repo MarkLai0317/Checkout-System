@@ -9,14 +9,20 @@
 #define DAILY 2
 #define CLOTHES 3
 #define ELECTRONIC 4
+
 #define INVALID -100 
+#define VALID -200
+
+// page option
 #define BACK -1
 #define QUIT -2
 #define DELETE -3
 #define CONFIRM -4 
 #define RECIEPT -5
+#define NEWGOOD -6
+#define OLDGOOD -7
 
-enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS};
+enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NEWGOOD_STATUS,};
 
 class UserInterface{
 
@@ -24,8 +30,6 @@ class UserInterface{
 
         
     	virtual int inputCategory() = 0;
-
-    	virtual void categoryPage() = 0;
 
 
 	    // 1.Need to see if we have the chosen ID
@@ -42,18 +46,28 @@ class UserInterface{
 		// 	 
 		// 2.return the valid id input
 		//   input 'b' means back to choose id --> return BACK
-    	int inputQuantity();
+    	virtual int inputQuantity() = 0;
 
 
+        int inputReciept();
     	// recieve list of goods and print with nice format
 		// need to show id, name, quantity, and price $  
+        
         void printMenu(&vector<GoodInventory>);
 
+
+        //=============Page===============
+        virtual void categoryPage() = 0;
 
         void idPage();
 
 
-        void quantityPage();
+        virtual void quantityPage();
+
+        virtual void recieptPage();
+
+        //=================================
+
 
         // 本來就在這裏
         void clearScreen(){
