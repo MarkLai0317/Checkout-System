@@ -22,7 +22,7 @@
 #define NEWGOOD -6
 #define OLDGOOD -7
 
-enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NEWGOOD_STATUS,};
+enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NEWGOOD_STATUS, OLD_STATUS};
 
 class UserInterface{
 
@@ -70,6 +70,11 @@ class UserInterface{
         virtual void recieptPage();
 
         //=================================
+
+
+        virtual void confirm();
+
+        virtual void addReciept();
 
 
         // 本來就在這裏

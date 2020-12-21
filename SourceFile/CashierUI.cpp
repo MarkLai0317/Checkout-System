@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void CshierUI::cashierSystem(){
+void CashierUI::cashierSystem(){
 	
 
 	while(!terminate){
@@ -30,6 +30,17 @@ void CshierUI::cashierSystem(){
 		}
 		
 	}
+}
+
+void Cashier::confirm(){
+	// return the reciept and resize the reciept to 0
+	search.purchaseConfirm(this->reciept);
+	this->reciept.resize();
+}
+
+void Cashier::addReciept(){
+
+	reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
 }
 
 
@@ -83,86 +94,6 @@ void CashierUI::categoryPage(){
 
 
 
-
-void quantityPage(){
-
-	clearScreen();
-	
-	// print the good of the chosen id and wait for the input quantity
-	vector<GoodInventory> good_of_idnow;
-	good_of_idnow.push_back(search.findInventoryOfId(this->id_now));
-	printMenu(good_of_idnow);
-
-
-	// ask user to input the quantity he or she wnat
-	int chosen_quantity = inputQuantity();
-	
-	// if the user input is invalid, ask user to input one more time
-	while(chosen_quantity == INVALID){
-			
-		clearScreen();
-		printMenu(good_of_idnow);	
-		// need to print the text to warn user
-		cout << "Please input the Valid quantity or type 'b' to go back to the last page.\n\n";
-		// input one more time
-		chosen_id = inputQuantity();
-
-	}
-	if(chosen_quantity == BACK){
-		// set the page_status to go back to the last page
-		this->page_status = ID_STATUS;
-	}
-	else{
-
-		// put the chosen good to the reciept vector.
-		reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
-		this->page_status = ID_STATUS;
-
-	}
-}
-
-void CashierUI::recieptPage(){
-
-	clearScreen();
-	printReciept();
-
-	int chosen_order = inputReceipt();
-
-	while(chosen_order == INVALID){
-
-		clearScreen();
-		printReciept();
-
-		cout << "Please input Valid choice!\n\n";
-		chosen_order = inputReceipt();
-	}
-
-	// when user choose to confirm the purchase
-	if(chosen_order == CONFIRM){
-
-		// return reciept to system and clear the reciept
-		search.purchaseConfirm(this->reciept);
-		reciept.resize(0);
-
-		// go back to choose category
-		this->page_status = CATEGORY_STATUS;
-
-	}
-	// go back to choose category
-	else if(chosen_order == BACK){
-
-		this->page_status = CATEGORY_STATUS;
-	}
-	
-	// user choose to delete a good chose before
-	else {
-		
-		deleteOrder(chosen_order);
-		
-	}
-
-
-}
 
 int UserInterface::intputCategory(){
 	// customer choose
@@ -261,5 +192,7 @@ int UserInterface::inputQuantity(){
 	if(qunatity_want <= quantity_have && quantity_want > 0)
 		return quantity_want;	
 }
+
+
 
 

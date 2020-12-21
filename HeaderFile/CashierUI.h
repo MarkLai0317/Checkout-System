@@ -97,6 +97,12 @@ private:
 	//================in UserInterface==================
 	//void printMenu(&vector<GoodInventory>);
 
+	// confirm the  reciept
+	void confirm();
+
+	// add the good choose to the reciept
+	void addReciept();
+
 private:
 
 

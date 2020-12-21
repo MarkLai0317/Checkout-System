@@ -14,6 +14,7 @@ class SupplierUI : public UserInterFace{
 public:
 	
 	
+	void supplierSystem();
 
 	// Get all the needed iput and put them into GoodsInventory.
 	// The Good need to be put into activity_buffer for printing the table
@@ -65,7 +66,10 @@ private:
 	//int inputReciept();
 
 
+	void categoryPage();
 
+	//================in UserInterface==================
+	//void quantityPage();
 
 
 	// print out the goods that has been input 
@@ -73,18 +77,29 @@ private:
 	void printReciept();
 
 
+	// confirm the old and new reciept
+	void confirm();
+
+	void addReciept();
+
+
 
 
 private:
 
 
-	string name_now;
-	// function above is used in getGoods
+	std::string name_now;
+	
+	//add new good or old good status
+	// if old ->OLDGOOD
+	//else if new -> NEWGOOD
+	status new_old_status = OLDGOOD;
 
 
 	// A vector that temporary store the input
 	// of user and need to be printed after input a object
-	vector<GoodInventory> reciept;
+	std::vector<GoodInventory> old_reciept;
+	std::vector<GoodInventory> new_reciept;
 
 };
 
