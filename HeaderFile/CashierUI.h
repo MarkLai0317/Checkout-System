@@ -5,22 +5,12 @@
 #include "GoodInventory.h"
 #include "UserInterface.h"
 
-#define SNACK 0
-#define DRINK 1
-#define DAILY 2
-#define CLOTHES 3
-#define ELECTRONIC 4
-#define INVALID -100 
-#define BACK -1
-#define QUIT -2
-#define DELETE -3
-#define CONFIRM -4 
-#define RECIEPT -5
 
 
 
 
-enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS};
+//================in UserInterface==================
+//enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS};
 
 
 class CashierUI: public UserInterface{
@@ -55,7 +45,8 @@ private:
 	// 2.return the valid id input
 	//   input 'b' means back to the last page, return BACK
 	// 3.same as above 3.
-	int inputId();
+	//================in UserInterface==================
+	//int inputId();
 
 
 	// 1.Need to see if we have the chosen Quantity.
@@ -64,7 +55,8 @@ private:
 	// 	 
 	// 2.return the valid id input
 	//   input 'b' means back to choose id --> return BACK
-	int inputQuantity();
+	//================in UserInterface==================
+	//int inputQuantity();
 
     
 	//1.Input the Nth order of the reciept that user want to delete and return N(數字) 
@@ -72,10 +64,6 @@ private:
 	//  Input 'b' means back to last page, return BACK.
     int inputReciept();
 
-
-	// recieve list of goods and print with nice format
-	// need to show id, name, quantity, and price $  
-	void printMenu(&vector<GoodInventory>);
 
 	// print reciept with reciept format like 7
 	// 每項要有編號
@@ -86,11 +74,13 @@ private:
 	void categoryPage();
 
 	// things to do in id page
-	void idPage();
+	//================in UserInterface==================
+	//void idPage();
 
 
 	// things to do in quantity page
-	void quantityPage();
+	//================in UserInterface==================
+	//void quantityPage();
 
 
 	// things to do in quantity page
@@ -99,28 +89,39 @@ private:
 	//delete one goods chosen by customer
 	void deleteOrder(int order);
 
-	// delete reciept when purchase is canceled
-	// the implement only need to delete reciept
-	void purchaseCancel();
-
-	// caculate the total price if needed
-    int caculateTotalPrice();
 
 
+	
+	// recieve list of goods and print with nice format
+	// need to show id, name, quantity, and price $  
+	//================in UserInterface==================
+	//void printMenu(&vector<GoodInventory>);
 
-	int category_now;
+private:
+
+
+	//================in UserInterface==================
+	//int category_now;
 
 	// check this variable to determine
 	// whether to print warning  
-    bool input_invalid = false;
+    //================in UserInterface==================
+    //bool input_invalid = false;
 	
-    // the recent chose id
-	int id_now;
 
-	bool terminate = false;
+
+    // the recent chose id
+	//================in UserInterface==================
+	//int id_now;
+
+
+
+	//================in UserInterface==================
+	//bool terminate = false;
 
 	// 分辨現在在哪一層 
-	status page_status = CATEGORY_STATUS;
+	//================in UserInterface==================
+	//status page_status = CATEGORY_STATUS;
 
 	
 	// the list of goods that buyer has choose
