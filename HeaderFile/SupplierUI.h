@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include "SearchSystem.h"
 #include "UserInterface.h"
 #include "GoodInventory.h"
 
@@ -12,14 +13,13 @@ class SupplierUI : public UserInterFace{
 	
 public:
 	
-	// print out the goods that has been input 
-	// into activity_buffer
-	void printInterface();
+	
 
 	// Get all the needed iput and put them into GoodsInventory.
 	// The Good need to be put into activity_buffer for printing the table
 	// ,and return the Goods to the system
-	GoodsInventory inputGoods();
+	//===============uncertain==================
+	//GoodsInventory inputGoods();
 
 
 private:
@@ -57,11 +57,20 @@ private:
 	int inputQuantity();
 
 
+
 	// 1.Input the Nth order of the reciept that user want to delete and return N(數字) 
 	//   Input 'c' means comfirm the reciept, return CONFIRM.
 	//   Input 'b' means back to last page, return BACK.
 	//================in UserInterface==================
 	//int inputReciept();
+
+
+
+
+
+	// print out the goods that has been input 
+	// into reciept, but don't need to print total price
+	void printReciept();
 
 
 

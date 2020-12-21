@@ -90,7 +90,7 @@ void quantityPage(){
 	
 	// print the good of the chosen id and wait for the input quantity
 	vector<GoodInventory> good_of_idnow;
-	good_of_idnow.push_back(search.findGoodOfId(this->id_now));
+	good_of_idnow.push_back(search.findInventoryOfId(this->id_now));
 	printMenu(good_of_idnow);
 
 
@@ -115,7 +115,7 @@ void quantityPage(){
 	else{
 
 		// put the chosen good to the reciept vector.
-		reciept.push_back(search.findGoodOfIdAndSetQuantity(id_now, chosen_quantity));
+		reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
 		this->page_status = ID_STATUS;
 
 	}

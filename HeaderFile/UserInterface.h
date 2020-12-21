@@ -28,7 +28,7 @@ class UserInterface{
 
     protected:
 
-        
+        //=============input==================
     	virtual int inputCategory() = 0;
 
 
@@ -50,12 +50,15 @@ class UserInterface{
 
 
         int inputReciept();
-    	// recieve list of goods and print with nice format
-		// need to show id, name, quantity, and price $  
-        
+
+
+        //====================================
+    	
+        // recieve list of goods and print with nice format
+		// need to show id, name, quantity, and price $        
         void printMenu(&vector<GoodInventory>);
 
-
+        void printReciept(&vec)
         //=============Page===============
         virtual void categoryPage() = 0;
 
@@ -97,6 +100,7 @@ class UserInterface{
     	// indicate what page is user in
     	status page_status = CATEGORY_STATUS;
 
+        vector<GoodInventory> reciept;
 
     	//used to interact with searchSystem;
     	SearchSystem search;

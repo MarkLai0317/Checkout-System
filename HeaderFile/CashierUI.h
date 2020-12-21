@@ -125,7 +125,8 @@ private:
 
 	
 	// the list of goods that buyer has choose
-	vector<GoodInventory> reciept;
+	//================in UserInterface==================
+	//vector<GoodInventory> reciept;
 
 	// use fuction of SearchSystem
 
