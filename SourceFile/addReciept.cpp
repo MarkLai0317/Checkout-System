@@ -19,6 +19,6 @@ void addReciept(){
             }
         }
     }else{
-        reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now))
+        reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
     }
 }
