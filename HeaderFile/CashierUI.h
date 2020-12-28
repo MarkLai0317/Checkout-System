@@ -1,5 +1,5 @@
-#ifndef _CASHIER_H
-#define _CASHIER_H
+#ifndef _CASHIERUI_H
+#define _CASHIERUI_H
 
 #include <vector>
 #include "GoodInventory.h"
@@ -106,6 +106,9 @@ private:
 private:
 
 
+
+	vector<GoodInventory> reciept;
+	
 	//================in UserInterface==================
 	//int category_now;
 
@@ -136,10 +139,9 @@ private:
 
 	// use fuction of SearchSystem
 
-	SearchSystem search;
-
-
-
-
+	//================in UserInterface==================
+	//SearchSystem search;
 
 };
+
+#endif

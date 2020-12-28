@@ -1,3 +1,5 @@
+#ifndef _FILECONNECTOR_H
+#define _FILECONNECTOR_H
 #include <fstream>
 #include <map>
 #include <vector>
@@ -31,3 +33,5 @@ class FileConnector{
         std::map<std::string, int> column;
 
 };
+
+#endif

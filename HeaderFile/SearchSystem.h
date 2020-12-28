@@ -1,5 +1,5 @@
-#ifndef _SERCHSYSTEM_H
-#define _SERCHSYSTEM_H
+#ifndef _SEARCHSYSTEM_H
+#define _SEARCHSYSTEM_H
 
 #include <vector>
 #include "Good.h"

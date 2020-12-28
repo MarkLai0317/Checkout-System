@@ -1,5 +1,5 @@
-#ifndef _GOODINVENTORY_H_
-#define _GOODINVENTORY_H_
+#ifndef _GOODINVENTORY_H
+#define _GOODINVENTORY_H
 
 #include <vector>
 #include <string>

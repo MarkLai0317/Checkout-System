@@ -1,5 +1,5 @@
-#ifndef _GOOD_H_
-#define _GOOD_H_
+#ifndef _GOOD_H
+#define _GOOD_H
 #include <string>
 
 const char *category_string[5] = {"snack", "drink", "daily_product", "clothes", "electronic_product"};
