@@ -77,8 +77,7 @@ void SearchSystem::supplyConfirm(std::vector<GoodInventory> old_reciept, std::ve
              , price = std::to_string(new_reciept[i].getPrice())
              , quantity = std::to_string(new_reciept[i].getQuantity());
 
-        std::vector<std::string> new_line = {id, category, name, price, quantity};
-        inventory_file.append( new_line );
+        inventory_file.append( {id, category, name, price, quantity});
     }
 
     //file.close();
