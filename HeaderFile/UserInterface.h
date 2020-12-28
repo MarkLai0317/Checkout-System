@@ -1,6 +1,6 @@
 #ifndef _USERINTERFACE_H
 #define _USERINTERFACE_H
-
+#include <vector>
 #include "../HeaderFile/GoodInventory.h"
 #include "../HeaderFile/SearchSystem.h"
 
@@ -30,12 +30,15 @@
 #define BACK_GROUND_BLUE "\033[46m"
 #define RESET "\033[0m"
 #define WIDE 101
+#define WIDe 80
 
 enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NAME_STATUS, PRICE_STATUS, NEWGOOD_STATUS, OLDGOOD_STATUS};
 
 class UserInterface{
 
-    public:
+    protected:
+
+        UserInterface(){}
 
         //=============Page===============
         virtual void categoryPage() = 0;
@@ -43,7 +46,7 @@ class UserInterface{
         void idPage();
 
 
-        virtual void quantityPage();
+        virtual void quantityPage() = 0;
 
         void recieptPage();
 
@@ -76,12 +79,12 @@ class UserInterface{
 
 
         // see the size of reciept
-        virtual int sizeOfReciept();
+        virtual int sizeOfReciept() = 0;
         //====================================
     	
         // recieve list of goods and print with nice format
 		// need to show id, name, quantity, and price $        
-        //void printMenu(const &vector<GoodInventory>) const;
+        void printMenu(std::vector<GoodInventory> &menu);
 
         
 
@@ -91,15 +94,15 @@ class UserInterface{
         void printcontent_w(std::string str);
     
 
-        virtual void printReciept();
+        virtual void printReciept() = 0;
        
 
         // confirm the reciept
-        virtual void confirm();
+        virtual void confirm() = 0;
 
-        virtual void addReciept();
+        virtual void addReciept() = 0;
 
-        virtual void deleteOrder(int chosen_order);
+        virtual void deleteOrder(int chosen_order) = 0;
 
 
         
@@ -107,7 +110,7 @@ class UserInterface{
         void clearScreen();
         	
 
-    public:
+    protected:
 
 
     	
@@ -136,7 +139,7 @@ class UserInterface{
     	SearchSystem search;
 
 
-}
+};
 
 
 #endif

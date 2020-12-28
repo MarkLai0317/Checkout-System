@@ -81,11 +81,9 @@ void SearchSystem::supplyConfirm(std::vector<GoodInventory> old_reciept, std::ve
              , price = std::to_string(new_reciept[i].getPrice())
              , quantity = std::to_string(new_reciept[i].getQuantity());
 
-<<<<<<< HEAD
-        inventory_file.append( {id, category, name, price, quantity});
-=======
+
         inventory_file.append( {id, category, name, price, quantity} );
->>>>>>> YJackBranch
+
     }
 
     //file.close();

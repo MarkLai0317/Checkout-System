@@ -3,7 +3,13 @@
 #include <iostream>
 #include "../HeaderFile/SupplierUI.h"
 #include "../HeaderFile/GoodInventory.h"
+#include "../HeaderFile/UserInterface.h"
 
+
+using namespace std;
+
+
+static const char* category_string[] = {"碗裝泡麵", "包裝餅乾", "利樂包", "寶特瓶", "酒"};
 
 void SupplierUI::supplierSystem(){
 
@@ -113,22 +119,30 @@ void SupplierUI::quantityPage(){
 		// need to print the text to warn user
 		//cout << "Please input the Valid quantity or type 'b' to go back to the last page.\n\n";
 		// input one more time
-		chosen_id = inputQuantity();
+		chosen_quantity = inputQuantity();
 
 	}
-	if(chosen_quantity == BACK){
+	if(chosen_quantity == BACK && old_new_status == OLDGOOD_STATUS){
 		// set the page_status to go back to the last page
 		this->page_status = ID_STATUS;
 	}
+    else if(chosen_quantity == BACK && old_new_status == NEWGOOD_STATUS){
+
+        this->page_status = PRICE_STATUS;
+    }
 	else{
 
 		// put the chosen good to the reciept vector.
 		quantity_now = chosen_quantity;
 		addReciept();
-		this->page_status = ID_STATUS;
+		if(old_new_status == OLDGOOD_STATUS)this->page_status = ID_STATUS;
+        else if(old_new_status == NEWGOOD_STATUS)this->page_status = CATEGORY_STATUS;
 
 	}
 }
+
+
+
 
 
 void SupplierUI::namePage(){
@@ -178,6 +192,201 @@ void SupplierUI::pricePage(){
 	}
 }
 
+
+int SupplierUI::inputCategory(){
+    string choose;
+
+    // remind supplier the adding mode
+    if(old_new_status == OLDGOOD_STATUS){
+        cout << "Now, you can add good which has already stored in the inventory." << endl;
+        cout << "If you wnat to add new good which does not store in the inventory, please press n." << endl;
+    }
+
+    if(old_new_status == NEWGOOD_STATUS){
+        cout << "Now, you can add new good which does not store in the inventory." << endl;
+        cout << "If you wnat to add old good which has already stroed in the inventory, please press o." << endl;
+    }
+    cout << "1. Snack. 2. Drink. 3. Daily Product. 4. Clothes 5. Electronic Product" << endl;
+    cout << "Press s for checking the supply list or press q for quiting system.\n" << endl;
+    
+
+    if(!input_invalid)
+        cout << "Please choose the service you want:";
+
+
+    // error message
+    if(input_invalid)
+		cout << "Your input is invalid, please try again:";
+
+    getline(cin, choose);
+
+    if(choose == "1")
+		return SNACK;
+
+	else if(choose == "2")
+		return DRINK;
+
+	else if(choose == "3")
+		return DAILY;
+	
+	else if(choose == "4")
+		return CLOTHES;
+	
+	else if(choose == "5")
+		return ELECTRONIC;
+	
+
+    else if(choose == "o")
+        return OLDGOOD;
+    
+
+    else if(choose == "n")
+        return NEWGOOD;
+
+    else if(choose == "s")
+        return RECIEPT;
+
+    else if(choose == "q")
+        return QUIT;
+
+    else
+        return INVALID;
+}
+
+int SupplierUI::inputName(){
+    if(old_new_status == OLDGOOD_STATUS)
+        cout << "Mode : Old Good" << endl;
+    if(old_new_status == NEWGOOD_STATUS)
+        cout << "Mode : New Good" << endl;
+        
+    if(category_now == SNACK)
+        cout << "Category : Snack" << endl;
+    if(category_now == DRINK)
+        cout << "Category : DRINK" << endl;
+    if(category_now == DAILY)
+        cout << "Category : Daily Product" << endl;
+    if(category_now == CLOTHES)
+        cout << "Category : Clothes" << endl;
+    if(category_now == ELECTRONIC)
+        cout << "Category : Electronic Product" << endl;
+
+    cout << "Please input name of good(only chinese), or press b for backing to the previous page:";
+    string name;
+    getline(cin, name);
+
+    // back command
+    if(name == "b")
+        return BACK;
+    
+    if(name.size() > 30)
+        return INVALID;
+
+    for(int i = 0 ; i < name.size(); ++i){
+        if(name[i] >= 0 && name[i] <= 127){
+            return INVALID;
+        }
+        else
+            i ++;
+    }
+
+    GoodInventory temp = search.findInventoryByName(name);
+
+    if(temp.getId() == -1){
+        name_now = name;
+        return VALID;
+    }
+    return INVALID;
+}
+
+int SupplierUI::inputPrice(){
+    
+    if(old_new_status == OLDGOOD_STATUS)
+        cout << "Mode : Old Good" << endl;
+    if(old_new_status == NEWGOOD_STATUS)
+        cout << "Mode : New Good" << endl;
+        
+
+
+    if(category_now == SNACK)
+        cout << "Category : Snack" << endl;
+    if(category_now == DRINK)
+        cout << "Category : DRINK" << endl;
+    if(category_now == DAILY)
+        cout << "Category : Daily Product" << endl;
+    if(category_now == CLOTHES)
+        cout << "Category : Clothes" << endl;
+    if(category_now == ELECTRONIC)
+        cout << "Category : Electronic Product" << endl;
+    cout << "Name : " << name_now << endl;
+
+    cout << "Please input the price you want to sell, or press b for backing to previous page:";
+    string price_str;
+    getline(cin, price_str);
+
+    // back command
+    if(price_str == "b")
+        return BACK;
+
+    for(int i = 0; i < price_str.size(); ++i){
+        // if supplier input has not number character or the first number is 0, then it is invalid
+        if(price_str[i] < '0' || price_str[i] > '9'|| price_str[0] == '0')
+            return INVALID;
+    }
+
+    // convert price_str from string to int
+    int price = stoi(price_str);
+
+    if(price > 0)
+        return price;
+    
+    else
+        return INVALID;
+    
+}
+
+
+int SupplierUI::inputQuantity(){ 
+    // old: category id
+    // new: category name price
+
+    if(old_new_status == OLDGOOD_STATUS){
+		cout << "Mode : Old" << endl;
+		cout << "Category : " << category_string[category_now] << endl;
+		cout << "ID : " << id_now << endl;
+	}
+	
+	if(old_new_status == NEWGOOD_STATUS){
+		cout << "Mode : New" << endl;
+		cout << "Category : " << category_string[category_now] << endl;
+		cout << "Name : " << name_now << endl;
+		cout << "Price : " << price_now << endl;
+	}
+
+    cout << "Please input the quantity of good you want to store in the inventory, or press b for backing to previous page:";
+    string quantity_str;
+    getline(cin, quantity_str);
+
+    // back command
+    if(quantity_str == "b")
+        return BACK;
+
+    for(int i = 0; i < quantity_str.size(); ++i){
+        // create a temporary name and compare it with the name which supplier input
+        if(quantity_str[i] < '0' || quantity_str[i] > '9' || quantity_str[0] == '0')
+            return INVALID;
+    }
+    // convert quantity_str from string to int
+    int quantity = stoi(quantity_str);
+    
+    if(quantity > 0)
+        return quantity;
+    
+    else
+        return INVALID;
+}
+
+
+
 int SupplierUI::sizeOfReciept(){
 	return (old_reciept.size() + new_reciept.size());
 }
@@ -194,21 +403,30 @@ void SupplierUI::confirm(){
 
 }
 
-void addReciept(){
-    if(old_new_status == OLD_GOOD_STATUS){
-        for (int i = 0; i < reciept.size(); ++i){
-            if (reciept[i].getId() == id_now){
-                reciept[i] = GoodInventory(reciept[i].getId(), reciept[i].getCategory(),
-                                           reciept[i].getName(), reciept[i].getPrice(),
-                                           reciept[i].getQuantity() + quantity_now);
+void SupplierUI::addReciept(){
+    if(old_new_status == OLDGOOD_STATUS){
+        for (int i = 0; i < old_reciept.size(); ++i){
+            if (old_reciept[i].getId() == id_now){
+                old_reciept[i] = GoodInventory(old_reciept[i].getId(),old_reciept[i].getCategory(), 
+                                               old_reciept[i].getName(), old_reciept[i].getPrice(), 
+                                               old_reciept[i].getQuantity()+ quantity_now);
                 return;
             }
         }
+        old_reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
     }else{
-        
-        reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
+        for (int i = 0; i < new_reciept.size(); ++i){
+            if (new_reciept[i].getId() == id_now){
+                new_reciept[i] = GoodInventory(new_reciept[i].getId(),new_reciept[i].getCategory(), 
+                                               new_reciept[i].getName(), new_reciept[i].getPrice(), 
+                                               new_reciept[i].getQuantity()+ quantity_now);
+                return;
+            }
+        }
+        new_reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
     }
 }
+
 
 
 void SupplierUI::deleteOrder(int chosen_order){
@@ -226,7 +444,7 @@ void SupplierUI::deleteOrder(int chosen_order){
 
 
 
-void SuppilerUI::printReciept(){
+void SupplierUI::printReciept(){
     std::vector<GoodInventory> merged_reciept;
     merged_reciept.reserve(old_reciept.size() + new_reciept.size());
     merged_reciept.insert(merged_reciept.end(), old_reciept.begin(), old_reciept.end());
@@ -256,14 +474,17 @@ void SuppilerUI::printReciept(){
     tmp.clear();
     int total = 0;
     for (int i = 0; i < merged_reciept.size(); ++i){
-        for (int j = 0; j < 10; ++j) tmp.push_back(' ');
-        std::string q = std::to_string(merged_reciept[i].quantity);
-        std::string p = std::to_string(merged_reciept[i].price);
-        std::string pq = std::to_string(merged_reciept[i].price * merged_reciept[i].quantity);
+        for (int j = 0; j < 5; ++j) tmp.push_back(' ');
+        std::string o = std::to_string(i+1);
+        tmp += o;
+        for (int j = 0; j < 7 - o.size(); ++j) tmp.push_back(' ');
+        std::string q = std::to_string(merged_reciept[i].getQuantity());
+        std::string p = std::to_string(merged_reciept[i].getPrice());
+        std::string pq = std::to_string(merged_reciept[i].getPrice() * merged_reciept[i].getQuantity());
         tmp += q;
         tmp += " x ";
-        tmp += merged_reciept[i].name;
-        for (int j = 0; j < WIDE - 10 - q.size() - 3 - merged_reciept[i].name.size() - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
+        tmp += merged_reciept[i].getName();
+        for (int j = 0; j < WIDE - 10 - q.size() - 3 - merged_reciept[i].getName().size() - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
         tmp += q;
         tmp += " x ";
         tmp += p;
@@ -272,7 +493,7 @@ void SuppilerUI::printReciept(){
         tmp += pq;
         for (int j = 0; j < 15 - pq.size(); ++j) tmp.push_back(' ');
         rcp.push_back(tmp);
-        total += merged_reciept[i].price * merged_reciept[i].quantity;
+        total += merged_reciept[i].getPrice() * merged_reciept[i].getQuantity();
         tmp.clear();
         for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
         rcp.push_back(tmp);
@@ -280,7 +501,9 @@ void SuppilerUI::printReciept(){
     }
 
     std::string t = std::to_string(total);
-    for (int i = 0; i < WIDE - 5 - 10 - 3; ++i) tmp.push_back(' ');
+    for (int i = 0; i < WIDE - 5 - 10 - 3 - 6; ++i) tmp.push_back(' ');
+    tmp += "Total";
+    tmp += " ";
     tmp += "NT$";
     tmp += t;
     for (int j = 0; j < 15 - t.size(); ++j) tmp.push_back(' ');
@@ -291,10 +514,14 @@ void SuppilerUI::printReciept(){
     rcp.push_back(tmp);
     tmp.clear();
 
+    for (int i = 0; i < WIDE; ++i) tmp.push_back('-');
+    rcp.push_back(tmp);
+    tmp.clear();
+
     for (int i = 0; i < rcp.size(); ++i){
         printborder();
         printborder();
-        if (i % 2)
+        if (i % 2 == 0)
             printcontent_w(rcp[i]);
         else
             printcontent_b(rcp[i]);
@@ -302,17 +529,7 @@ void SuppilerUI::printReciept(){
         printborder();
         std::cout << '\n';
     }
-} 
-
-
-
-
-
-
-
-
-
-
+}
 
 
 

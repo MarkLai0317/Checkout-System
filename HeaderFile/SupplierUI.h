@@ -8,12 +8,14 @@
 #include "../HeaderFile/UserInterface.h"
 #include "../HeaderFile/GoodInventory.h"
 
-class SupplierUI : public UserInterFace{
+class SupplierUI : public UserInterface{
 
 	
 public:
 	
 	
+	SupplierUI(){}
+
 	void supplierSystem();
 
 	// Get all the needed iput and put them into GoodsInventory.
@@ -29,7 +31,7 @@ private:
 
 	void categoryPage();
 
-
+	void quantityPage();
 
 	void namePage();
 
@@ -46,7 +48,7 @@ private:
     //   Inpur 's' means see the supply list, return RECIEPT.
 	//
 	// 3. If input valid category, return the category defined in UserInterface.   
-	int inputCatogory();
+	int inputCategory();
 
 
 	// 1. Need to see if the Name  already exist
@@ -107,7 +109,7 @@ private:
 	//add new good or old good status
 	// if old ->OLDGOOD
 	//else if new -> NEWGOOD
-	status old_new_status = OLDGOOD;
+	status old_new_status = OLDGOOD_STATUS;
 
 
 	// A vector that temporary store the input

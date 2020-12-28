@@ -6,7 +6,7 @@ class Good{
     
     public:
  
-        //Good();
+        Good(){}
         
         //Constructor
         Good(int input_id, std::string input_category, std::string input_name, int input_price);

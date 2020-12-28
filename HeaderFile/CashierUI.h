@@ -20,6 +20,8 @@ class CashierUI: public UserInterface{
 
 public:
 	
+	CashierUI(){}
+
 	void cashierSystem();
 
 
