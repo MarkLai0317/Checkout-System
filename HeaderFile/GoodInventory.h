@@ -6,7 +6,7 @@
 #include "Good.h"
 
 
-class GoodsInventory: public Good{
+class GoodInventory: public Good{
     
     public:
  
