@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include "Good.h"
+#include "../HeaderFile/Good.h"
 
 
 class GoodInventory: public Good{

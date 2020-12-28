@@ -1,8 +1,8 @@
 
 #include <iostream>
 #include <iostream>
-#include "SupplierUI.h"
-#include "GoodInventory"
+#include "../HeaderFile/SupplierUI.h"
+#include "../HeaderFile/GoodInventory.h"
 
 
 void SupplierUI::supplierSystem(){
@@ -95,7 +95,7 @@ void SupplierUI::categoryPage(){
 }
 
 
-void UserInterface::quantityPage(){
+void SupplierUI::quantityPage(){
 
 	clearScreen();
 	
@@ -194,15 +194,22 @@ void SupplierUI::confirm(){
 
 }
 
-void SupplierUI::addReciept(){
-
-	if(old_new_status == OLDGOOD_STATUS){
-		old_reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
-	}else{
-		new_reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
-	}
-
+void addReciept(){
+    if(old_new_status == OLD_GOOD_STATUS){
+        for (int i = 0; i < reciept.size(); ++i){
+            if (reciept[i].getId() == id_now){
+                reciept[i] = GoodInventory(reciept[i].getId(), reciept[i].getCategory(),
+                                           reciept[i].getName(), reciept[i].getPrice(),
+                                           reciept[i].getQuantity() + quantity_now);
+                return;
+            }
+        }
+    }else{
+        
+        reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
+    }
 }
+
 
 void SupplierUI::deleteOrder(int chosen_order){
 
@@ -213,6 +220,89 @@ void SupplierUI::deleteOrder(int chosen_order){
 		new_reciept.erase(new_reciept.begin() + chosen_order - old_reciept.size());
 	}
 }
+
+
+
+
+
+
+void SuppilerUI::printReciept(){
+    std::vector<GoodInventory> merged_reciept;
+    merged_reciept.reserve(old_reciept.size() + new_reciept.size());
+    merged_reciept.insert(merged_reciept.end(), old_reciept.begin(), old_reciept.end());
+    merged_reciept.insert(merged_reciept.end(), new_reciept.begin(), new_reciept.end());
+    std::vector<std::string> rcp;
+    std::string tmp;
+    for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+    for (int i = 0; i < ((WIDE - 1) / 2) - 3; ++i) tmp.push_back(' ');
+    tmp += "Reciept";
+    for (int i = 0; i < ((WIDE - 1) / 2) - 3; ++i) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+    for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+    for (int i = 0; i < 10; ++i) tmp.push_back(' ');
+    tmp += "Description";
+    for (int i = 0; i < WIDE - 10 - 10 - 11 - 5; ++i) tmp.push_back(' ');
+    tmp += "Price";
+    for (int i = 0; i < 10; ++i) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+    for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+    int total = 0;
+    for (int i = 0; i < merged_reciept.size(); ++i){
+        for (int j = 0; j < 10; ++j) tmp.push_back(' ');
+        std::string q = std::to_string(merged_reciept[i].quantity);
+        std::string p = std::to_string(merged_reciept[i].price);
+        std::string pq = std::to_string(merged_reciept[i].price * merged_reciept[i].quantity);
+        tmp += q;
+        tmp += " x ";
+        tmp += merged_reciept[i].name;
+        for (int j = 0; j < WIDE - 10 - q.size() - 3 - merged_reciept[i].name.size() - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
+        tmp += q;
+        tmp += " x ";
+        tmp += p;
+        tmp += " = ";
+        tmp += "NT$";
+        tmp += pq;
+        for (int j = 0; j < 15 - pq.size(); ++j) tmp.push_back(' ');
+        rcp.push_back(tmp);
+        total += merged_reciept[i].price * merged_reciept[i].quantity;
+        tmp.clear();
+        for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
+        rcp.push_back(tmp);
+        tmp.clear();
+    }
+
+    std::string t = std::to_string(total);
+    for (int i = 0; i < WIDE - 5 - 10 - 3; ++i) tmp.push_back(' ');
+    tmp += "NT$";
+    tmp += t;
+    for (int j = 0; j < 15 - t.size(); ++j) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+
+    for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+
+    for (int i = 0; i < rcp.size(); ++i){
+        printborder();
+        printborder();
+        if (i % 2)
+            printcontent_w(rcp[i]);
+        else
+            printcontent_b(rcp[i]);
+        printborder();
+        printborder();
+        std::cout << '\n';
+    }
+} 
 
 
 

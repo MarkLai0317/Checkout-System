@@ -1,17 +1,14 @@
 #include <vector>
 #include <iostream>
 #include <cstdlib>
-#include "CashierUI.h"
+#include "../HeaderFile/CashierUI.h"
 
 //for
-#define FORE_GROUND_BLACK "\033[30m"
-#define BACK_GROUND_WHITE "\033[47m"
-#define BACK_GROUND_GREEN "\033[42m"
-#define BACK_GROUND_BLUE "\033[46m"
-#define RESET "\033[0m"
-#define WIDE 101
+
 
 using namespace std;
+
+
 
 void CashierUI::cashierSystem(){
 	
@@ -89,7 +86,7 @@ void CashierUI::categoryPage(){
 
 
 
-void UserInterface::quantityPage(){
+void CashierUI::quantityPage(){
 
 	clearScreen();
 	
@@ -247,8 +244,16 @@ void CashierUI::confirm(){
 }*/
 
 void CashierUI::addReciept(){
-
+    for(int i=0; i<reciept.size(); ++i) {
+        if(reciept[i].id == id_now){
+            reciept[i].quantity += quantity_now;
+            return; 
+        }
+    }
+    reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
 }
+
+
 
 void CashierUI::deleteOrder(int chosen_order){
 

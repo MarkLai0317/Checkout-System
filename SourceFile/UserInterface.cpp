@@ -3,6 +3,11 @@
 #include "../HeaderFile/CashierUI.h"
 using namespace std;
 //correct
+
+
+char* category_string[5] = {"",}
+
+
 void UserInterface::clearScreen(){
     std::cout << std::flush;
     system("clear");
