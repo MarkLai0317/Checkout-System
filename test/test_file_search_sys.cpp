@@ -7,9 +7,7 @@ using namespace std;
 
 int main(){
 
-<<<<<<< HEAD
-    //purchaseConfirm();
-=======
+
     //declaration of ss
     SearchSystem sys;
     //declaraion of supply
@@ -41,6 +39,6 @@ int main(){
 
     cout << "system close" << endl;
 
->>>>>>> YJackBranch
+
 
 }

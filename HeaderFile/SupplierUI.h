@@ -107,7 +107,7 @@ private:
 	//add new good or old good status
 	// if old ->OLDGOOD
 	//else if new -> NEWGOOD
-	status new_old_status = OLDGOOD;
+	status old_new_status = OLDGOOD;
 
 
 	// A vector that temporary store the input
