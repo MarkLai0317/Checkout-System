@@ -17,10 +17,10 @@ class SearchSystem{
         GoodInventory findInventoryById(int input_id);
 
         //return the goodInventory of tech input id
-        GoodInventory findInventoriesByIdAndSetQuantity(int input_id, int input_quantity);
+        GoodInventory findInventoryByIdAndSetQuantity(int input_id, int input_quantity);
 
         // Find the good of input id and set the quantity to input_quantity for reciept.     
-        GoodInventory findInventoryOfIdAndSetQuantity(int input_id, int input_quantity);
+        vector<GoodInventory> SearchSystem::findInventoriesByCategory(std::string input_category);
 
         // use id search the quantity of that good
         int findQuantityOfGood(int input_id);
