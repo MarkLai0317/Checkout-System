@@ -4,9 +4,9 @@
 
 #include <string>
 #include <vector>
-#include "SearchSystem.h"
-#include "UserInterface.h"
-#include "GoodInventory.h"
+#include "../HeaderFile/SearchSystem.h"
+#include "../HeaderFile/UserInterface.h"
+#include "../HeaderFile/GoodInventory.h"
 
 class SupplierUI : public UserInterFace{
 

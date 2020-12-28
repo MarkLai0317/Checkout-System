@@ -188,7 +188,7 @@ int CashierUI::inputQuantity(){
 	// the quantity customer want or back command
 	string quantity;
 
-	cout << "Please enter the quantity of good you want to buy or press b for backing to previous page:"
+	cout << "Please enter the quantity of good you want to buy or press b for backing to previous page:";
 	getline(cin, quantity);
 
 	// back command
@@ -262,15 +262,7 @@ void CashierUI::deleteOrder(int chosen_order){
 }
 
 
-void printborder(){
-    std::cout << FORE_GROUND_BLACK << BACK_GROUND_WHITE << ' ' << RESET;
-}
-void printcontent_b(std::string str){
-    std::cout << FORE_GROUND_BLACK << BACK_GROUND_BLUE << str << RESET;
-}
-void printcontent_w(std::string str){
-    std::cout << FORE_GROUND_BLACK << BACK_GROUND_WHITE << str << RESET;
-}
+
 
 void printReciept(){
     std::vector<std::string> rcp;

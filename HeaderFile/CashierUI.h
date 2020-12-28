@@ -18,8 +18,7 @@ class CashierUI: public UserInterface{
 
 
 
-
-
+public:
 	
 	void cashierSystem();
 
@@ -27,7 +26,7 @@ class CashierUI: public UserInterface{
 
 
 
-private:
+//private:
 
 	
 
@@ -43,7 +42,7 @@ private:
 
 	// things to do in quantity page
 	//================in UserInterface==================
-	//void quantityPage();
+	void quantityPage();
 
 
 

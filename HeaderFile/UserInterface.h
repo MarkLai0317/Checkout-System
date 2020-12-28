@@ -1,8 +1,8 @@
 #ifndef _USERINTERFACE_H
 #define _USERINTERFACE_H
 
-#include "GoodInventory.h"
-#include "searchSystem.h"
+#include "../HeaderFile/GoodInventory.h"
+#include "../HeaderFile/SearchSystem.h"
 
 #define SNACK 0
 #define DRINK 1
@@ -35,7 +35,7 @@ enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NAME_S
 
 class UserInterface{
 
-    protected:
+    public:
 
         //=============Page===============
         virtual void categoryPage() = 0;
@@ -81,7 +81,15 @@ class UserInterface{
     	
         // recieve list of goods and print with nice format
 		// need to show id, name, quantity, and price $        
-        void printMenu(const &vector<GoodInventory>) const;
+        //void printMenu(const &vector<GoodInventory>) const;
+
+        
+
+        void printborder();
+    
+        void printcontent_b(std::string str);
+        void printcontent_w(std::string str);
+    
 
         virtual void printReciept();
        
@@ -99,7 +107,7 @@ class UserInterface{
         void clearScreen();
         	
 
-    protected:
+    public:
 
 
     	

@@ -23,8 +23,9 @@ void UserInterface::idPage(){
 	
 	// find the goods of chosen category and print it out 
 	vector<GoodInventory> good_need_print( search.findGoodOfCategory(string(category_string[category_now])));
-	printMenu(good_need_print);
-
+	
+	//printMenu(good_need_print);
+	cout << "MENU\n";
 	int chosen_id = inputId();
 
 	while(chosen_id == INVALID){
@@ -32,7 +33,8 @@ void UserInterface::idPage(){
 
 		// need to print the text to warn user
 		clearScreen();
-		printMenu(good_need_print);	
+		//printMenu(good_need_print);/////////////////////////
+		cout << "MENU\n";
 		cout << "We don't have this product. please choose the valid id.\n";
 		chosen_id = inputId();
 
@@ -114,7 +116,7 @@ int UserInterface::inputId(){
 	if(ID == "b")
 		return BACK;
 
-	vector<GoodInventory> temp = search.findGoodOfCategory(category_string[category_now]);
+	vector<GoodInventory> temp = search.findInventoriesByCategory(category_string[category_now]);
 	int size = temp.size;
 
 
@@ -177,4 +179,16 @@ int UserInterface::inputReciept(){
 	if(order <= sizeOfReciept() && order > 0)
 		return (order - 1);
 
+}
+
+
+
+void UserInterface::printborder(){
+    std::cout << FORE_GROUND_BLACK << BACK_GROUND_WHITE << ' ' << RESET;
+}
+void UserInterface::printcontent_b(std::string str){
+    std::cout << FORE_GROUND_BLACK << BACK_GROUND_BLUE << str << RESET;
+}
+void UserInterface::printcontent_w(std::string str){
+    std::cout << FORE_GROUND_BLACK << BACK_GROUND_WHITE << str << RESET;
 }
