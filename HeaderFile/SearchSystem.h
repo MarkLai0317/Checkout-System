@@ -13,6 +13,9 @@ class SearchSystem{
 
     public:
 
+
+        
+        
         // return all goodInvantory of the input category
         GoodInventory findInventoryById(int input_id);
 

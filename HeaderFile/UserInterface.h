@@ -22,11 +22,25 @@
 #define NEWGOOD -6
 #define OLDGOOD -7
 
-enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NEWGOOD_STATUS, OLD_STATUS};
+enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NAME_STATUS, PRICE_STATUS, NEWGOOD_STATUS, OLD_STATUS};
 
 class UserInterface{
 
     protected:
+
+        //=============Page===============
+        virtual void categoryPage() = 0;
+
+        void idPage();
+
+
+        virtual void quantityPage();
+
+        void recieptPage();
+
+        //=================================
+
+
 
         //=============input==================
     	virtual int inputCategory() = 0;
@@ -52,37 +66,29 @@ class UserInterface{
         int inputReciept();
 
 
+        // see the size of reciept
+        virtual int sizeOfReciept();
         //====================================
     	
         // recieve list of goods and print with nice format
 		// need to show id, name, quantity, and price $        
         void printMenu(const &vector<GoodInventory>) const;
 
-        void printReciept(&vec);
-        //=============Page===============
-        virtual void categoryPage() = 0;
-
-        void idPage();
-
-
-        virtual void quantityPage();
-
-        virtual void recieptPage();
-
-        //=================================
-
+        virtual void printReciept();
+       
 
         // confirm the reciept
         virtual void confirm();
 
         virtual void addReciept();
 
+        virtual void deleteOrder(int chosen_order);
 
-        // 本來就在這裏
-        void clearScreen(){
-        	std::cout << std::flush;
-        	system("clear");
-        }
+
+        
+
+        void clearScreen();
+        	
 
     protected:
 

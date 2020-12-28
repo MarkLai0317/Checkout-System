@@ -9,7 +9,7 @@ void SupplierUI::supplierSystem(){
 
 	while(!terminate){
 
-		if(this->page_status == OLDGOOD_STATUS || this->page_status == NEWGOOD_STATUS) {
+		if(this->page_status == CATEGORY_STATUS) {
 
 			categoryPage();
 		}
@@ -21,34 +21,17 @@ void SupplierUI::supplierSystem(){
 
 			quantityPage();
 		}
-		else if(this->page_status == RECIEPT){
+		else if(this->page_status == RECIEPT_STATUS){
 
 			recieptPage();
 		}
 		else if(this->page_status == NAME_STATUS){
-			name_status();
+			namePage();
+		}
+		else if(this->page_status == PRICE_STATUS){
+			pricePage();
 		}
 	}
-}
-
-void SupplierUI::confirm(){
-
-
-	// return all reciept and resize them
-	search.supplyConfirm(old_reciept, new_reciept);
-	old_reciept.resize(0);
-	new_reciept.resize(0);
-
-}
-
-void addReciept(){
-
-	if(old_new_status == OLDGOOD_STATUS){
-		old_reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
-	}else{
-		new_reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
-	}
-
 }
 
 void SupplierUI::categoryPage(){
@@ -111,6 +94,125 @@ void SupplierUI::categoryPage(){
 
 }
 
+
+void UserInterface::quantityPage(){
+
+	clearScreen();
+	
+	// print the good of the chosen id and wait for the input quantity
+
+
+
+	// ask user to input the quantity he or she wnat
+	int chosen_quantity = inputQuantity();
+	
+	// if the user input is invalid, ask user to input one more time
+	while(chosen_quantity == INVALID){
+			
+		clearScreen();
+		// need to print the text to warn user
+		//cout << "Please input the Valid quantity or type 'b' to go back to the last page.\n\n";
+		// input one more time
+		chosen_id = inputQuantity();
+
+	}
+	if(chosen_quantity == BACK){
+		// set the page_status to go back to the last page
+		this->page_status = ID_STATUS;
+	}
+	else{
+
+		// put the chosen good to the reciept vector.
+		quantity_now = chosen_quantity;
+		addReciept();
+		this->page_status = ID_STATUS;
+
+	}
+}
+
+
+void SupplierUI::namePage(){
+
+
+	clearScreen();
+	input_invalid = false;
+	int chosen_name = inputName();
+
+	while(chosen_name == INVALID){
+		input_invalid = true;
+		clearScreen();
+		chosen_name = inputName();
+	}
+
+	if(chosen_name == BACK){
+		page_status = CATEGORY_STATUS;
+	}
+	else{
+
+		page_status = PRICE_STATUS;
+	}
+}
+
+
+void SupplierUI::pricePage(){
+
+	clearScreen();
+	input_invalid = false;
+	int chosen_price = inputPrice();
+
+	while(chosen_price == INVALID){
+		input_invalid = true;
+		clearScreen();
+		chosen_price = inputPrice();
+	}
+
+	if(chosen_price == BACK){
+		this->page_status = NAME_STATUS;
+	}
+	else{
+
+		
+		this->price_now = chosen_price;
+		
+		this->page_status = QUANTITY_STATUS;
+	}
+}
+
+int SupplierUI::sizeOfReciept(){
+	return (old_reciept.size() + new_reciept.size());
+}
+
+
+
+void SupplierUI::confirm(){
+
+
+	// return all reciept and resize them
+	search.supplyConfirm(old_reciept, new_reciept);
+	old_reciept.resize(0);
+	new_reciept.resize(0);
+
+}
+
+void SupplierUI::addReciept(){
+
+	if(old_new_status == OLDGOOD_STATUS){
+		old_reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
+	}else{
+		new_reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
+	}
+
+}
+
+void SupplierUI::deleteOrder(int chosen_order){
+
+
+	if(chosen_order < old_reciept.size()){
+		old_reciept.erase(old_reciept.begin() + chosen_order);
+	}else{
+		new_reciept.erase(new_reciept.begin() + chosen_order - old_reciept.size());
+	}
+}
 
 
 

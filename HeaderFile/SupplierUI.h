@@ -26,6 +26,14 @@ public:
 private:
 
 
+
+	void categoryPage();
+
+
+
+	void namePage();
+
+	void pricePage();
 	// 
 	// 1.Need to see if we have the chosen category.
 	//   If we don't have, print warning and return INVALID
@@ -65,8 +73,9 @@ private:
 	//================in UserInterface==================
 	//int inputReciept();
 
+	int sizeOfReciept();
 
-	void categoryPage();
+	
 
 	//================in UserInterface==================
 	//void quantityPage();
@@ -83,12 +92,17 @@ private:
 	void addReciept();
 
 
+	void deleteOrder(int chosen_order);
+
+
 
 
 private:
 
 
 	std::string name_now;
+
+	int price_now;
 	
 	//add new good or old good status
 	// if old ->OLDGOOD

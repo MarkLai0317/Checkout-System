@@ -3,7 +3,13 @@
 #include <cstdlib>
 #include "CashierUI.h"
 
-
+//for
+#define FORE_GROUND_BLACK "\033[30m"
+#define BACK_GROUND_WHITE "\033[47m"
+#define BACK_GROUND_GREEN "\033[42m"
+#define BACK_GROUND_BLUE "\033[46m"
+#define RESET "\033[0m"
+#define WIDE 101
 
 using namespace std;
 
@@ -32,18 +38,8 @@ void CashierUI::cashierSystem(){
 	}
 }
 
-void Cashier::confirm(){
-	// return the reciept and resize the reciept to 0
-	search.purchaseConfirm(this->reciept);
-	this->reciept.resize();
-}
 
-void Cashier::addReciept(){
-
-	reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
-}
-
-
+//correct
 void CashierUI::categoryPage(){
 
 	
@@ -93,9 +89,48 @@ void CashierUI::categoryPage(){
 
 
 
+void UserInterface::quantityPage(){
+
+	clearScreen();
+	
+	// print the good of the chosen id and wait for the input quantity
+	vector<GoodInventory> good_of_idnow;
+	good_of_idnow.push_back(search.findInventoryById(this->id_now));
+	printMenu(good_of_idnow);
 
 
-int UserInterface::intputCategory(){
+	// ask user to input the quantity he or she wnat
+	int chosen_quantity = inputQuantity();
+	
+	// if the user input is invalid, ask user to input one more time
+	while(chosen_quantity == INVALID){
+			
+		clearScreen();
+		printMenu(good_of_idnow);	
+		// need to print the text to warn user
+		//cout << "Please input the Valid quantity or type 'b' to go back to the last page.\n\n";
+		// input one more time
+		chosen_id = inputQuantity();
+
+	}
+	if(chosen_quantity == BACK){
+		// set the page_status to go back to the last page
+		this->page_status = ID_STATUS;
+	}
+	else{
+
+		// put the chosen good to the reciept vector.
+		quantity_now = chosen_quantity;
+		addReciept();
+		this->page_status = ID_STATUS;
+
+	}
+}
+
+
+
+
+int CashierUI::intputCategory(){
 	// customer choose
 	string choose;
 
@@ -152,7 +187,7 @@ int UserInterface::intputCategory(){
 }
 
 
-int UserInterface::inputQuantity(){
+int CashierUI::inputQuantity(){
 	// the quantity customer want or back command
 	string quantity;
 
@@ -193,6 +228,116 @@ int UserInterface::inputQuantity(){
 		return quantity_want;	
 }
 
+
+int CashierUI::sizeOfReciept(){
+	return this->reciept.size();
+}
+
+
+
+void CashierUI::confirm(){
+	// return the reciept and resize the reciept to 0
+	search.purchaseConfirm(this->reciept);
+	this->reciept.resize(0);
+}
+
+/*void Cashier::addReciept(){
+
+	reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
+}*/
+
+void CashierUI::addReciept(){
+
+}
+
+void CashierUI::deleteOrder(int chosen_order){
+
+	this->reciept.erase(this->reciept.begin()+chosen_order);
+
+}
+
+
+void printborder(){
+    std::cout << FORE_GROUND_BLACK << BACK_GROUND_WHITE << ' ' << RESET;
+}
+void printcontent_b(std::string str){
+    std::cout << FORE_GROUND_BLACK << BACK_GROUND_BLUE << str << RESET;
+}
+void printcontent_w(std::string str){
+    std::cout << FORE_GROUND_BLACK << BACK_GROUND_WHITE << str << RESET;
+}
+
+void printReciept(){
+    std::vector<std::string> rcp;
+    std::string tmp;
+    for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+    for (int i = 0; i < ((WIDE - 1) / 2) - 3; ++i) tmp.push_back(' ');
+    tmp += "Reciept";
+    for (int i = 0; i < ((WIDE - 1) / 2) - 3; ++i) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+    for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+    for (int i = 0; i < 10; ++i) tmp.push_back(' ');
+    tmp += "Description";
+    for (int i = 0; i < WIDE - 10 - 10 - 11 - 5; ++i) tmp.push_back(' ');
+    tmp += "Price";
+    for (int i = 0; i < 10; ++i) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+    for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+    int total = 0;
+    for (int i = 0; i < reciept.size(); ++i){
+        for (int j = 0; j < 10; ++j) tmp.push_back(' ');
+        std::string q = std::to_string(reciept[i].quantity);
+        std::string p = std::to_string(reciept[i].price);
+        std::string pq = std::to_string(reciept[i].price * reciept[i].quantity);
+        tmp += q;
+        tmp += " x ";
+        tmp += reciept[i].name;
+        for (int j = 0; j < WIDE - 10 - q.size() - 3 - reciept[i].name.size() - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
+        tmp += q;
+        tmp += " x ";
+        tmp += p;
+        tmp += " = ";
+        tmp += "NT$";
+        tmp += pq;
+        for (int j = 0; j < 15 - pq.size(); ++j) tmp.push_back(' ');
+        rcp.push_back(tmp);
+        total += reciept[i].price * reciept[i].quantity;
+        tmp.clear();
+        for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
+        rcp.push_back(tmp);
+        tmp.clear();
+    }
+
+    std::string t = std::to_string(total);
+    for (int i = 0; i < WIDE - 5 - 10 - 3; ++i) tmp.push_back(' ');
+    tmp += "NT$";
+    tmp += t;
+    for (int j = 0; j < 15 - t.size(); ++j) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+
+    for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
+    rcp.push_back(tmp);
+    tmp.clear();
+
+    for (int i = 0; i < rcp.size(); ++i){
+        printborder();
+        printborder();
+        if(i%2) printcontent_w(rcp[i]);
+        else printcontent_b(rcp[i]);
+        printborder();
+        printborder();
+        std::cout << '\n';
+    }
+} 
 
 
 

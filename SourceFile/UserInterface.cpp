@@ -1,8 +1,16 @@
 #include <iostream>
-#include "UserInterface.h"
+#include "../HeaderFile/UserInterface.h"
+#include "../HeaderFile/CashierUI.h"
+using namespace std;
+//correct
+void UserInterface::clearScreen(){
+    std::cout << std::flush;
+    system("clear");
+ }
 
 
-void CashierUI::idPage(){
+//correct
+void UserInterface::idPage(){
 
 	//this->input_invalid = false;
 	
@@ -40,57 +48,24 @@ void CashierUI::idPage(){
 
 }
 
-void UserInterface::quantityPage(){
-
-	clearScreen();
-	
-	// print the good of the chosen id and wait for the input quantity
-	vector<GoodInventory> good_of_idnow;
-	good_of_idnow.push_back(search.findInventoryOfId(this->id_now));
-	printMenu(good_of_idnow);
 
 
-	// ask user to input the quantity he or she wnat
-	int chosen_quantity = inputQuantity();
-	
-	// if the user input is invalid, ask user to input one more time
-	while(chosen_quantity == INVALID){
-			
-		clearScreen();
-		printMenu(good_of_idnow);	
-		// need to print the text to warn user
-		cout << "Please input the Valid quantity or type 'b' to go back to the last page.\n\n";
-		// input one more time
-		chosen_id = inputQuantity();
-
-	}
-	if(chosen_quantity == BACK){
-		// set the page_status to go back to the last page
-		this->page_status = ID_STATUS;
-	}
-	else{
-
-		// put the chosen good to the reciept vector.
-		quantity_now = chosen_quantity;
-		addReciept();
-		this->page_status = ID_STATUS;
-
-	}
-}
 
 void UserInterface::recieptPage(){
 
+	this->input_invalid = false;
 	clearScreen();
+	//virtual
 	printReciept();
 
 	int chosen_order = inputReceipt();
 
 	while(chosen_order == INVALID){
-
+		this->input_invalid = true;
 		clearScreen();
 		printReciept();
 
-		cout << "Please input Valid choice!\n\n";
+		//cout << "Please input Valid choice!\n\n";
 		chosen_order = inputReceipt();
 	}
 
@@ -98,8 +73,9 @@ void UserInterface::recieptPage(){
 	if(chosen_order == CONFIRM){
 
 		// return reciept to system and clear the reciept
+		
+		//virtual
 		confirm();
-		reciept.resize(0);
 
 		// go back to choose category
 		this->page_status = CATEGORY_STATUS;
@@ -114,6 +90,7 @@ void UserInterface::recieptPage(){
 	// user choose to delete a good chose before
 	else {
 		
+		//virtual
 		deleteOrder(chosen_order);
 		
 	}
@@ -188,10 +165,11 @@ int UserInterface::inputReciept(){
 	int order = stoi(cmd);
 
 	// the delete order should start from 1 and can't larger than the total order
-	if(order <= 0 || order > reciept.size())
+	if(order <= 0 || order > sizeOfReciept())
 		return INVALID;
 		
 	// legal input then return the index of vector(order - 1)
-	if(order <= reciept.size() && order > 0)
+	if(order <= sizeOfReciept() && order > 0)
 		return (order - 1);
+
 }
