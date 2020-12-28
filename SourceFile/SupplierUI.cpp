@@ -46,7 +46,7 @@ void addReciept(){
 	if(old_new_status == OLDGOOD_STATUS){
 		old_reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
 	}else{
-		old_reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
+		new_reciept.push_back(search.findInventoryOfIdAndSetQuantity(id_now, chosen_quantity));
 	}
 
 }

@@ -96,6 +96,8 @@ class UserInterface{
     	// the recent chose id
     	int id_now;
 
+        int quantity_now;
+
     	// check this variable to determine
 		// whether to print warning  
     	bool input_invalid = false;

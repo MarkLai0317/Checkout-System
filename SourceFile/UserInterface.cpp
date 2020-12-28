@@ -71,7 +71,7 @@ void UserInterface::quantityPage(){
 	else{
 
 		// put the chosen good to the reciept vector.
-		
+		quantity_now = chosen_quantity;
 		addReciept();
 		this->page_status = ID_STATUS;
 
