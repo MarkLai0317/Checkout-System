@@ -1,4 +1,4 @@
-#include "SearchSystem.h"
+#include "../HeaderFile/SearchSystem.h"
 
 //return the goodInventory of tech input id
 GoodInventory SearchSystem::findInventoryById(int input_id){
@@ -9,7 +9,7 @@ GoodInventory SearchSystem::findInventoryById(int input_id){
 }
 
 // Find the good of input id and set the quantity to input_quantity for reciept.     
-GoodInventory SearchSystem::findInventoriesByIdAndSetQuantity(int input_id, int input_quantity){
+GoodInventory SearchSystem::findInventoryByIdAndSetQuantity(int input_id, int input_quantity){
     GoodInventory tmp = findInventoryById(input_id);
 
     return GoodInventory(tmp.getId(), tmp.getCategory(), tmp.getName(), tmp.getPrice(), input_quantity());
