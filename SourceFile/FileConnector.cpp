@@ -80,7 +80,7 @@ void FileConnector::search(std::string property, std::string target){
     }
 }
 
-std::vector< vector<std::string> > FileConnector::getResult(){
+std::vector< std::vector<std::string> > FileConnector::getResult(){
     return result;
 }
 

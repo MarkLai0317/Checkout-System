@@ -1,21 +1,19 @@
-#ifndef _GOOD_H_
-#define _GOOD_H_
+#ifndef _GOOD_H
+#define _GOOD_H
 #include <string>
-
-const char *category_string[5] = {"snack", "drink", "daily_product", "clothes", "electronic_product"};
 
 class Good{
     
     public:
  
-    
+        //Good();
         
         //Constructor
         Good(int input_id, std::string input_category, std::string input_name, int input_price);
         
        
         //return the cotogory of the good
-        int getCategory() const;
+        std::string getCategory() const;
 
 
          //return the id of the good
