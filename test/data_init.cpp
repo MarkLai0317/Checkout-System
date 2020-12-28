@@ -1,19 +1,18 @@
 #include <iostream>
-#include <vector>
-#include "../HeaderFile/FileConnector.h"
-#include "../HeaderFile/SearchSystem.h"
-
+#include <fstream>
 using namespace std;
 
 int main(){
 
-    SearchSystem sys;
+    system("rm ../data/Activity.csv");
+    system("rm ../data/Inventory.csv");
 
-    vector<GoodInventory> vec;
+    fstream activity("../data/Activity.csv", fstream::out);
+    activity << "time,action,category,name,price,quantity";
+    activity.close();
 
-    GoodInventory
-
-    sys.purchaseConfirm();
-
+    fstream inventory("../data/Inventory.csv", fstream::out);
+    inventory << "id,category,name,price,quantity";
+    inventory.close();
 
 }
