@@ -20,7 +20,7 @@ class SearchSystem{
         GoodInventory findInventoryByIdAndSetQuantity(int input_id, int input_quantity);
 
         // Find the good of input id and set the quantity to input_quantity for reciept.     
-        vector<GoodInventory> SearchSystem::findInventoriesByCategory(std::string input_category);
+        vector<GoodInventory> findInventoriesByCategory(std::string input_category);
 
         // use id search the quantity of that good
         int findQuantityOfGood(int input_id);
@@ -37,9 +37,9 @@ class SearchSystem{
 
         void addActivity();
 
-        vector<Good> tableToGoods(std::vector<std::string>);
-        vector<GoodInventory> tableToInventories(std::vector<std::string>);
-        vector<GoodActivity> tableToActivities(std::vector<std::string>);
+        std::vector<Good> tableToGoods(std::vector<std::string>);
+        std::vector<GoodInventory> tableToInventories(std::vector<std::string>);
+        std::vector<GoodActivity> tableToActivities(std::vector<std::string>);
 
 }
 

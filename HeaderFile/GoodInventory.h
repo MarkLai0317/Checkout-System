@@ -25,6 +25,6 @@ class GoodInventory: public Good{
 
         int quantity;
 
-}
+};
 
 #endif
