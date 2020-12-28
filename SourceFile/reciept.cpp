@@ -8,7 +8,7 @@
 #define WIDE 101
 
 void printborder(){
-    std::cout << FORE_GROUND_BLACK << BACK_GROUND_WHITE << ' ' << RESET;
+    std::cout << FORE_GROUND_BLACK << BACK_GROUND_GREEN << ' ' << RESET;
 }
 void printcontent_b(std::string str){
     std::cout << FORE_GROUND_BLACK << BACK_GROUND_BLUE << str << RESET;
@@ -45,13 +45,13 @@ void CasherUI::printReciept(){
     int total = 0;
     for (int i = 0; i < reciept.size(); ++i){
         for (int j = 0; j < 10; ++j) tmp.push_back(' ');
-        std::string q = std::to_string(reciept[i].quantity);
-        std::string p = std::to_string(reciept[i].price);
-        std::string pq = std::to_string(reciept[i].price * reciept[i].quantity);
+        std::string q = std::to_string(reciept[i].getQuantity());
+        std::string p = std::to_string(reciept[i].getPrice());
+        std::string pq = std::to_string(reciept[i].getPrice() * reciept[i].getQuantity());
         tmp += q;
         tmp += " x ";
-        tmp += reciept[i].name;
-        for (int j = 0; j < WIDE - 10 - q.size() - 3 - reciept[i].name.size() - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
+        tmp += reciept[i].getName();
+        for (int j = 0; j < WIDE - 10 - q.size() - 3 - reciept[i].getName().size() - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
         tmp += q;
         tmp += " x ";
         tmp += p;
@@ -60,7 +60,7 @@ void CasherUI::printReciept(){
         tmp += pq;
         for (int j = 0; j < 15 - pq.size(); ++j) tmp.push_back(' ');
         rcp.push_back(tmp);
-        total += reciept[i].price * reciept[i].quantity;
+        total += reciept[i].getPrice() * reciept[i].getQuantity();
         tmp.clear();
         for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
         rcp.push_back(tmp);
@@ -68,7 +68,9 @@ void CasherUI::printReciept(){
     }
 
     std::string t = std::to_string(total);
-    for (int i = 0; i < WIDE - 5 - 10 - 3; ++i) tmp.push_back(' ');
+    for (int i = 0; i < WIDE - 5 - 10 - 3 - 6; ++i) tmp.push_back(' ');
+    tmp += "Total";
+    tmp += " ";
     tmp += "NT$";
     tmp += t;
     for (int j = 0; j < 15 - t.size(); ++j) tmp.push_back(' ');
@@ -82,7 +84,7 @@ void CasherUI::printReciept(){
     for (int i = 0; i < rcp.size(); ++i){
         printborder();
         printborder();
-        if(i%2) printcontent_w(rcp[i]);
+        if(i%2 == 0) printcontent_w(rcp[i]);
         else printcontent_b(rcp[i]);
         printborder();
         printborder();
@@ -145,7 +147,9 @@ void SuppilerUI::printReciept(){
     }
 
     std::string t = std::to_string(total);
-    for (int i = 0; i < WIDE - 5 - 10 - 3; ++i) tmp.push_back(' ');
+    for (int i = 0; i < WIDE - 5 - 10 - 3 - 6; ++i) tmp.push_back(' ');
+    tmp += "Total";
+    tmp += " ";
     tmp += "NT$";
     tmp += t;
     for (int j = 0; j < 15 - t.size(); ++j) tmp.push_back(' ');
@@ -159,7 +163,7 @@ void SuppilerUI::printReciept(){
     for (int i = 0; i < rcp.size(); ++i){
         printborder();
         printborder();
-        if (i % 2)
+        if (i % 2 == 0)
             printcontent_w(rcp[i]);
         else
             printcontent_b(rcp[i]);
