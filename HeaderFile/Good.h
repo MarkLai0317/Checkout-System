@@ -2,20 +2,18 @@
 #define _GOOD_H
 #include <string>
 
-const char *category_string[5] = {"snack", "drink", "daily_product", "clothes", "electronic_product"};
-
 class Good{
     
     public:
  
-    
+        //Good();
         
         //Constructor
-        Good(int id, std::string category, std::string name, int price);
+        Good(int input_id, std::string input_category, std::string input_name, int input_price);
         
        
         //return the cotogory of the good
-        int getCategory() const;
+        std::string getCategory() const;
 
 
          //return the id of the good
@@ -26,7 +24,7 @@ class Good{
         std::string getName() const;
 
         // return the price of the good
-        int getPrice() const
+        int getPrice() const;
     
     protected:
 

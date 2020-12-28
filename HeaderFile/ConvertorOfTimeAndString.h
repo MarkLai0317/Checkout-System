@@ -1,11 +1,11 @@
 #include <time.h>
 #include <sstream>
 
-string getTimeString(){
+std::string getTimeString(){
     time_t t=std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
     std::stringstream ss;
     ss<<std::put_time(std::localtime(&t),"%F %X");
-    ss.str();
+    return ss.str();
 }
 
 time_t StringToDatetime(std::string str)
