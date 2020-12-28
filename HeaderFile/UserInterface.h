@@ -2,7 +2,7 @@
 #define _USERINTERFACE_H
 
 #include "GoodInventory.h"
-#include "searchSystem.h"
+#include "SearchSystem.h"
 
 #define SNACK 0
 #define DRINK 1
@@ -53,7 +53,7 @@ class UserInterface{
 
 
         //====================================
-    	
+
         // recieve list of goods and print with nice format
 		// need to show id, name, quantity, and price $        
         void printMenu(&vector<GoodInventory>);

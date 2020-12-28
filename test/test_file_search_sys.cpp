@@ -1,17 +1,14 @@
 #include <iostream>
 #include <vector>
 #include "../HeaderFile/FileConnector.h"
-#include "../HeaderFile/SearchSystem.h"
+#include "../HeaderFile/MainSystem.h"
 
 using namespace std;
 
 int main(){
 
-<<<<<<< HEAD
-    //purchaseConfirm();
-=======
     //declaration of ss
-    SearchSystem sys;
+    MainSystem sys;
     //declaraion of supply
     vector<GoodInventory> _old, _new;
 
@@ -40,7 +37,5 @@ int main(){
     sys.supplyConfirm(_old, _new);
 
     cout << "system close" << endl;
-
->>>>>>> YJackBranch
 
 }

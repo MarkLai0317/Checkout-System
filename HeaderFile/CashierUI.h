@@ -128,9 +128,9 @@ private:
 	//================in UserInterface==================
 	//vector<GoodInventory> reciept;
 
-	// use fuction of SearchSystem
+	// use fuction of Main System
 
-	SearchSystem search;
+	MainSystem search;
 
 
 
