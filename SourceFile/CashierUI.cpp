@@ -4,10 +4,9 @@
 #include "CashierUI.h"
 
 
-
 using namespace std;
 
-void CshierUI::cashierSystem(){
+void CashierUI::cashierSystem(){
 	
 
 	while(!terminate){
@@ -261,5 +260,4 @@ int UserInterface::inputQuantity(){
 	if(qunatity_want <= quantity_have && quantity_want > 0)
 		return quantity_want;	
 }
-
 
