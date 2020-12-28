@@ -11,7 +11,7 @@ class Good{
     
         
         //Constructor
-        Good(int id, std::string category, std::string name, int price);
+        Good(int input_id, std::string input_category, std::string input_name, int input_price);
         
        
         //return the cotogory of the good
@@ -26,7 +26,7 @@ class Good{
         std::string getName() const;
 
         // return the price of the good
-        int getPrice() const
+        int getPrice() const;
     
     protected:
 

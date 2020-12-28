@@ -12,7 +12,7 @@ class GoodInventory: public Good{
  
         
         //Constructor
-        GoodInventory(int id, std::string category, std::string name, int price, int quantity);
+        GoodInventory(int input_id, std::string input_category, std::string input_name, int input_price, int input_quantity);
          
         
    

@@ -8,7 +8,7 @@ class GoodActivity: public GoodInventory{
     public:
     
 
-        GoodActivity(int id, std::string category, std::string name, int price, int quantity, time_t t);
+        GoodActivity(int input_id, std::string input_category, std::string input_name, int input_price, int input_quantity, time_t input_t);
         
         time_t getTime();
 
