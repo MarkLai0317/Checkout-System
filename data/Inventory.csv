@@ -1,1 +1,5 @@
 id,category,name,price,quantity
+1,animal,dog,1000,200
+2,animal,cat,1200,190
+3,drink,water,10,1910
+4,slave,black,10000,3

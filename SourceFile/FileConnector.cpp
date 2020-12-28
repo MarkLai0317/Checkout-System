@@ -36,6 +36,9 @@ void FileConnector::readCsv(){
         }
         table.push_back(tmp_row); tmp_row.clear();
     }
+
+    result = table;
+
     std::cout << "Finish reading" << std::endl;
 }
 
@@ -81,7 +84,9 @@ void FileConnector::search(std::string property, std::string target){
 }
 
 std::vector< std::vector<std::string> > FileConnector::getResult(){
-    return result;
+    std::vector< std::vector<std::string> > tmp = result;
+    result = table;
+    return tmp;
 }
 
 //找到那行的那個位置修改其值，如果找不到要回傳錯誤訊息
@@ -114,4 +119,6 @@ void FileConnector::append(std::vector<std::string> vec){
 
     table.push_back(vec);
     std::cout << "Append successfully!" << std::endl;
+
+    result = table;
 }

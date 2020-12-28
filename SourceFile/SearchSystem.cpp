@@ -46,7 +46,7 @@ void SearchSystem::purchaseConfirm(std::vector<GoodInventory> the_reciept){
         std::string target_id = std::to_string(the_reciept[i].getId());
         inventory_file.search("id", target_id);
         std::vector<std::string> result = inventory_file.getResult()[0];
-        inventory_file.update("id", target_id, "quantity", std::to_string(stoi(result[3]) - the_reciept[i].getQuantity()));
+        inventory_file.update("id", target_id, "quantity", std::to_string(stoi(result[4]) - the_reciept[i].getQuantity()));
     }
 
     //file.close():
@@ -61,28 +61,32 @@ void SearchSystem::purchaseConfirm(std::vector<GoodInventory> the_reciept){
 }
 
 void SearchSystem::supplyConfirm(std::vector<GoodInventory> old_reciept, std::vector<GoodInventory> new_reciept){
+    std::cout << "opening Inventory.cvs" << std::endl;
     FileConnector inventory_file("Inventory.csv");
 
+    std::cout << "Inserting old good into Inventory..." << std::endl;
     for(int i=0; i<old_reciept.size(); i++){
         std::string target_id = std::to_string(old_reciept[i].getId());
         inventory_file.search("id", target_id);
         std::vector<std::string> result = inventory_file.getResult()[0];
-        inventory_file.update("id", target_id, "quantity", std::to_string(stoi(result[3]) - old_reciept[i].getQuantity()));
+        inventory_file.update("id", target_id, "quantity", std::to_string(stoi(result[4]) + old_reciept[i].getQuantity()));
     }
 
+    std::cout << "Appending new good into Inventory..." << std::endl;
     for(int i=0; i<new_reciept.size(); i++){
-        std::string id = std::to_string(new_reciept[i].getId())
+        std::cout << "Inventory size is " << inventory_file.getResult().size() << std::endl;
+        std::string id = std::to_string(inventory_file.getResult().size())
              , category = new_reciept[i].getCategory()
-             , name = new_reciept[i].getCategory()
+             , name = new_reciept[i].getName()
              , price = std::to_string(new_reciept[i].getPrice())
              , quantity = std::to_string(new_reciept[i].getQuantity());
 
-        std::vector<std::string> new_line = {id, category, name, price, quantity};
-        inventory_file.append( new_line );
+        inventory_file.append( {id, category, name, price, quantity} );
     }
 
     //file.close();
     
+    std::cout << "Appending new activity..." << std::endl;
     FileConnector activity_file("Activity.csv");
 
     for(GoodInventory i : old_reciept){
