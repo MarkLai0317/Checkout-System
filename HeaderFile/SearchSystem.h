@@ -14,10 +14,10 @@ class SearchSystem{
     public:
 
         // return all goodInvantory of the input category
-        GoodInventory SearchSystem::findInventoryById(int input_id);
+        GoodInventory findInventoryById(int input_id);
 
         //return the goodInventory of tech input id
-        GoodInventory SearchSystem::findInventoriesByIdAndSetQuantity(int input_id, int input_quantity);
+        GoodInventory findInventoriesByIdAndSetQuantity(int input_id, int input_quantity);
 
         // Find the good of input id and set the quantity to input_quantity for reciept.     
         GoodInventory findInventoryOfIdAndSetQuantity(int input_id, int input_quantity);
