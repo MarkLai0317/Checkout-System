@@ -1,5 +1,6 @@
 #ifndef _FILECONNECTOR_H
 #define _FILECONNECTOR_H
+#include <fstream>
 #include <map>
 #include <vector>
 #include <cstring>
