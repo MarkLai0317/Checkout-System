@@ -133,17 +133,27 @@ int CashierUI::inputCategory(){
 	string choose;
 
 	// print all categories for customer to chooose
-	cout << "Press 1 for finding Snack." << endl;
-	cout << "Press 2 for finding Drink." << endl;
-	cout << "Press 3 for finding Daily Product." << endl;
-	cout << "Press 4 for finding Clothes." << endl;
-	cout << "Press 5 for finding  Electronic Product." << endl;
-	cout << "Press q for quiting." << endl;
-	cout << "Press s for checking your reciept." << endl;
+	for(int i = 0; i < 60; ++i)
+		cout << " ";
+	cout << "1 : Snack    2 : Drink    3 : Daily Product" << endl;
+	for(int i = 0; i < 65; ++i)
+		cout << " ";
+	cout << "4 : Clothes  5 :  Electronic Product" << endl;
+	for(int i = 0; i < 62; ++i)
+		cout << " ";
+	cout << "s : Check your reciept     q : Quit \n" << endl;
 	// error message
-	if(input_invalid)
-		cout << "Your input is invalid, please try again\n";
-	cout << "Please choose the service you want:";
+	
+	if(input_invalid){
+		for(int i = 0; i < 61; ++i)
+			cout << " ";
+		cout << "Your option is invalid, please try again : ";
+	}
+	else{
+		for(int i = 0; i < 75; ++i)
+			cout << " ";
+		cout << "Your option : ";
+	}
 
 	
 
@@ -189,8 +199,9 @@ int CashierUI::inputCategory(){
 int CashierUI::inputQuantity(){
 	// the quantity customer want or back command
 	string quantity;
-
-	cout << "Please enter the quantity of good you want to buy or press b for backing to previous page:";
+	for(int i = 0; i < 70; ++i)
+			cout << " ";
+	cout << "Quantity of good (b : Back) : ";
 	getline(cin, quantity);
 
 	// back command

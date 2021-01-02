@@ -36,7 +36,11 @@ void UserInterface::idPage(){
 		// need to print the text to warn user
 		clearScreen();
 		printMenu(good_need_print);/////////////////////////
+		for(int i = 0; i < 78; ++i)
+			cout << " ";
 		cout << "MENU\n";
+		for(int i = 0; i < 53; ++i)
+			cout << " ";
 		cout << "We don't have this product. please choose the valid id.\n";
 		chosen_id = inputId();
 
@@ -111,7 +115,9 @@ void UserInterface::recieptPage(){
 
 int UserInterface::inputId(){
 	string ID;
-	cout << "Please enter the ID of good you want to buy or press b for backing to previous page:";
+	for(int i = 0; i < 70; ++i)
+			cout << " ";
+	cout << "ID of good (b : Back) : ";
 	getline(cin, ID);
 	
 	// back command	
@@ -144,9 +150,12 @@ int UserInterface::inputId(){
 
 int UserInterface::inputReciept(){
 	string cmd;
-	cout << "You can enter the number which mean the order of good you want to delete of the reciept." << endl;
-	cout << "Press c for confirming the reciept or press b for backing to previous page.\n" << endl;
-	cout << "Please choose the service you want:";
+	for(int i = 0; i < 65; ++i)
+		cout << " ";
+	cout << "Delete the good (c : Confirm , b : Back)" << endl;
+	for(int i = 0 ; i < 77; ++i)
+		cout << " ";
+	cout << "Your option : ";
 	getline(cin, cmd);
 
 	// back command
