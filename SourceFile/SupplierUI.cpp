@@ -523,7 +523,7 @@ void SupplierUI::printReciept(){
         tmp += q;
         tmp += " x ";
         tmp += merged_reciept[i].getName();
-        for (int j = 0; j < WIDE - 10 - q.size() - 3 - merged_reciept[i].getName().size() - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
+        for (int j = 0; j < WIDE - 10 - q.size() - 2 - 3 - merged_reciept[i].getName().size() - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
         tmp += q;
         tmp += " x ";
         tmp += p;
@@ -556,8 +556,11 @@ void SupplierUI::printReciept(){
     for (int i = 0; i < WIDE; ++i) tmp.push_back('-');
     rcp.push_back(tmp);
     tmp.clear();
+    
+    std::cout << '\n';
 
     for (int i = 0; i < rcp.size(); ++i){
+	for(int j = 0; j < 30 ; j++) std::cout << " ";
         printborder();
         printborder();
         if (i % 2 == 0)
@@ -568,6 +571,7 @@ void SupplierUI::printReciept(){
         printborder();
         std::cout << '\n';
     }
+    std::cout << '\n';
 }
 
 

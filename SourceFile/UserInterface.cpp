@@ -212,6 +212,14 @@ void UserInterface::printMenu(std::vector <GoodInventory> &menu){
     for (int i = 0; i < WIDe; ++i) tmp.push_back(' ');
     mu.push_back(tmp);
     tmp.clear();
+    if(menu[0].getQuantity() == -1){
+	    for(int i=0; i < (WIDe/2) - 3; i++) tmp.push_back(' ');
+	    tmp += "EMPTY!";
+	    for(int i=0; i < (WIDe/2) - 3; i++)tmp.push_back(' ');
+	    mu.push_back(tmp);
+	    tmp.clear();
+	    goto e;
+    }
     for (int i = 0; i < ((WIDe - 1) / 2) - menu[0].getCategory().size()/2 - 3; ++i) tmp.push_back(' ');
     tmp += "  類別 :  ";
     tmp += menu[0].getCategory();
@@ -255,6 +263,8 @@ void UserInterface::printMenu(std::vector <GoodInventory> &menu){
         mu.push_back(tmp);
         tmp.clear();
     }
+    
+    e:
 
     for (int i = 0; i < WIDe; ++i) tmp.push_back(' ');
     mu.push_back(tmp);
@@ -264,7 +274,10 @@ void UserInterface::printMenu(std::vector <GoodInventory> &menu){
     mu.push_back(tmp);
     tmp.clear();
 
+    std::cout << '\n';
+
     for (int i = 0; i < mu.size(); ++i){
+	for(int j = 0; j < 40; j++) std::cout << " ";
         printborder();
         printborder();
         if (i % 2)
@@ -275,4 +288,5 @@ void UserInterface::printMenu(std::vector <GoodInventory> &menu){
         printborder();
         std::cout << '\n';
     }
+    std::cout << '\n';
 }
