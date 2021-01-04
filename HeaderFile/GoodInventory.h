@@ -3,14 +3,14 @@
 
 #include <vector>
 #include <string>
-#include "Good.h"
+#include "../HeaderFile/Good.h"
 
 
 class GoodInventory: public Good{
     
     public:
  
-        //GoodInventory();
+        GoodInventory(){}
 
         //Constructor
         GoodInventory(int input_id, std::string input_category, std::string input_name, int input_price, int input_quantity);

@@ -1,0 +1,1 @@
+g++ -std=c++11 CashierUI_Test.cpp ../SourceFile/CashierUI.cpp ../SourceFile/UserInterface.cpp ../SourceFile/Good.cpp ../SourceFile/GoodInventory.cpp ../SourceFile/GoodActivity.cpp ../SourceFile/FileConnector.cpp ../SourceFile/SearchSystem.cpp -o CashierUI_Test

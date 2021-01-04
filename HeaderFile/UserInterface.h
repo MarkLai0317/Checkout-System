@@ -22,11 +22,37 @@
 #define NEWGOOD -6
 #define OLDGOOD -7
 
-enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NEWGOOD_STATUS,};
+
+
+#define FORE_GROUND_BLACK "\033[30m"
+#define BACK_GROUND_WHITE "\033[47m"
+#define BACK_GROUND_GREEN "\033[42m"
+#define BACK_GROUND_BLUE "\033[46m"
+#define RESET "\033[0m"
+#define WIDE 101
+#define WIDe 80
+
+enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NAME_STATUS, PRICE_STATUS, NEWGOOD_STATUS, OLDGOOD_STATUS};
 
 class UserInterface{
 
     protected:
+
+        UserInterface(){}
+
+        //=============Page===============
+        virtual void categoryPage() = 0;
+
+        void idPage();
+
+
+        virtual void quantityPage() = 0;
+
+        void recieptPage();
+
+        //=================================
+
+
 
         //=============input==================
     	virtual int inputCategory() = 0;
@@ -52,31 +78,37 @@ class UserInterface{
         int inputReciept();
 
 
+        // see the size of reciept
+        virtual int sizeOfReciept() = 0;
         //====================================
 
         // recieve list of goods and print with nice format
 		// need to show id, name, quantity, and price $        
-        void printMenu(&vector<GoodInventory>);
+        void printMenu(std::vector<GoodInventory> &menu);
 
-        void printReciept(&vec)
-        //=============Page===============
-        virtual void categoryPage() = 0;
+        
 
-        void idPage();
+        void printborder();
+    
+        void printcontent_b(std::string str);
+        void printcontent_w(std::string str);
+    
+
+        virtual void printReciept() = 0;
+       
+
+        // confirm the reciept
+        virtual void confirm() = 0;
+
+        virtual void addReciept() = 0;
+
+        virtual void deleteOrder(int chosen_order) = 0;
 
 
-        virtual void quantityPage();
+        
 
-        virtual void recieptPage();
-
-        //=================================
-
-
-        // 本來就在這裏
-        void clearScreen(){
-        	std::cout << std::flush;
-        	system("clear");
-        }
+        void clearScreen();
+        	
 
     protected:
 
@@ -90,6 +122,8 @@ class UserInterface{
     	// the recent chose id
     	int id_now;
 
+        int quantity_now;
+
     	// check this variable to determine
 		// whether to print warning  
     	bool input_invalid = false;
@@ -100,13 +134,12 @@ class UserInterface{
     	// indicate what page is user in
     	status page_status = CATEGORY_STATUS;
 
-        vector<GoodInventory> reciept;
 
     	//used to interact with Main System;
     	MainSystem search;
 
 
-}
+};
 
 
 #endif

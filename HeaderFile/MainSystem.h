@@ -11,6 +11,9 @@ class MainSystem{
 
     public:
 
+
+        
+        
         // return all goodInvantory of the input category
         GoodInventory findInventoryById(int input_id);
 

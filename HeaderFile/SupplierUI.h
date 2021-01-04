@@ -8,12 +8,15 @@
 #include "UserInterface.h"
 #include "GoodInventory.h"
 
-class SupplierUI : public UserInterFace{
+class SupplierUI : public UserInterface{
 
 	
 public:
 	
 	
+	SupplierUI(){}
+
+	void supplierSystem();
 
 	// Get all the needed iput and put them into GoodsInventory.
 	// The Good need to be put into activity_buffer for printing the table
@@ -25,6 +28,14 @@ public:
 private:
 
 
+
+	void categoryPage();
+
+	void quantityPage();
+
+	void namePage();
+
+	void pricePage();
 	// 
 	// 1.Need to see if we have the chosen category.
 	//   If we don't have, print warning and return INVALID
@@ -37,7 +48,7 @@ private:
     //   Inpur 's' means see the supply list, return RECIEPT.
 	//
 	// 3. If input valid category, return the category defined in UserInterface.   
-	int inputCatogory();
+	int inputCategory();
 
 
 	// 1. Need to see if the Name  already exist
@@ -64,8 +75,12 @@ private:
 	//================in UserInterface==================
 	//int inputReciept();
 
+	int sizeOfReciept();
 
+	
 
+	//================in UserInterface==================
+	//void quantityPage();
 
 
 	// print out the goods that has been input 
@@ -73,18 +88,34 @@ private:
 	void printReciept();
 
 
+	// confirm the old and new reciept
+	void confirm();
+
+	void addReciept();
+
+
+	void deleteOrder(int chosen_order);
+
+
 
 
 private:
 
 
-	string name_now;
-	// function above is used in getGoods
+	std::string name_now;
+
+	int price_now;
+	
+	//add new good or old good status
+	// if old ->OLDGOOD
+	//else if new -> NEWGOOD
+	status old_new_status = OLDGOOD_STATUS;
 
 
 	// A vector that temporary store the input
 	// of user and need to be printed after input a object
-	vector<GoodInventory> reciept;
+	std::vector<GoodInventory> old_reciept;
+	std::vector<GoodInventory> new_reciept;
 
 };
 
