@@ -2,7 +2,7 @@
 #define _USERINTERFACE_H
 
 #include "GoodInventory.h"
-#include "SearchSystem.h"
+#include "MainSystem.h"
 
 #define SNACK 0
 #define DRINK 1
@@ -102,8 +102,8 @@ class UserInterface{
 
         vector<GoodInventory> reciept;
 
-    	//used to interact with searchSystem;
-    	SearchSystem search;
+    	//used to interact with Main System;
+    	MainSystem search;
 
 
 }
