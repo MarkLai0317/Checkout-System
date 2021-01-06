@@ -308,7 +308,10 @@ void CashierUI::printReciept(){
     tmp.clear();
     int total = 0;
     for (int i = 0; i < reciept.size(); ++i){
-        for (int j = 0; j < 10; ++j) tmp.push_back(' ');
+        for (int j = 0; j < 5; ++j) tmp.push_back(' ');
+	std::string o = std::to_string(i+1);
+	tmp += o;
+	for(int j = 0; j < 5 - o.size(); ++j) tmp.push_back(' ');
         std::string q = std::to_string(reciept[i].getQuantity());
         std::string p = std::to_string(reciept[i].getPrice());
         std::string pq = std::to_string(reciept[i].getPrice() * reciept[i].getQuantity());
@@ -345,13 +348,17 @@ void CashierUI::printReciept(){
     rcp.push_back(tmp);
     tmp.clear();
 
+    for(int i = 0; i < WIDE; ++i) tmp.push_back('-');
+    rcp.push_back(tmp);
+    tmp.clear();
+
     std::cout << '\n';
 
     for (int i = 0; i < rcp.size(); ++i){
-	for(int j = 0; j < 30; j++) std::cout << " "; 
+	for(int j = 0; j < 30; ++j) std::cout << " "; 
         printborder();
         printborder();
-        if(i%2 == 0) printcontent_w(rcp[i]);
+        if(i%2) printcontent_w(rcp[i]);
         else printcontent_b(rcp[i]);
         printborder();
         printborder();

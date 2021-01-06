@@ -563,7 +563,7 @@ void SupplierUI::printReciept(){
 	for(int j = 0; j < 30 ; j++) std::cout << " ";
         printborder();
         printborder();
-        if (i % 2 == 0)
+        if (i % 2)
             printcontent_w(rcp[i]);
         else
             printcontent_b(rcp[i]);
