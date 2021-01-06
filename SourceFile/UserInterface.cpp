@@ -206,6 +206,19 @@ void UserInterface::printcontent_w(std::string str){
     std::cout << FORE_GROUND_BLACK << BACK_GROUND_WHITE << str << RESET;
 }
 
+void UserInterface::printcontent_br(std::string str){
+    std::cout << FORE_GROUND_BLACK << BACK_GROUND_BROWN << str << RESET;
+}
+
+void UserInterface::printcontent_r(std::string str){
+    std::cout << FORE_GROUND_BLACK << BACK_GROUND_RED << str << RESET;
+}
+
+void UserInterface::printcontent_g(std::string str){
+    std::cout << FORE_GROUND_BLACK << BACK_GROUND_GREEN << str << RESET;
+}
+
+
 void UserInterface::printMenu(std::vector <GoodInventory> &menu){
     std::string tmp;
     std::vector<std::string> mu;
@@ -220,10 +233,10 @@ void UserInterface::printMenu(std::vector <GoodInventory> &menu){
 	    tmp.clear();
 	    goto e;
     }
-    for (int i = 0; i < ((WIDe - 1) / 2) - menu[0].getCategory().size()/2 - 3; ++i) tmp.push_back(' ');
-    tmp += "  類別 :  ";
+    for (int i = 0; i < ((WIDe - 1) / 2) - menu[0].getCategory().size()/3 - 4; ++i) tmp.push_back(' ');
+    tmp += " 類別 : ";
     tmp += menu[0].getCategory();
-    for (int i = 0; i < WIDe - (((WIDe - 1) / 2) - menu[0].getCategory().size() / 2) - menu[0].getCategory().size() - 3; ++i) tmp.push_back(' ');
+    for (int i = 0; i < WIDe - (((WIDe - 1) / 2) - menu[0].getCategory().size()/3 - 4 ) - menu[0].getCategory().size()*2/3 - 8; ++i) tmp.push_back(' ');
     mu.push_back(tmp);
     tmp.clear();
     for (int i = 0; i < WIDe; ++i) tmp.push_back(' ');

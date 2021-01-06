@@ -30,6 +30,8 @@
 #define BACK_GROUND_WHITE "\033[47m"
 #define BACK_GROUND_GREEN "\033[42m"
 #define BACK_GROUND_BLUE "\033[46m"
+#define BACK_GROUND_BROWN "\033[43m"
+#define BACK_GROUND_RED "\033[41m"
 #define RESET "\033[0m"
 #define WIDE 81
 #define WIDe 80
@@ -94,6 +96,9 @@ class UserInterface{
     
         void printcontent_b(std::string str);
         void printcontent_w(std::string str);
+	void printcontent_br(std::string str);
+	void printcontent_r(std::string str);
+	void printcontent_g(std::string str);
     
 
         virtual void printReciept() = 0;

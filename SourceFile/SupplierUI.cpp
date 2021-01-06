@@ -195,7 +195,8 @@ void SupplierUI::pricePage(){
 
 int SupplierUI::inputCategory(){
     string choose;
-
+    
+    cout << '\n';
     // remind supplier the adding mode
     if(old_new_status == OLDGOOD_STATUS){
         for(int i = 0 ; i < 70; ++i)
@@ -208,10 +209,57 @@ int SupplierUI::inputCategory(){
             cout << " " ;
         cout << "Supply Mode : New" << endl;
     }
+            
 
-    for(int i = 0 ; i < 40; ++i)
-            cout << " " ;
-    cout << "1. Snack    2. Drink    3. Daily Product    4. Clothes   5. Electronic Product" << endl;
+    cout << '\n';
+
+    //Print the category with color by using some witchcraft
+    
+    std::vector <string> cgy;
+    std::string tmp;
+    
+    for(int i = 0; i < (WIDE/5/2) - 1 - 2; ++i){
+   	for(int j = 0; j < WIDE; ++j) tmp.push_back(' ');
+    	cgy.push_back(tmp);
+    	tmp.clear();
+    }
+
+    for(int i = 0; i < 5; ++i){
+    	for(int j = 0; j < (WIDE/5/2) ; ++j) tmp.push_back(' ');
+    	tmp += std::to_string(i+1);
+	tmp += ".";
+	for(int j = 0; j < (WIDE/5/2) - 1 - 1; ++j) tmp.push_back(' ');
+    }
+    tmp.push_back(' ');
+    cgy.push_back(tmp);
+    tmp.clear();
+    
+
+    for(int i = 0; i < (WIDE/5/2) - 1 - 2; ++i){
+        for(int j = 0; j < WIDE; ++j) tmp.push_back(' ');
+        cgy.push_back(tmp);
+        tmp.clear();
+    }
+
+    for(int i = 0; i < cgy.size(); ++i){
+	for(int j = 0; j < 38; ++j) std::cout << " ";
+	if (i == 6){ 
+		std::cout << FORE_GROUND_BLACK << BACK_GROUND_RED << "     " << category_string[0] << "    " << BACK_GROUND_GREEN << "    " << category_string[1] << "    " <<  BACK_GROUND_BLUE <<  "     " << category_string[2] << "     " << BACK_GROUND_BROWN <<  "     " << category_string[3] << "     " << BACK_GROUND_WHITE <<  "       " << category_string[4] << "       " << RESET << '\n';
+		for(int j = 0; j < 38; ++j) std::cout << " ";
+	}
+	for(int j = 0; j < cgy[i].size(); ++j){
+		string stmp;
+		stmp.push_back(cgy[i][j]);
+		if(j > (WIDE/5)*4) printcontent_w(stmp);
+		else if (j > (WIDE/5)*3) printcontent_br(stmp);
+		else if (j > (WIDE/5)*2) printcontent_b(stmp);
+		else if (j > (WIDE/5)) printcontent_g(stmp);
+		else printcontent_r(stmp);
+	}
+	std::cout << '\n';
+    }
+
+    std::cout << '\n';
 
     for(int i = 0 ; i < 48; ++i)
             cout << " " ;
@@ -274,6 +322,9 @@ int SupplierUI::inputCategory(){
 }
 
 int SupplierUI::inputName(){
+
+    cout << '\n';
+
     if(old_new_status == OLDGOOD_STATUS){
         for(int i = 0 ; i < 70; ++i)
             cout << " " ;
@@ -285,20 +336,26 @@ int SupplierUI::inputName(){
             cout << " " ;
         cout << "Supply Mode : New" << endl;
     }
+
+    cout << '\n';
+
     for(int i = 0 ; i < 71; ++i)
             cout << " " ;
-    if(category_now == SNACK)
-        cout << "Category : Snack" << endl;
-    if(category_now == DRINK)
-        cout << "Category : Drink" << endl;
-    if(category_now == DAILY)
-        cout << "Category : Daily Product" << endl;
-    if(category_now == CLOTHES)
-        cout << "Category : Clothes" << endl;
-    if(category_now == ELECTRONIC)
-        cout << "Category : Electronic Product" << endl;
 
-    cout << endl;
+    if(category_now == SNACK)
+        cout << "Category : " << category_string[0] << endl;
+    if(category_now == DRINK)
+        cout << "Category : " << category_string[1] << endl;
+    if(category_now == DAILY)
+        cout << "Category : " << category_string[2] << endl;
+    if(category_now == CLOTHES)
+        cout << "Category : " << category_string[3] << endl;
+    if(category_now == ELECTRONIC)
+        cout << "Category : " << category_string[4] << endl;
+
+
+    cout << '\n';
+
     for(int i = 0 ; i < 63; ++i)
             cout << " " ;
     cout << "Name of good(only Chinese) , b (Back) : ";
@@ -339,15 +396,15 @@ int SupplierUI::inputPrice(){
 
 
     if(category_now == SNACK)
-        cout << "Category : Snack" << endl;
+        cout << "Category : " << category_string[0] << endl;
     if(category_now == DRINK)
-        cout << "Category : DRINK" << endl;
+        cout << "Category : " << category_string[1] << endl;
     if(category_now == DAILY)
-        cout << "Category : Daily Product" << endl;
+        cout << "Category : " << category_string[2] << endl;
     if(category_now == CLOTHES)
-        cout << "Category : Clothes" << endl;
+        cout << "Category : " << category_string[3] << endl;
     if(category_now == ELECTRONIC)
-        cout << "Category : Electronic Product" << endl;
+        cout << "Category : " << category_string[4] << endl;
     cout << "Name : " << name_now << endl;
 
     cout << "Please input the price you want to sell, or press b for backing to previous page:";
@@ -562,7 +619,7 @@ void SupplierUI::printReciept(){
     std::cout << '\n';
 
     for (int i = 0; i < rcp.size(); ++i){
-	for(int j = 0; j < 30 ; j++) std::cout << " ";
+	for(int j = 0; j < 40 ; j++) std::cout << " ";
         printborder();
         printborder();
         if (i % 2)
