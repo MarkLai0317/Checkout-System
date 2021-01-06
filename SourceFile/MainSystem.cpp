@@ -3,6 +3,18 @@
 #include "../HeaderFile/FileConnector.h"
 #include "../HeaderFile/ConvertorOfTimeAndString.h"
 
+std::vector<GoodInventory> MainSystem::getInventory(){
+    std::cout << "geting inventory table..." << std::endl;
+    FileConnector file("Inventory.csv");
+    return tableToInventories(file.getResult());
+}
+
+std::vector<std::vector<std::string> > MainSystem::getActivity(){
+    std::cout << "geting activity table..." << std::endl;
+    FileConnector file("Activity.csv");
+    return file.getResult();
+}
+
 //return the goodInventory of tech input id
 GoodInventory MainSystem::findInventoryById(int input_id){
     FileConnector file("Inventory.csv");
@@ -74,7 +86,7 @@ void MainSystem::supplyConfirm(std::vector<GoodInventory> old_reciept, std::vect
         inventory_file.update("id", target_id, "quantity", std::to_string(stoi(result[4]) + old_reciept[i].getQuantity()));
     }
 
-    std::cout << "Appending new good into Inventory..." << std::endl;
+    //std::cout << "Appending new good into Inventory..." << std::endl;
     for(int i=0; i<new_reciept.size(); i++){
         //std::cout << "Inventory size is " << inventory_file.getResult().size() << std::endl;
         std::string id = std::to_string(inventory_file.getResult().size())
@@ -88,7 +100,7 @@ void MainSystem::supplyConfirm(std::vector<GoodInventory> old_reciept, std::vect
 
     //file.close();
     
-    std::cout << "Appending new activity..." << std::endl;
+    //std::cout << "Appending new activity..." << std::endl;
     FileConnector activity_file("Activity.csv");
 
     for(GoodInventory i : old_reciept){
@@ -134,8 +146,11 @@ std::vector<Good> MainSystem::tableToGoods(std::vector<std::vector<std::string> 
 std::vector<GoodInventory> MainSystem::tableToInventories(std::vector<std::vector<std::string> > input){
     std::vector<GoodInventory> tmp;
 
-    for(int i=0; i<input.size(); i++){
+    //std::cout << "The table size is " << input.size() << std::endl;
+
+    for(int i=1; i<input.size(); i++){
         // id(int), name(string), category(string), price(int)
+        //std::cout << "On row " << i << std::endl;
         tmp.push_back( GoodInventory(stoi(input[i][0]), input[i][1], input[i][2], stoi(input[i][3]), stoi(input[i][4])) );
     }
 
@@ -149,7 +164,7 @@ std::vector<GoodInventory> MainSystem::tableToInventories(std::vector<std::vecto
     }
 }
 
-std::vector<GoodActivity> MainSystem::tableToActivities(std::vector<std::vector<std::string> > input){
+/*std::vector<GoodActivity> MainSystem::tableToActivities(std::vector<std::vector<std::string> > input){
     std::vector<GoodActivity> tmp;
 
     for(int i=0; i<input.size(); i++){
@@ -165,4 +180,4 @@ std::vector<GoodActivity> MainSystem::tableToActivities(std::vector<std::vector<
         tmp.push_back(GoodActivity(-1, "-1", "-1", -1, -1, StringToDatetime(getTimeString())));
         return tmp;
     }
-}
+}*/

@@ -16,19 +16,20 @@ FileConnector::FileConnector(std::string name) : file_name("../data/"+name), inp
 }
 
 void FileConnector::readCsv(){
-    std::cout << "Reading csv" << std::endl;
+    //std::cout << "Reading csv" << std::endl;
     input_file.seekg(0,std::ios::beg);
     int count = 0;
     char buffer[80];
     input_file.getline(buffer, sizeof(buffer));
     std::vector<std::string> tmp_row;
 
-    for(char *token=strtok(buffer, ","); token; token=strtok(NULL, ",")){
+    //token each row of the .csv into vector(tmp_row) and push it into the table
+    /*for(char *token=strtok(buffer, ","); token; token=strtok(NULL, ",")){
         tmp_row.push_back(token);
         column[token] = count++;
     }
     table.push_back(tmp_row); 
-    tmp_row.clear();
+    tmp_row.clear();*/
 
     while(input_file.getline(buffer, sizeof(buffer))){
         for(char *token=strtok(buffer, ","); token; token=strtok(NULL, ",")){
@@ -39,7 +40,7 @@ void FileConnector::readCsv(){
 
     result = table;
 
-    std::cout << "Finish reading" << std::endl;
+    //std::cout << "Finish reading" << std::endl;
 }
 
 FileConnector::~FileConnector(){
@@ -64,6 +65,7 @@ void FileConnector::write(){
 }
 
 void FileConnector::search(std::string property, std::string target){
+    //std::cout << property << " " << target << std::endl;
     int which_col = column[property];
 
     row_result.clear();
@@ -104,8 +106,8 @@ void FileConnector::update(std::string from_property, std::string which_is, std:
 //vector裡面要裝有 id name price category (quantity) (time)
 void FileConnector::append(std::vector<std::string> vec){
     if(vec.size() != column.size()){
-        std::cout << "invaild append (different column size)" << vec.size() << " " << column.size() << std::endl;
-        std::cout << "Each of the first row and your input row are belong:\n";
+        //std::cout << "invaild append (different column size)" << vec.size() << " " << column.size() << std::endl;
+        //std::cout << "Each of the first row and your input row are belong:\n";
         
         for(std::string s : vec)
             std::cout << s << " ";
@@ -119,7 +121,7 @@ void FileConnector::append(std::vector<std::string> vec){
     }
 
     table.push_back(vec);
-    std::cout << "Append successfully!" << std::endl;
+    //std::cout << "Append successfully!" << std::endl;
 
     result = table;
 }

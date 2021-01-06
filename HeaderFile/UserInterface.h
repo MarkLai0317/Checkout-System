@@ -34,7 +34,7 @@
 #define WIDE 101
 #define WIDe 80
 
-enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NAME_STATUS, PRICE_STATUS, NEWGOOD_STATUS, OLDGOOD_STATUS};
+enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NAME_STATUS, PRICE_STATUS, NEWGOOD_STATUS, OLDGOOD_STATUS, INVENTORY_PAGE, ACTIVITY_PAGE};
 
 class UserInterface{
 
@@ -118,7 +118,7 @@ class UserInterface{
     	
 
 
-    	// the recent chose ategory
+    	// the recent chose category
     	int category_now;
     	
     	// the recent chose id
