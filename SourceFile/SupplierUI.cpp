@@ -523,7 +523,7 @@ void SupplierUI::printReciept(){
         tmp += q;
         tmp += " x ";
         tmp += merged_reciept[i].getName();
-        for (int j = 0; j < WIDE - 10 - q.size() - 2 - 3 - merged_reciept[i].getName().size() - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
+        for (int j = 0; j < WIDE - 10 - q.size() - 2 - 3 - merged_reciept[i].getName().size()*2/3 - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
         tmp += q;
         tmp += " x ";
         tmp += p;

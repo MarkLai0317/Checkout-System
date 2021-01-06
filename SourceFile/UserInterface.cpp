@@ -251,7 +251,7 @@ void UserInterface::printMenu(std::vector <GoodInventory> &menu){
         tmp += d;
         for (int j = 0; j < 8 - d.size(); ++j) tmp.push_back(' ');
         tmp += menu[i].getName();
-        for (int j = 0; j < 32 - menu[i].getName().size(); ++j) tmp.push_back(' ');
+        for (int j = 0; j < 32 - menu[i].getName().size()*2/3; ++j) tmp.push_back(' ');
         tmp += "NT$";
         tmp += p;
         for (int j = 0; j < 16 - p.size() - 3; ++j) tmp.push_back(' ');
