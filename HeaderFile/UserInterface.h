@@ -2,6 +2,7 @@
 #define _USERINTERFACE_H
 
 #include <vector>
+
 #include "GoodInventory.h"
 #include "MainSystem.h"
 
@@ -136,8 +137,10 @@ class UserInterface{
     	status page_status = CATEGORY_STATUS;
 
 
-    	//used to interact with searchSystem;
-    	MainSystem search;
+
+    	//used to interact with Main System;
+
+        MainSystem search;
 
 
 };

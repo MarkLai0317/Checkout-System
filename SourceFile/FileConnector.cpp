@@ -92,6 +92,7 @@ std::vector< std::vector<std::string> > FileConnector::getResult(){
 //找到那行的那個位置修改其值，如果找不到要回傳錯誤訊息
 void FileConnector::update(std::string from_property, std::string which_is, std::string from_col, std::string change_to){
     search(from_property, which_is);
+    
     std::vector<int> which_row = row_result;
     int which_col = column[from_col];
 

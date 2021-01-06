@@ -61,10 +61,12 @@ void MainSystem::purchaseConfirm(std::vector<GoodInventory> the_reciept){
 }
 
 void MainSystem::supplyConfirm(std::vector<GoodInventory> old_reciept, std::vector<GoodInventory> new_reciept){
-    std::cout << "opening Inventory.cvs" << std::endl;
+
+    //std::cout << "opening Inventory.cvs" << std::endl;
+
     FileConnector inventory_file("Inventory.csv");
 
-    std::cout << "Inserting old good into Inventory..." << std::endl;
+    //std::cout << "Inserting old good into Inventory..." << std::endl;
     for(int i=0; i<old_reciept.size(); i++){
         std::string target_id = std::to_string(old_reciept[i].getId());
         inventory_file.search("id", target_id);
@@ -74,16 +76,14 @@ void MainSystem::supplyConfirm(std::vector<GoodInventory> old_reciept, std::vect
 
     std::cout << "Appending new good into Inventory..." << std::endl;
     for(int i=0; i<new_reciept.size(); i++){
-        std::cout << "Inventory size is " << inventory_file.getResult().size() << std::endl;
+        //std::cout << "Inventory size is " << inventory_file.getResult().size() << std::endl;
         std::string id = std::to_string(inventory_file.getResult().size())
              , category = new_reciept[i].getCategory()
              , name = new_reciept[i].getName()
              , price = std::to_string(new_reciept[i].getPrice())
              , quantity = std::to_string(new_reciept[i].getQuantity());
 
-
         inventory_file.append( {id, category, name, price, quantity} );
-
     }
 
     //file.close();

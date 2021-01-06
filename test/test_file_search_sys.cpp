@@ -7,8 +7,10 @@ using namespace std;
 
 int main(){
 
+<<<<<<< HEAD
 
     system("./data_init");
+
 
 
     //declaration of ss
