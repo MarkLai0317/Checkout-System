@@ -1,5 +1,8 @@
 #include <time.h>
+#include <ctime>
 #include <sstream>
+#include <iomanip>
+#include <chrono>
 
 std::string getTimeString(){
     time_t t=std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());

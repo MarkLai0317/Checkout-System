@@ -3,6 +3,9 @@
 #include <fstream>
 #include <map>
 #include <vector>
+#include <cstring>
+#include <string>
+#include <chrono>
 
 class FileConnector{
 
