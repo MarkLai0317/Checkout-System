@@ -501,9 +501,11 @@ void SupplierUI::printReciept(){
     for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
     rcp.push_back(tmp);
     tmp.clear();
-    for (int i = 0; i < 10; ++i) tmp.push_back(' ');
+    for (int i = 0; i < 5; ++i) tmp.push_back(' ');
+    tmp += "ID";
+    for (int i = 0; i < 5; ++i) tmp.push_back(' ');
     tmp += "Description";
-    for (int i = 0; i < WIDE - 10 - 10 - 11 - 5; ++i) tmp.push_back(' ');
+    for (int i = 0; i < WIDE - 10 - 10 - 11 - 5 - 2; ++i) tmp.push_back(' ');
     tmp += "Price";
     for (int i = 0; i < 10; ++i) tmp.push_back(' ');
     rcp.push_back(tmp);
