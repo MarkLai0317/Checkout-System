@@ -455,14 +455,14 @@ void SupplierUI::addReciept(){
         old_reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
     }else{
         for (int i = 0; i < new_reciept.size(); ++i){
-            if (new_reciept[i].getId() == id_now){
+            if (new_reciept[i].getName() == name_now){
                 new_reciept[i] = GoodInventory(new_reciept[i].getId(),new_reciept[i].getCategory(), 
                                                new_reciept[i].getName(), new_reciept[i].getPrice(), 
                                                new_reciept[i].getQuantity()+ quantity_now);
                 return;
             }
         }
-        new_reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
+        new_reciept.push_back(GoodInventory(-1, category_string[category_now], name_now, price_now, quantity_now));
     }
 }
 
@@ -501,9 +501,11 @@ void SupplierUI::printReciept(){
     for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
     rcp.push_back(tmp);
     tmp.clear();
-    for (int i = 0; i < 10; ++i) tmp.push_back(' ');
+    for (int i = 0; i < 5; ++i) tmp.push_back(' ');
+    tmp += "ID";
+    for (int i = 0; i < 5; ++i) tmp.push_back(' ');
     tmp += "Description";
-    for (int i = 0; i < WIDE - 10 - 10 - 11 - 5; ++i) tmp.push_back(' ');
+    for (int i = 0; i < WIDE - 10 - 10 - 11 - 5 - 2; ++i) tmp.push_back(' ');
     tmp += "Price";
     for (int i = 0; i < 10; ++i) tmp.push_back(' ');
     rcp.push_back(tmp);
@@ -523,7 +525,7 @@ void SupplierUI::printReciept(){
         tmp += q;
         tmp += " x ";
         tmp += merged_reciept[i].getName();
-        for (int j = 0; j < WIDE - 10 - q.size() - 2 - 3 - merged_reciept[i].getName().size() - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
+        for (int j = 0; j < WIDE - 10 - q.size() - 2 - 3 - merged_reciept[i].getName().size()*2/3 - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
         tmp += q;
         tmp += " x ";
         tmp += p;
@@ -563,7 +565,7 @@ void SupplierUI::printReciept(){
 	for(int j = 0; j < 30 ; j++) std::cout << " ";
         printborder();
         printborder();
-        if (i % 2 == 0)
+        if (i % 2)
             printcontent_w(rcp[i]);
         else
             printcontent_b(rcp[i]);

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include <fstream>
 #include <vector>
 #include "../HeaderFile/FileConnector.h"
@@ -21,15 +22,20 @@ void FileConnector::readCsv(){
     int count = 0;
     char buffer[80];
     input_file.getline(buffer, sizeof(buffer));
+
+    if(strlen(buffer) == 0) return ;
+
     std::vector<std::string> tmp_row;
 
     //token each row of the .csv into vector(tmp_row) and push it into the table
-    /*for(char *token=strtok(buffer, ","); token; token=strtok(NULL, ",")){
+    for(char *token=strtok(buffer, ","); token; token=strtok(NULL, ",")){
         tmp_row.push_back(token);
         column[token] = count++;
     }
     table.push_back(tmp_row); 
-    tmp_row.clear();*/
+    tmp_row.clear();
+
+    //std::cout << "Finish reading index" << std::endl; 
 
     while(input_file.getline(buffer, sizeof(buffer))){
         for(char *token=strtok(buffer, ","); token; token=strtok(NULL, ",")){
@@ -101,6 +107,8 @@ void FileConnector::update(std::string from_property, std::string which_is, std:
     for(int i : which_row){
         table[i][which_col] = change_to;
     }
+
+    result = table;
 }
 
 //vector裡面要裝有 id name price category (quantity) (time)

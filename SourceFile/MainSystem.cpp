@@ -4,13 +4,15 @@
 #include "../HeaderFile/ConvertorOfTimeAndString.h"
 
 std::vector<GoodInventory> MainSystem::getInventory(){
-    std::cout << "geting inventory table..." << std::endl;
+    std::cout << "getting inventory table..." << std::endl;
     FileConnector file("Inventory.csv");
-    return tableToInventories(file.getResult());
+    std::vector<std::vector<std::string> > rec = file.getResult();
+    rec.erase(rec.begin()); // remove index row
+    return tableToInventories(rec);
 }
 
 std::vector<std::vector<std::string> > MainSystem::getActivity(){
-    std::cout << "geting activity table..." << std::endl;
+    std::cout << "getting activity table..." << std::endl;
     FileConnector file("Activity.csv");
     return file.getResult();
 }
@@ -74,7 +76,7 @@ void MainSystem::purchaseConfirm(std::vector<GoodInventory> the_reciept){
 
 void MainSystem::supplyConfirm(std::vector<GoodInventory> old_reciept, std::vector<GoodInventory> new_reciept){
 
-    //std::cout << "opening Inventory.cvs" << std::endl;
+    //std::cout << "opening Inventory.csv" << std::endl;
 
     FileConnector inventory_file("Inventory.csv");
 
@@ -89,6 +91,7 @@ void MainSystem::supplyConfirm(std::vector<GoodInventory> old_reciept, std::vect
     //std::cout << "Appending new good into Inventory..." << std::endl;
     for(int i=0; i<new_reciept.size(); i++){
         //std::cout << "Inventory size is " << inventory_file.getResult().size() << std::endl;
+
         std::string id = std::to_string(inventory_file.getResult().size())
              , category = new_reciept[i].getCategory()
              , name = new_reciept[i].getName()
@@ -148,7 +151,7 @@ std::vector<GoodInventory> MainSystem::tableToInventories(std::vector<std::vecto
 
     //std::cout << "The table size is " << input.size() << std::endl;
 
-    for(int i=1; i<input.size(); i++){
+    for(int i=0; i<input.size(); i++){
         // id(int), name(string), category(string), price(int)
         //std::cout << "On row " << i << std::endl;
         tmp.push_back( GoodInventory(stoi(input[i][0]), input[i][1], input[i][2], stoi(input[i][3]), stoi(input[i][4])) );

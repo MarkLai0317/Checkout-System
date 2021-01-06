@@ -14,7 +14,7 @@ ManagerUI::ManagerUI(){
 
 void ManagerUI::managerSystem(){
 
-    //cout << "executing manager system..." << endl;
+    cout << "Begin?" << endl; cin.get();
 
     while( !terminate ){
 
@@ -52,6 +52,8 @@ void ManagerUI::nextOperation(){
             this->page_status = ACTIVITY_PAGE;
         }else if( op == 's'){
             this->searchOp();
+        }else if( op =='q' ){
+            this->terminate = true;
         }else{
             input_success = false;
         }
@@ -167,7 +169,8 @@ void ManagerUI::activitySearch(){
 
 void ManagerUI::actTypeSearch(){
     string input;
-    cout << "p: purchase s: supply";
+    cout << "--------------------------------------------------------------" << endl;
+    cout << "p: purchase s: supply" << flush;
 
     bool input_success = false;
     while( !input_success ){
