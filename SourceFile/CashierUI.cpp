@@ -3,8 +3,6 @@
 #include <cstdlib>
 #include "../HeaderFile/CashierUI.h"
 
-//for
-
 
 using namespace std;
 
@@ -13,7 +11,6 @@ static const char* category_string[] = {"碗裝泡麵", "包裝餅乾", "利樂�
 
 void CashierUI::cashierSystem(){
 	
-
 	while(!terminate){
 
 		if(this->page_status == CATEGORY_STATUS){
