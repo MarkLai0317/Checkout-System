@@ -4,7 +4,7 @@
 #include <vector>
 #include "../HeaderFile/GoodInventory.h"
 #include "../HeaderFile/UserInterface.h"
-#include "../HeaderFile/SearchSystem.h"
+#include "../HeaderFile/MainSystem.h"
 
 
 
@@ -134,10 +134,16 @@ private:
 	//================in UserInterface==================
 	//vector<GoodInventory> reciept;
 
-	// use fuction of SearchSystem
+	// use fuction of Main System
+
 
 	//================in UserInterface==================
 	//SearchSystem search;
+
+
+
+
+
 
 };
 

@@ -6,7 +6,7 @@
 #include "../HeaderFile/GoodInventory.h"
 #include "../HeaderFile/GoodActivity.h"
 
-class SearchSystem{
+class MainSystem{
 
 
     public:

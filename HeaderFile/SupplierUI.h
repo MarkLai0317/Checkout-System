@@ -4,7 +4,7 @@
 
 #include <string>
 #include <vector>
-#include "../HeaderFile/SearchSystem.h"
+#include "../HeaderFile/MainSystem.h"
 #include "../HeaderFile/UserInterface.h"
 #include "../HeaderFile/GoodInventory.h"
 

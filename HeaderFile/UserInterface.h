@@ -1,8 +1,9 @@
 #ifndef _USERINTERFACE_H
 #define _USERINTERFACE_H
+
 #include <vector>
-#include "../HeaderFile/GoodInventory.h"
-#include "../HeaderFile/SearchSystem.h"
+#include "GoodInventory.h"
+#include "MainSystem.h"
 
 #define SNACK 0
 #define DRINK 1
@@ -81,7 +82,7 @@ class UserInterface{
         // see the size of reciept
         virtual int sizeOfReciept() = 0;
         //====================================
-    	
+
         // recieve list of goods and print with nice format
 		// need to show id, name, quantity, and price $        
         void printMenu(std::vector<GoodInventory> &menu);
@@ -136,7 +137,7 @@ class UserInterface{
 
 
     	//used to interact with searchSystem;
-    	SearchSystem search;
+    	MainSystem search;
 
 
 };

@@ -1,1 +1,1 @@
-g++ -std=c++11 test_file_search_sys.cpp ../SourceFile/FileConnector.cpp ../SourceFile/SearchSystem.cpp ../SourceFile/Good.cpp ../SourceFile/GoodInventory.cpp ../SourceFile/GoodActivity.cpp -o test_file_search_sys
+g++ -std=c++11 test_file_search_sys.cpp ../SourceFile/FileConnector.cpp ../SourceFile/MainSystem.cpp ../SourceFile/Good.cpp ../SourceFile/GoodInventory.cpp ../SourceFile/GoodActivity.cpp -o test_file_search_sys
