@@ -455,14 +455,14 @@ void SupplierUI::addReciept(){
         old_reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
     }else{
         for (int i = 0; i < new_reciept.size(); ++i){
-            if (new_reciept[i].getId() == id_now){
+            if (new_reciept[i].getName() == name_now){
                 new_reciept[i] = GoodInventory(new_reciept[i].getId(),new_reciept[i].getCategory(), 
                                                new_reciept[i].getName(), new_reciept[i].getPrice(), 
                                                new_reciept[i].getQuantity()+ quantity_now);
                 return;
             }
         }
-        new_reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
+        new_reciept.push_back(GoodInventory(-1, category_string[category_now], name_now, price_now, quantity_now));
     }
 }
 
