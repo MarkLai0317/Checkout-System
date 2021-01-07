@@ -1,17 +1,20 @@
-#ifndef _SEARCHSYSTEM_H
-#define _SEARCHSYSTEM_H
+#ifndef _MAINSYSTEM_H
+#define _MAINSYSTEM_H
 
 #include <vector>
 #include "../HeaderFile/Good.h"
 #include "../HeaderFile/GoodInventory.h"
 #include "../HeaderFile/GoodActivity.h"
 
-class SearchSystem{
+class MainSystem{
 
 
     public:
 
-
+        //return all in inventory
+        std::vector<GoodInventory> getInventory();
+        //return all in actibity
+        std::vector<std::vector<std::string> > getActivity();
         
         
         // return all goodInvantory of the input category

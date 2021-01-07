@@ -3,8 +3,6 @@
 #include <cstdlib>
 #include "../HeaderFile/CashierUI.h"
 
-//for
-
 
 using namespace std;
 
@@ -13,7 +11,6 @@ static const char* category_string[] = {"碗裝泡麵", "包裝餅乾", "利樂�
 
 void CashierUI::cashierSystem(){
 	
-
 	while(!terminate){
 
 		if(this->page_status == CATEGORY_STATUS){
@@ -133,12 +130,54 @@ int CashierUI::inputCategory(){
 	string choose;
 
 	// print all categories for customer to chooose
-	for(int i = 0; i < 60; ++i)
-		cout << " ";
-	cout << "1 : Snack    2 : Drink    3 : Daily Product" << endl;
-	for(int i = 0; i < 65; ++i)
-		cout << " ";
-	cout << "4 : Clothes  5 :  Electronic Product" << endl;
+	std::cout << '\n';
+	
+	std::vector <string> cgy;
+        std::string tmp;
+
+        for(int i = 0; i < (WIDE/5/2) - 1 - 2; ++i){
+        	for(int j = 0; j < WIDE; ++j) tmp.push_back(' ');
+        	cgy.push_back(tmp);
+        	tmp.clear();
+        }
+
+        for(int i = 0; i < 5; ++i){
+       		for(int j = 0; j < (WIDE/5/2) ; ++j) tmp.push_back(' ');
+        	tmp += std::to_string(i+1);
+       		tmp += ".";
+        	for(int j = 0; j < (WIDE/5/2) - 1 - 1; ++j) tmp.push_back(' ');
+    	}
+    	tmp.push_back(' ');
+    	cgy.push_back(tmp);
+    	tmp.clear();
+
+ 	for(int i = 0; i < (WIDE/5/2) - 1 - 2; ++i){
+        	for(int j = 0; j < WIDE; ++j) tmp.push_back(' ');
+        	cgy.push_back(tmp);
+        	tmp.clear();
+    	}
+
+    	for(int i = 0; i < cgy.size(); ++i){
+        	for(int j = 0; j < 38; ++j) std::cout << " ";
+        	if (i == 6){
+                	std::cout << FORE_GROUND_BLACK << BACK_GROUND_RED << "     " << category_string[0] << "    " << BACK_GROUND_GREEN << "    " << category_string[1] << "    " <<  BACK_GROUND_BLUE <<  "     " << category_string[2] << "     " << BACK_GROUND_BROWN <<  "     " << category_string[3] << "     " << BACK_GROUND_WHITE <<  "       " << category_string[4] << "       " << RESET << '\n';
+                	for(int j = 0; j < 38; ++j) std::cout << " ";
+        	}
+        	for(int j = 0; j < cgy[i].size(); ++j){
+                	string stmp;
+               		stmp.push_back(cgy[i][j]);
+                	if(j > (WIDE/5)*4) printcontent_w(stmp);
+                	else if (j > (WIDE/5)*3) printcontent_br(stmp);
+               		else if (j > (WIDE/5)*2) printcontent_b(stmp);
+                	else if (j > (WIDE/5)) printcontent_g(stmp);
+                	else printcontent_r(stmp);
+        	}
+        	std::cout << '\n';
+    	}
+
+    	std::cout << '\n';
+
+
 	for(int i = 0; i < 62; ++i)
 		cout << " ";
 	cout << "s : Check your reciept     q : Quit \n" << endl;
@@ -313,14 +352,18 @@ void CashierUI::printReciept(){
         for (int j = 0; j < 5; ++j) tmp.push_back(' ');
 	std::string o = std::to_string(i+1);
 	tmp += o;
+//<<<<<<< HEAD
 	for (int j = 0; j < 10 - 5 - o.size(); ++j) tmp.push_back(' ');
+//=======
+	//for(int j = 0; j < 5 - o.size(); ++j) tmp.push_back(' ');
+//>>>>>>> 63f40cc96813dee3d79ada5cf605897a0d55d293
         std::string q = std::to_string(reciept[i].getQuantity());
         std::string p = std::to_string(reciept[i].getPrice());
         std::string pq = std::to_string(reciept[i].getPrice() * reciept[i].getQuantity());
         tmp += q;
         tmp += " x ";
         tmp += reciept[i].getName();
-        for (int j = 0; j < WIDE - 10 - q.size() - 3 - reciept[i].getName().size() - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
+        for (int j = 0; j < WIDE - 10 - q.size() - 3 - reciept[i].getName().size()*2/3 - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
         tmp += q;
         tmp += " x ";
         tmp += p;
@@ -350,10 +393,14 @@ void CashierUI::printReciept(){
     rcp.push_back(tmp);
     tmp.clear();
 
+    for(int i = 0; i < WIDE; ++i) tmp.push_back('-');
+    rcp.push_back(tmp);
+    tmp.clear();
+
     std::cout << '\n';
 
     for (int i = 0; i < rcp.size(); ++i){
-	for(int j = 0; j < 30; j++) std::cout << " "; 
+	for(int j = 0; j < 40; ++j) std::cout << " "; 
         printborder();
         printborder();
         if(i%2) printcontent_w(rcp[i]);
