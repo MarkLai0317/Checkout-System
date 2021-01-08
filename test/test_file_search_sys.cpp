@@ -7,7 +7,6 @@ using namespace std;
 
 int main(){
 
-
     system("./data_init");
 
     //declaration of ss
@@ -41,5 +40,8 @@ int main(){
 
     cout << "system close" << endl;
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 63f40cc96813dee3d79ada5cf605897a0d55d293
 }
