@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
 
-    FileConnector f("test.csv");
+    FileConnector f("test_file_con.csv");
 
     vector<string> vec;
 

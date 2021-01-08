@@ -95,7 +95,6 @@ class UserInterface{
         
 
         void printborder();
-    
         void printcontent_b(std::string str);
         void printcontent_w(std::string str);
 	    void printcontent_br(std::string str);
