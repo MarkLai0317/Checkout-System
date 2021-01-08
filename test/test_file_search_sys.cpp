@@ -7,11 +7,8 @@ using namespace std;
 
 int main(){
 
-<<<<<<< HEAD
-=======
     system("./data_init");
 
->>>>>>> 53feacddaf7c5abb0b09c83ba9390f047b8fb5c8
     //declaration of ss
     MainSystem sys;
     //declaraion of supply
@@ -43,9 +40,4 @@ int main(){
 
     cout << "system close" << endl;
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 53feacddaf7c5abb0b09c83ba9390f047b8fb5c8
 }

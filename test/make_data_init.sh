@@ -1,1 +1,1 @@
-g++ -std=c++11 data_init.cpp -o data_init
+g++ -std=c++11 data_init.cpp -o ../bin/data_init

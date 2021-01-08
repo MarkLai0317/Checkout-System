@@ -50,7 +50,6 @@ FileConnector::~FileConnector(){
 
     system( ("rm " + file_name).c_str() );
     system( ("mv " + file_name + ".tmp " + file_name).c_str() );
-
 }
 
 void FileConnector::write(){
