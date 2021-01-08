@@ -25,6 +25,8 @@ class ManagerUI : public UserInterface{
 
         virtual int inputQuantity() {return 0;}
 
+        virtual int quantityFix() { return 0; }
+
         virtual int sizeOfReciept() {return 0;}
 
         virtual void printReciept() {}
@@ -66,6 +68,8 @@ class ManagerUI : public UserInterface{
         std::vector<GoodInventory> inventory_table, inventory_result;
 
         std::vector<std::vector<std::string> > activity_table, activity_result;
+
+        int begin;
 
 };
 
