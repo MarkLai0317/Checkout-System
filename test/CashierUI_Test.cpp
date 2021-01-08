@@ -17,6 +17,7 @@ int main(){
 	ui.cashierSystem();
 
 	//cout << ui.page_status << endl;
+	system("clear");
 	return 0;
 
 

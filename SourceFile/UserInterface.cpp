@@ -146,7 +146,7 @@ int UserInterface::inputId(){
 
 
 int UserInterface::inputReciept(){
-	for(int i = 0; i < 55; ++i)
+	for(int i = 0; i < 48; ++i)
 		cout << " ";
 	cout << "Delete the good (i: input, c : Confirm , b : Back)" << endl;
 	for(int i = 0 ; i < 67; ++i)

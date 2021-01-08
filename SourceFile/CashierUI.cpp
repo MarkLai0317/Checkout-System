@@ -31,6 +31,7 @@ void CashierUI::cashierSystem(){
 		}
 		
 	}
+	system("clear");
 }
 
 
@@ -155,10 +156,10 @@ int CashierUI::inputCategory(){
     	}
 
     	for(int i = 0; i < cgy.size(); ++i){
-        	for(int j = 0; j < 38; ++j) std::cout << " ";
+        	for(int j = 0; j < 30; ++j) std::cout << " ";
         	if (i == 6){
                 	std::cout << FORE_GROUND_BLACK << BACK_GROUND_RED << "     " << category_string[0] << "    " << BACK_GROUND_GREEN << "    " << category_string[1] << "    " <<  BACK_GROUND_BLUE <<  "     " << category_string[2] << "     " << BACK_GROUND_BROWN <<  "     " << category_string[3] << "     " << BACK_GROUND_WHITE <<  "       " << category_string[4] << "       " << RESET << '\n';
-                	for(int j = 0; j < 38; ++j) std::cout << " ";
+                	for(int j = 0; j < 30; ++j) std::cout << " ";
         	}
         	for(int j = 0; j < cgy[i].size(); ++j){
                 	string stmp;
@@ -175,7 +176,7 @@ int CashierUI::inputCategory(){
     	std::cout << '\n';
 
 
-	for(int i = 0; i < 62; ++i)
+	for(int i = 0; i < 52; ++i)
 		cout << " ";
 	cout << "s : Check your reciept     q : Quit \n" << endl;
 	// error message
@@ -188,7 +189,7 @@ int CashierUI::inputCategory(){
 	else{
 		for(int i = 0; i < 75; ++i)
 			cout << " ";
-		cout << "Your option : ";
+		//cout << "Your option : ";
 	}
 
 	char choose = getKeyboardChar();
@@ -233,7 +234,7 @@ int CashierUI::inputCategory(){
 int CashierUI::inputQuantity(){
 	// the quantity customer want or back command
 	string quantity;
-	for(int i = 0; i < 70; ++i)
+	for(int i = 0; i < 57; ++i)
 			cout << " ";
 	cout << "Quantity of good (b : Back) : ";
 	getline(cin, quantity);
