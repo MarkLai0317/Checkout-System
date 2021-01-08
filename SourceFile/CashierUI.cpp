@@ -262,12 +262,19 @@ int CashierUI::inputQuantity(){
 		return INVALID;
 
 	GoodInventory temp = search.findInventoryById(id_now);
-
+	int already_buy = 0;
+	for(int i = 0 ; i < reciept.size(); ++i){
+		int reciept_id_temp = reciept[i].getId();
+		if(id_now == reciept_id_temp){
+			already_buy = reciept[i].getQuantity();
+			break;
+		}
+	}
 	// convert the quantity customer want from string to int
 	int quantity_want = stoi(quantity);
 
 	// the quantity in inventory
-	int quantity_have = temp.getQuantity();
+	int quantity_have = temp.getQuantity() - already_buy;
 		
 	// invalid quantity(<=0) or too much quantity
 	if(quantity_want <= 0 || quantity_want > quantity_have)
