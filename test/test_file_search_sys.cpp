@@ -17,8 +17,8 @@ int main(){
     cout << "type enter to supply new product: "; cin.get();
 
     //supply new product
-    _new.push_back( GoodInventory(123, "罐裝泡麵", "味味排骨", 1000, 100) );
-    _new.push_back( GoodInventory(123, "罐裝泡麵", "統一牛肉", 1200, 100) );
+    _new.push_back( GoodInventory(123, "碗裝泡麵", "味味排骨", 1000, 100) );
+    _new.push_back( GoodInventory(123, "碗裝泡麵", "統一牛肉", 1200, 100) );
     _new.push_back( GoodInventory(123, "包裝餅乾", "湖池屋", 10, 1000) );
     sys.supplyConfirm(_old, _new);
     _old.clear(); _new.clear();
