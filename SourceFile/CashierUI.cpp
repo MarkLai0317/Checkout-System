@@ -257,12 +257,19 @@ int CashierUI::inputQuantity(){
 		return INVALID;
 
 	GoodInventory temp = search.findInventoryById(id_now);
-
+	int already_buy = 0;
+	for(int i = 0 ; i < reciept.size(); ++i){
+		int reciept_id_temp = reciept[i].getId();
+		if(id_now == reciept_id_temp){
+			already_buy = reciept[i].getQuantity();
+			break;
+		}
+	}
 	// convert the quantity customer want from string to int
 	int quantity_want = stoi(quantity);
 
 	// the quantity in inventory
-	int quantity_have = temp.getQuantity();
+	int quantity_have = temp.getQuantity() - already_buy;
 		
 	// invalid quantity(<=0) or too much quantity
 	if(quantity_want <= 0 || quantity_want > quantity_have)
@@ -347,7 +354,11 @@ void CashierUI::printReciept(){
         for (int j = 0; j < 5; ++j) tmp.push_back(' ');
 	std::string o = std::to_string(i+1);
 	tmp += o;
-	for(int j = 0; j < 5 - o.size(); ++j) tmp.push_back(' ');
+//<<<<<<< HEAD
+	for (int j = 0; j < 10 - 5 - o.size(); ++j) tmp.push_back(' ');
+//=======
+	//for(int j = 0; j < 5 - o.size(); ++j) tmp.push_back(' ');
+//>>>>>>> 63f40cc96813dee3d79ada5cf605897a0d55d293
         std::string q = std::to_string(reciept[i].getQuantity());
         std::string p = std::to_string(reciept[i].getPrice());
         std::string pq = std::to_string(reciept[i].getPrice() * reciept[i].getQuantity());
@@ -403,8 +414,12 @@ void CashierUI::printReciept(){
     std::cout << '\n';
 }
 
-
-int CashierUI::quantityFix(){
-
+int CashierUI::quantityFix(int i, std::vector<GoodInventory> &menu){
+	for (int j = 0; j < reciept.size(); j++){
+		if (reciept[j].getName() == menu[i].getName()){
+			int x = reciept[j].getQuantity();
+			return x;
+		}
+	}
 	return 0;
 }

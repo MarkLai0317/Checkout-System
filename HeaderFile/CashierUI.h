@@ -90,7 +90,7 @@ public:
 	//void printMenu(&vector<GoodInventory>);
 
 	// fix quntity print in menu
-	int quantityFix();
+	int quantityFix(int i, std::vector<GoodInventory> &menu);
 
 	// confirm the  reciept
 	void confirm();

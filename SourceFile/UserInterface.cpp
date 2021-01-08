@@ -262,8 +262,8 @@ void UserInterface::printMenu(std::vector <GoodInventory> &menu){
     tmp.clear();
     for (int i = 0; i < menu.size(); ++i){
         for (int j = 0; j < 8; ++j) tmp.push_back(' ');
-        std::string q = std::to_string(menu[i].getQuantity());
-        std::string p = std::to_string(menu[i].getPrice());
+		std::string q = std::to_string(menu[i].getQuantity() - quantityFix(i, menu));
+		std::string p = std::to_string(menu[i].getPrice());
         std::string d = std::to_string(menu[i].getId());
         tmp += d;
         for (int j = 0; j < 8 - d.size(); ++j) tmp.push_back(' ');
