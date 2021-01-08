@@ -95,7 +95,7 @@ void ManagerUI::activityPrint(){
             //if(j==1) cout << left << "|" << setw(12) << activity_result[i][j] << right << setw(6) << "|" << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
             //else if(j==2) cout << left << "|" << setw(12) << activity_result[i][j] << right << setw(3 - 5+activity_result[i][j].size()/3) << "|" << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
             //else cout << "|" << activity_result[i][j] << "|" << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
-            cout << activity_result[i][j] << " " << << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
+            cout << activity_result[i][j] << " " << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
         }
         cout << RESET << endl;
     }
