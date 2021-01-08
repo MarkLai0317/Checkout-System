@@ -1,10 +1,6 @@
-
-#include <iostream>
 #include <iostream>
 #include "../HeaderFile/SupplierUI.h"
 #include "../HeaderFile/GoodInventory.h"
-#include "../HeaderFile/UserInterface.h"
-
 
 using namespace std;
 
@@ -262,7 +258,8 @@ int SupplierUI::inputCategory(){
     std::cout << '\n';
 
     for(int i = 0 ; i < 48; ++i)
-            cout << " " ;
+        cout << " " ;
+    
     if(old_new_status == OLDGOOD_STATUS)
         cout << "n : Switch to New Mode";   
 
@@ -286,7 +283,7 @@ int SupplierUI::inputCategory(){
             cout << "Your option is invalid, please try again : ";
     }
 
-    getline(cin, choose);
+    choose = getKeyboardChar();
 
     if(choose == "1")
 		return SNACK;

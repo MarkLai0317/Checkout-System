@@ -1,13 +1,10 @@
 #include <iostream>
 #include <vector>
 #include "../HeaderFile/UserInterface.h"
-#include "../HeaderFile/CashierUI.h"
 using namespace std;
 //correct
 
 static const char* category_string[] = {"碗裝泡麵", "包裝餅乾", "利樂包", "寶特瓶", "酒"};
-
-
 
 
 void UserInterface::clearScreen(){
@@ -149,28 +146,35 @@ int UserInterface::inputId(){
 
 
 int UserInterface::inputReciept(){
-	string cmd;
 	for(int i = 0; i < 65; ++i)
 		cout << " ";
-	cout << "Delete the good (c : Confirm , b : Back)" << endl;
+	cout << "Delete the good (i: input, c : Confirm , b : Back)" << endl;
 	for(int i = 0 ; i < 77; ++i)
 		cout << " ";
 	cout << "Your option : ";
-	getline(cin, cmd);
 
-	// back command
-	if(cmd == "b")
-		return BACK;
+	while( true ){
+		char cmd = getKeyboardChar();
 
-	// confirm command
-	if(cmd == "c")
-		return CONFIRM;
+		// back command
+		if(cmd == 'b')
+			return BACK;
+		// confirm command
+		if(cmd == 'c')
+			return CONFIRM;
+
+		if(cmd == 'i')
+			break;
+	}
 	
+	string input_id_be_delete;
+	getline(cin, input_id_be_delete);
+
 	// judge whether the command is invalid
 	// if the command is invalid(true)
 	bool cmd_invalid = false;
-	for(int i = 0 ; i < cmd.size(); ++i){
-		if(cmd[i] < '0' || cmd[i] > '9'){
+	for(int i = 0 ; i < input_id_be_delete.size(); ++i){
+		if(input_id_be_delete[i] < '0' || input_id_be_delete[i] > '9'){
 			cmd_invalid = true;
 			break;
 		}
@@ -180,7 +184,7 @@ int UserInterface::inputReciept(){
 		return INVALID;
 
 	// convert the order of good want to delete from string to int
-	int order = stoi(cmd);
+	int order = stoi(input_id_be_delete);
 
 	// the delete order should start from 1 and can't larger than the total order
 	if(order <= 0 || order > sizeOfReciept())
