@@ -408,8 +408,12 @@ void CashierUI::printReciept(){
     std::cout << '\n';
 }
 
-
-int CashierUI::quantityFix(){
-
+int CashierUI::quantityFix(int i, std::vector<GoodInventory> &menu){
+	for (int j = 0; j < reciept.size(); j++){
+		if (reciept[j].getName() == menu[i].getName()){
+			int x = reciept[j].getQuantity();
+			return x;
+		}
+	}
 	return 0;
 }

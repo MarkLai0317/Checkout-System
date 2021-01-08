@@ -88,8 +88,7 @@ private:
 	// into reciept, but don't need to print total price
 	void printReciept();
 
-	int quantityFix();
-
+	int quantityFix(int i, std::vector<GoodInventory> &menu);
 
 	// confirm the old and new reciept
 	void confirm();

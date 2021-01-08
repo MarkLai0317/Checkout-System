@@ -633,11 +633,6 @@ void SupplierUI::printReciept(){
     std::cout << '\n';
 }
 
-
-int SupplierUI::quantityFix(){
+int SupplierUI::quantityFix(int i, std::vector<GoodInventory> &menu){
     return 0;
 }
-
-
-
-
