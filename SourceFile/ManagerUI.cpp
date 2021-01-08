@@ -1,12 +1,16 @@
 #include <iostream>
 #include <vector>
+#include <iomanip>
+#include <string.h>
 #include "../HeaderFile/ManagerUI.h"
-#include "../HeaderFile/getKeyboardChar.h"
+
+#define PAGE_SIZE 10
 
 using namespace std;
 
 ManagerUI::ManagerUI(){
     //cout << "constructing ManagerUI..." << endl;
+    begin = 0;
     this->page_status = INVENTORY_PAGE;
     inventory_result = inventory_table = search.getInventory();
     activity_result = activity_table = search.getActivity();
@@ -20,7 +24,12 @@ void ManagerUI::managerSystem(){
 
         this->refreshTable();
 
-        cout << "--------------------------------------------------------------" << endl;
+        if( page_status == INVENTORY_PAGE ){
+            cout << "------------------------------" << begin << "~" << ((begin + PAGE_SIZE)<inventory_result.size() ? begin+PAGE_SIZE : inventory_result.size()) << "--------------------------------" << endl;
+        }else if ( page_status == ACTIVITY_PAGE ){
+            cout << "------------------------------" << begin << "~" << ((begin + PAGE_SIZE)<activity_result.size() ? begin+PAGE_SIZE : activity_result.size()) << "--------------------------------" << endl;
+        }
+        
         cout << "Press 1: inventory page, 2: activity page, s: search in this page, q: quit"  << endl;
 
         this->nextOperation();
@@ -47,13 +56,22 @@ void ManagerUI::nextOperation(){
 
         input_success = true;
         if(op == '1'){
+            begin = 0;
             this->page_status = INVENTORY_PAGE;
         }else if( op == '2' ){
+            begin = 0;
             this->page_status = ACTIVITY_PAGE;
         }else if( op == 's'){
             this->searchOp();
         }else if( op =='q' ){
             this->terminate = true;
+        }else if( op==',' ){
+            if(begin >= PAGE_SIZE) begin -= PAGE_SIZE;
+        }else if( op=='.' ){
+            if(page_status == INVENTORY_PAGE && begin + PAGE_SIZE <= inventory_result.size())
+                begin += PAGE_SIZE;
+            else if(page_status == ACTIVITY_PAGE && begin + PAGE_SIZE <= activity_result.size())
+                begin += PAGE_SIZE;
         }else{
             input_success = false;
         }
@@ -61,16 +79,25 @@ void ManagerUI::nextOperation(){
 }
 
 void ManagerUI::inventoryPrint(){
-    for(int i=0; i<inventory_result.size(); i++){
+    cout << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
+    for(int i=begin; i<inventory_result.size() && i<begin+PAGE_SIZE; i++){
         cout << inventory_result[i].getId() << " " << inventory_result[i].getCategory() << " " << inventory_result[i].getName() << " " << inventory_result[i].getPrice() << " " << inventory_result[i].getQuantity() << endl;
     }
+    cout << RESET;
 }
 
 void ManagerUI::activityPrint(){
-    for(int i=0; i<activity_result.size(); i++){
+    cout << BACK_GROUND_BLUE << FORE_GROUND_BLACK;
+    cout << "|" << "       時間        " << "|" << "|" << " supply/purchase "  << "|" << "|" << "   種類   " << "|" << "|" << "      品名      " << "|" << "|" << " 價格 " << "|" << "|" << " 庫存 " << "|" << endl;
+    cout << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
+    for(int i=begin; i<activity_result.size() && i<begin+PAGE_SIZE; i++){
         for(int j=0; j<activity_result[0].size(); j++){
-            cout << activity_result[i][j] << " ";
-        }cout << endl;
+            //if(j==1) cout << left << "|" << setw(12) << activity_result[i][j] << right << setw(6) << "|" << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
+            //else if(j==2) cout << left << "|" << setw(12) << activity_result[i][j] << right << setw(3 - 5+activity_result[i][j].size()/3) << "|" << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
+            //else cout << "|" << activity_result[i][j] << "|" << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
+            cout << activity_result[i][j] << " " << << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
+        }
+        cout << RESET << endl;
     }
 }
 

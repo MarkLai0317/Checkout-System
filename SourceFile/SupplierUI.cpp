@@ -1,10 +1,6 @@
-
-#include <iostream>
 #include <iostream>
 #include "../HeaderFile/SupplierUI.h"
 #include "../HeaderFile/GoodInventory.h"
-#include "../HeaderFile/UserInterface.h"
-
 
 using namespace std;
 
@@ -261,8 +257,12 @@ int SupplierUI::inputCategory(){
 
     std::cout << '\n';
 
+
     for(int i = 0 ; i < 43; ++i)
             cout << " " ;
+
+    
+
     if(old_new_status == OLDGOOD_STATUS)
         cout << "n : Switch to New Mode";   
 
@@ -286,7 +286,7 @@ int SupplierUI::inputCategory(){
             cout << "Your option is invalid, please try again : ";
     }
 
-    getline(cin, choose);
+    choose = getKeyboardChar();
 
     if(choose == "1")
 		return SNACK;
@@ -560,7 +560,11 @@ void SupplierUI::printReciept(){
     tmp.clear();
     for (int i = 0; i < 5; ++i) tmp.push_back(' ');
     tmp += "ID";
+//<<<<<<< HEAD
+    //for (int i = 0; i < 5; i++) tmp.push_back(' ');
+//=======
     for (int i = 0; i < 5; ++i) tmp.push_back(' ');
+//>>>>>>> 63f40cc96813dee3d79ada5cf605897a0d55d293
     tmp += "Description";
     for (int i = 0; i < WIDE - 10 - 10 - 11 - 5 - 2; ++i) tmp.push_back(' ');
     tmp += "Price";
