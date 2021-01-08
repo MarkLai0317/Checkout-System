@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include "../HeaderFile/ManagerUI.h"
-#include "../HeaderFile/getKeyboardChar.h"
 
 using namespace std;
 
