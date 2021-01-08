@@ -339,7 +339,7 @@ int SupplierUI::inputName(){
 
     cout << '\n';
 
-    for(int i = 0 ; i < 71; ++i)
+    for(int i = 0 ; i < 70; ++i)
             cout << " " ;
 
     if(category_now == SNACK)
@@ -388,12 +388,19 @@ int SupplierUI::inputName(){
 
 int SupplierUI::inputPrice(){
     
-    if(old_new_status == OLDGOOD_STATUS)
+    if(old_new_status == OLDGOOD_STATUS){
+        for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
         cout << "Mode : Old Good" << endl;
-    if(old_new_status == NEWGOOD_STATUS)
+    }
+    if(old_new_status == NEWGOOD_STATUS){
+        for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
         cout << "Mode : New Good" << endl;
-        
+    } 
 
+    for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
 
     if(category_now == SNACK)
         cout << "Category : " << category_string[0] << endl;
@@ -405,9 +412,15 @@ int SupplierUI::inputPrice(){
         cout << "Category : " << category_string[3] << endl;
     if(category_now == ELECTRONIC)
         cout << "Category : " << category_string[4] << endl;
+
+    for(int i = 0 ; i < 70; ++i)
+        cout << " " ;
     cout << "Name : " << name_now << endl;
 
-    cout << "Please input the price you want to sell, or press b for backing to previous page:";
+    for(int i = 0 ; i < 70; ++i)
+        cout << " " ;
+
+    cout << "Price of good (b : back) : ";
     string price_str;
     getline(cin, price_str);
 
@@ -450,9 +463,17 @@ int SupplierUI::inputQuantity(){
 	}
 	
 	if(old_new_status == NEWGOOD_STATUS){
+        for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
 		cout << "Supply Mode : New" << endl;
+        for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
 		cout << "Category : " << category_string[category_now] << endl;
+        for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
 		cout << "Name : " << name_now << endl;
+        for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
 		cout << "Price : " << price_now << endl;
 	}
     cout << endl;
