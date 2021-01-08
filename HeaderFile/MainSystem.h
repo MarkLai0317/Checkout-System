@@ -11,7 +11,10 @@ class MainSystem{
 
     public:
 
-
+        //return all in inventory
+        std::vector<GoodInventory> getInventory();
+        //return all in actibity
+        std::vector<std::vector<std::string> > getActivity();
         
         
         // return all goodInvantory of the input category

@@ -195,28 +195,96 @@ void SupplierUI::pricePage(){
 
 int SupplierUI::inputCategory(){
     string choose;
-
+    
+    cout << '\n';
     // remind supplier the adding mode
     if(old_new_status == OLDGOOD_STATUS){
-        cout << "Now, you can add good which has already stored in the inventory." << endl;
-        cout << "If you wnat to add new good which does not store in the inventory, please press n." << endl;
+        for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
+        cout << "Supply Mode : Old" << endl;
     }
 
     if(old_new_status == NEWGOOD_STATUS){
-        cout << "Now, you can add new good which does not store in the inventory." << endl;
-        cout << "If you wnat to add old good which has already stroed in the inventory, please press o." << endl;
+        for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
+        cout << "Supply Mode : New" << endl;
     }
-    cout << "1. Snack. 2. Drink. 3. Daily Product. 4. Clothes 5. Electronic Product" << endl;
-    cout << "Press s for checking the supply list or press q for quiting system.\n" << endl;
+            
+
+    cout << '\n';
+
+    //Print the category with color by using some witchcraft
+    
+    std::vector <string> cgy;
+    std::string tmp;
+    
+    for(int i = 0; i < (WIDE/5/2) - 1 - 2; ++i){
+   	for(int j = 0; j < WIDE; ++j) tmp.push_back(' ');
+    	cgy.push_back(tmp);
+    	tmp.clear();
+    }
+
+    for(int i = 0; i < 5; ++i){
+    	for(int j = 0; j < (WIDE/5/2) ; ++j) tmp.push_back(' ');
+    	tmp += std::to_string(i+1);
+	tmp += ".";
+	for(int j = 0; j < (WIDE/5/2) - 1 - 1; ++j) tmp.push_back(' ');
+    }
+    tmp.push_back(' ');
+    cgy.push_back(tmp);
+    tmp.clear();
     
 
-    if(!input_invalid)
-        cout << "Please choose the service you want:";
+    for(int i = 0; i < (WIDE/5/2) - 1 - 2; ++i){
+        for(int j = 0; j < WIDE; ++j) tmp.push_back(' ');
+        cgy.push_back(tmp);
+        tmp.clear();
+    }
+
+    for(int i = 0; i < cgy.size(); ++i){
+	for(int j = 0; j < 38; ++j) std::cout << " ";
+	if (i == 6){ 
+		std::cout << FORE_GROUND_BLACK << BACK_GROUND_RED << "     " << category_string[0] << "    " << BACK_GROUND_GREEN << "    " << category_string[1] << "    " <<  BACK_GROUND_BLUE <<  "     " << category_string[2] << "     " << BACK_GROUND_BROWN <<  "     " << category_string[3] << "     " << BACK_GROUND_WHITE <<  "       " << category_string[4] << "       " << RESET << '\n';
+		for(int j = 0; j < 38; ++j) std::cout << " ";
+	}
+	for(int j = 0; j < cgy[i].size(); ++j){
+		string stmp;
+		stmp.push_back(cgy[i][j]);
+		if(j > (WIDE/5)*4) printcontent_w(stmp);
+		else if (j > (WIDE/5)*3) printcontent_br(stmp);
+		else if (j > (WIDE/5)*2) printcontent_b(stmp);
+		else if (j > (WIDE/5)) printcontent_g(stmp);
+		else printcontent_r(stmp);
+	}
+	std::cout << '\n';
+    }
+
+    std::cout << '\n';
+
+    for(int i = 0 ; i < 48; ++i)
+            cout << " " ;
+    if(old_new_status == OLDGOOD_STATUS)
+        cout << "n : Switch to New Mode";   
+
+    if(old_new_status == NEWGOOD_STATUS)  
+        cout << "o : Switch to Old Mode";   
+
+    cout << "    s : Check the supply list    q : Quit\n" << endl;
+    
+
+    if(!input_invalid){
+        for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
+        cout << "Your option : ";
+    }
 
 
     // error message
-    if(input_invalid)
-		cout << "Your input is invalid, please try again:";
+    if(input_invalid){
+        for(int i = 0 ; i < 58; ++i)
+            cout << " " ;	
+            cout << "Your option is invalid, please try again : ";
+    }
 
     getline(cin, choose);
 
@@ -254,23 +322,43 @@ int SupplierUI::inputCategory(){
 }
 
 int SupplierUI::inputName(){
-    if(old_new_status == OLDGOOD_STATUS)
-        cout << "Mode : Old Good" << endl;
-    if(old_new_status == NEWGOOD_STATUS)
-        cout << "Mode : New Good" << endl;
-        
-    if(category_now == SNACK)
-        cout << "Category : Snack" << endl;
-    if(category_now == DRINK)
-        cout << "Category : DRINK" << endl;
-    if(category_now == DAILY)
-        cout << "Category : Daily Product" << endl;
-    if(category_now == CLOTHES)
-        cout << "Category : Clothes" << endl;
-    if(category_now == ELECTRONIC)
-        cout << "Category : Electronic Product" << endl;
 
-    cout << "Please input name of good(only chinese), or press b for backing to the previous page:";
+    cout << '\n';
+
+    if(old_new_status == OLDGOOD_STATUS){
+        for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
+        cout << "Supply Mode : Old" << endl;
+    }
+
+    if(old_new_status == NEWGOOD_STATUS){
+        for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
+        cout << "Supply Mode : New" << endl;
+    }
+
+    cout << '\n';
+
+    for(int i = 0 ; i < 71; ++i)
+            cout << " " ;
+
+    if(category_now == SNACK)
+        cout << "Category : " << category_string[0] << endl;
+    if(category_now == DRINK)
+        cout << "Category : " << category_string[1] << endl;
+    if(category_now == DAILY)
+        cout << "Category : " << category_string[2] << endl;
+    if(category_now == CLOTHES)
+        cout << "Category : " << category_string[3] << endl;
+    if(category_now == ELECTRONIC)
+        cout << "Category : " << category_string[4] << endl;
+
+
+    cout << '\n';
+
+    for(int i = 0 ; i < 63; ++i)
+            cout << " " ;
+    cout << "Name of good(only Chinese) , b (Back) : ";
     string name;
     getline(cin, name);
 
@@ -308,15 +396,15 @@ int SupplierUI::inputPrice(){
 
 
     if(category_now == SNACK)
-        cout << "Category : Snack" << endl;
+        cout << "Category : " << category_string[0] << endl;
     if(category_now == DRINK)
-        cout << "Category : DRINK" << endl;
+        cout << "Category : " << category_string[1] << endl;
     if(category_now == DAILY)
-        cout << "Category : Daily Product" << endl;
+        cout << "Category : " << category_string[2] << endl;
     if(category_now == CLOTHES)
-        cout << "Category : Clothes" << endl;
+        cout << "Category : " << category_string[3] << endl;
     if(category_now == ELECTRONIC)
-        cout << "Category : Electronic Product" << endl;
+        cout << "Category : " << category_string[4] << endl;
     cout << "Name : " << name_now << endl;
 
     cout << "Please input the price you want to sell, or press b for backing to previous page:";
@@ -350,19 +438,27 @@ int SupplierUI::inputQuantity(){
     // new: category name price
 
     if(old_new_status == OLDGOOD_STATUS){
-		cout << "Mode : Old" << endl;
+        for(int i = 0 ; i < 70; ++i)
+            cout << " " ;
+		cout << "Supply Mode : Old" << endl;
+        for(int i = 0 ; i < 69; ++i)
+            cout << " " ;
 		cout << "Category : " << category_string[category_now] << endl;
+        for(int i = 0 ; i < 75; ++i)
+            cout << " " ;
 		cout << "ID : " << id_now << endl;
 	}
 	
 	if(old_new_status == NEWGOOD_STATUS){
-		cout << "Mode : New" << endl;
+		cout << "Supply Mode : New" << endl;
 		cout << "Category : " << category_string[category_now] << endl;
 		cout << "Name : " << name_now << endl;
 		cout << "Price : " << price_now << endl;
 	}
-
-    cout << "Please input the quantity of good you want to store in the inventory, or press b for backing to previous page:";
+    cout << endl;
+    for(int i = 0 ; i < 65; ++i)
+            cout << " " ;
+    cout << "Quantity of good (b : back) : ";
     string quantity_str;
     getline(cin, quantity_str);
 
@@ -416,14 +512,14 @@ void SupplierUI::addReciept(){
         old_reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
     }else{
         for (int i = 0; i < new_reciept.size(); ++i){
-            if (new_reciept[i].getId() == id_now){
+            if (new_reciept[i].getName() == name_now){
                 new_reciept[i] = GoodInventory(new_reciept[i].getId(),new_reciept[i].getCategory(), 
                                                new_reciept[i].getName(), new_reciept[i].getPrice(), 
                                                new_reciept[i].getQuantity()+ quantity_now);
                 return;
             }
         }
-        new_reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
+        new_reciept.push_back(GoodInventory(-1, category_string[category_now], name_now, price_now, quantity_now));
     }
 }
 
@@ -462,9 +558,11 @@ void SupplierUI::printReciept(){
     for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
     rcp.push_back(tmp);
     tmp.clear();
-    for (int i = 0; i < 10; ++i) tmp.push_back(' ');
+    for (int i = 0; i < 5; ++i) tmp.push_back(' ');
+    tmp += "ID";
+    for (int i = 0; i < 5; ++i) tmp.push_back(' ');
     tmp += "Description";
-    for (int i = 0; i < WIDE - 10 - 10 - 11 - 5; ++i) tmp.push_back(' ');
+    for (int i = 0; i < WIDE - 10 - 10 - 11 - 5 - 2; ++i) tmp.push_back(' ');
     tmp += "Price";
     for (int i = 0; i < 10; ++i) tmp.push_back(' ');
     rcp.push_back(tmp);
@@ -484,7 +582,7 @@ void SupplierUI::printReciept(){
         tmp += q;
         tmp += " x ";
         tmp += merged_reciept[i].getName();
-        for (int j = 0; j < WIDE - 10 - q.size() - 3 - merged_reciept[i].getName().size() - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
+        for (int j = 0; j < WIDE - 10 - q.size() - 2 - 3 - merged_reciept[i].getName().size()*2/3 - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
         tmp += q;
         tmp += " x ";
         tmp += p;
@@ -517,11 +615,14 @@ void SupplierUI::printReciept(){
     for (int i = 0; i < WIDE; ++i) tmp.push_back('-');
     rcp.push_back(tmp);
     tmp.clear();
+    
+    std::cout << '\n';
 
     for (int i = 0; i < rcp.size(); ++i){
+	for(int j = 0; j < 40 ; j++) std::cout << " ";
         printborder();
         printborder();
-        if (i % 2 == 0)
+        if (i % 2)
             printcontent_w(rcp[i]);
         else
             printcontent_b(rcp[i]);
@@ -529,6 +630,7 @@ void SupplierUI::printReciept(){
         printborder();
         std::cout << '\n';
     }
+    std::cout << '\n';
 }
 
 

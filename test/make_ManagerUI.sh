@@ -1,0 +1,1 @@
+g++ -std=c++11 ManagerUI_test.cpp ../SourceFile/ManagerUI.cpp ../SourceFile/UserInterface.cpp ../SourceFile/Good.cpp ../SourceFile/GoodInventory.cpp ../SourceFile/GoodActivity.cpp ../SourceFile/FileConnector.cpp ../SourceFile/MainSystem.cpp -o ../bin/ManagerUI_test
