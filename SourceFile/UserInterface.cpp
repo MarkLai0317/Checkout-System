@@ -33,10 +33,10 @@ void UserInterface::idPage(){
 		// need to print the text to warn user
 		clearScreen();
 		printMenu(good_need_print);/////////////////////////
-		for(int i = 0; i < 78; ++i)
+		for(int i = 0; i < 68; ++i)
 			cout << " ";
 		cout << "MENU\n";
-		for(int i = 0; i < 53; ++i)
+		for(int i = 0; i < 43; ++i)
 			cout << " ";
 		cout << "We don't have this product. please choose the valid id.\n";
 		chosen_id = inputId();
@@ -112,7 +112,7 @@ void UserInterface::recieptPage(){
 
 int UserInterface::inputId(){
 	string ID;
-	for(int i = 0; i < 70; ++i)
+	for(int i = 0; i < 60; ++i)
 			cout << " ";
 	cout << "ID of good (b : Back) : ";
 	getline(cin, ID);
@@ -146,10 +146,10 @@ int UserInterface::inputId(){
 
 
 int UserInterface::inputReciept(){
-	for(int i = 0; i < 65; ++i)
+	for(int i = 0; i < 55; ++i)
 		cout << " ";
 	cout << "Delete the good (i: input, c : Confirm , b : Back)" << endl;
-	for(int i = 0 ; i < 77; ++i)
+	for(int i = 0 ; i < 67; ++i)
 		cout << " ";
 	cout << "Your option : ";
 
@@ -294,7 +294,7 @@ void UserInterface::printMenu(std::vector <GoodInventory> &menu){
     std::cout << '\n';
 
     for (int i = 0; i < mu.size(); ++i){
-		for(int j = 0; j < 35; j++) std::cout << " ";
+		for(int j = 0; j < 30; j++) std::cout << " ";
         printborder();
         printborder();
         if (i % 2)
