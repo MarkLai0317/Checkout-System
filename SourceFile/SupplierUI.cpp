@@ -199,13 +199,13 @@ int SupplierUI::inputCategory(){
     cout << '\n';
     // remind supplier the adding mode
     if(old_new_status == OLDGOOD_STATUS){
-        for(int i = 0 ; i < 70; ++i)
+        for(int i = 0 ; i < 65; ++i)
             cout << " " ;
         cout << "Supply Mode : Old" << endl;
     }
 
     if(old_new_status == NEWGOOD_STATUS){
-        for(int i = 0 ; i < 70; ++i)
+        for(int i = 0 ; i < 65; ++i)
             cout << " " ;
         cout << "Supply Mode : New" << endl;
     }
@@ -242,10 +242,10 @@ int SupplierUI::inputCategory(){
     }
 
     for(int i = 0; i < cgy.size(); ++i){
-	for(int j = 0; j < 38; ++j) std::cout << " ";
+	for(int j = 0; j < 33; ++j) std::cout << " ";
 	if (i == 6){ 
 		std::cout << FORE_GROUND_BLACK << BACK_GROUND_RED << "     " << category_string[0] << "    " << BACK_GROUND_GREEN << "    " << category_string[1] << "    " <<  BACK_GROUND_BLUE <<  "     " << category_string[2] << "     " << BACK_GROUND_BROWN <<  "     " << category_string[3] << "     " << BACK_GROUND_WHITE <<  "       " << category_string[4] << "       " << RESET << '\n';
-		for(int j = 0; j < 38; ++j) std::cout << " ";
+		for(int j = 0; j < 33; ++j) std::cout << " ";
 	}
 	for(int j = 0; j < cgy[i].size(); ++j){
 		string stmp;
@@ -261,7 +261,7 @@ int SupplierUI::inputCategory(){
 
     std::cout << '\n';
 
-    for(int i = 0 ; i < 48; ++i)
+    for(int i = 0 ; i < 43; ++i)
             cout << " " ;
     if(old_new_status == OLDGOOD_STATUS)
         cout << "n : Switch to New Mode";   
@@ -273,7 +273,7 @@ int SupplierUI::inputCategory(){
     
 
     if(!input_invalid){
-        for(int i = 0 ; i < 70; ++i)
+        for(int i = 0 ; i < 65; ++i)
             cout << " " ;
         cout << "Your option : ";
     }
@@ -281,7 +281,7 @@ int SupplierUI::inputCategory(){
 
     // error message
     if(input_invalid){
-        for(int i = 0 ; i < 58; ++i)
+        for(int i = 0 ; i < 53; ++i)
             cout << " " ;	
             cout << "Your option is invalid, please try again : ";
     }
@@ -326,20 +326,20 @@ int SupplierUI::inputName(){
     cout << '\n';
 
     if(old_new_status == OLDGOOD_STATUS){
-        for(int i = 0 ; i < 70; ++i)
+        for(int i = 0 ; i < 65; ++i)
             cout << " " ;
         cout << "Supply Mode : Old" << endl;
     }
 
     if(old_new_status == NEWGOOD_STATUS){
-        for(int i = 0 ; i < 70; ++i)
+        for(int i = 0 ; i < 65; ++i)
             cout << " " ;
         cout << "Supply Mode : New" << endl;
     }
 
     cout << '\n';
 
-    for(int i = 0 ; i < 71; ++i)
+    for(int i = 0 ; i < 66; ++i)
             cout << " " ;
 
     if(category_now == SNACK)
@@ -356,7 +356,7 @@ int SupplierUI::inputName(){
 
     cout << '\n';
 
-    for(int i = 0 ; i < 63; ++i)
+    for(int i = 0 ; i < 58; ++i)
             cout << " " ;
     cout << "Name of good(only Chinese) , b (Back) : ";
     string name;
@@ -438,13 +438,13 @@ int SupplierUI::inputQuantity(){
     // new: category name price
 
     if(old_new_status == OLDGOOD_STATUS){
-        for(int i = 0 ; i < 70; ++i)
+        for(int i = 0 ; i < 65; ++i)
             cout << " " ;
 		cout << "Supply Mode : Old" << endl;
-        for(int i = 0 ; i < 69; ++i)
+        for(int i = 0 ; i < 64; ++i)
             cout << " " ;
 		cout << "Category : " << category_string[category_now] << endl;
-        for(int i = 0 ; i < 75; ++i)
+        for(int i = 0 ; i < 70; ++i)
             cout << " " ;
 		cout << "ID : " << id_now << endl;
 	}
@@ -456,7 +456,7 @@ int SupplierUI::inputQuantity(){
 		cout << "Price : " << price_now << endl;
 	}
     cout << endl;
-    for(int i = 0 ; i < 65; ++i)
+    for(int i = 0 ; i < 60; ++i)
             cout << " " ;
     cout << "Quantity of good (b : back) : ";
     string quantity_str;
@@ -619,7 +619,7 @@ void SupplierUI::printReciept(){
     std::cout << '\n';
 
     for (int i = 0; i < rcp.size(); ++i){
-	for(int j = 0; j < 40 ; j++) std::cout << " ";
+	    for(int j = 0; j < 30 ; j++) std::cout << " ";
         printborder();
         printborder();
         if (i % 2)
