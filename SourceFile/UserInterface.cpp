@@ -290,7 +290,7 @@ void UserInterface::printMenu(std::vector <GoodInventory> &menu){
     std::cout << '\n';
 
     for (int i = 0; i < mu.size(); ++i){
-	for(int j = 0; j < 40; j++) std::cout << " ";
+		for(int j = 0; j < 35; j++) std::cout << " ";
         printborder();
         printborder();
         if (i % 2)
