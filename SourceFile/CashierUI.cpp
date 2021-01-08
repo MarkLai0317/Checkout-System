@@ -126,9 +126,6 @@ void CashierUI::quantityPage(){
 
 
 int CashierUI::inputCategory(){
-	// customer choose
-	string choose;
-
 	// print all categories for customer to chooose
 	std::cout << '\n';
 	
@@ -194,40 +191,38 @@ int CashierUI::inputCategory(){
 		cout << "Your option : ";
 	}
 
-	
-
-	getline(cin, choose);
+	char choose = getKeyboardChar();
 
 	// judge whether the choose is valid
-	if(choose == "1"){
+	if(choose == '1'){
 		category_now = SNACK;
 		return SNACK;
 	}
 
-	else if(choose == "2"){
+	else if(choose == '2'){
 		category_now = DRINK;
 		return DRINK;
 	}
 
-	else if(choose == "3"){
+	else if(choose == '3'){
 		category_now = DAILY;
 		return DAILY;
 	}
 
-	else if(choose == "4"){
+	else if(choose == '4'){
 		category_now = CLOTHES;
 		return CLOTHES;
 	}
 
-	else if(choose == "5"){
+	else if(choose == '5'){
 		category_now = ELECTRONIC;
 		return ELECTRONIC;
 	}
 
-	else if(choose == "q")
+	else if(choose == 'q')
 		return QUIT;
 
-	else if(choose == "s")
+	else if(choose == 's')
 		return RECIEPT;
 
 	else

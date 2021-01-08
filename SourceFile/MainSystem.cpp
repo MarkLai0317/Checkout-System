@@ -14,7 +14,9 @@ std::vector<GoodInventory> MainSystem::getInventory(){
 std::vector<std::vector<std::string> > MainSystem::getActivity(){
     std::cout << "getting activity table..." << std::endl;
     FileConnector file("Activity.csv");
-    return file.getResult();
+    std::vector<std::vector<std::string> > rec = file.getResult();
+    rec.erase(rec.begin()); // remove index row
+    return rec;
 }
 
 //return the goodInventory of tech input id
