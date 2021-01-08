@@ -90,15 +90,17 @@ class UserInterface{
 		// need to show id, name, quantity, and price $        
         void printMenu(std::vector<GoodInventory> &menu);
 
+        virtual int quantityFix() = 0;
+
         
 
         void printborder();
     
         void printcontent_b(std::string str);
         void printcontent_w(std::string str);
-	void printcontent_br(std::string str);
-	void printcontent_r(std::string str);
-	void printcontent_g(std::string str);
+	    void printcontent_br(std::string str);
+	    void printcontent_r(std::string str);
+	    void printcontent_g(std::string str);
     
 
         virtual void printReciept() = 0;

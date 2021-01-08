@@ -89,6 +89,9 @@ public:
 	//================in UserInterface==================
 	//void printMenu(&vector<GoodInventory>);
 
+	// fix quntity print in menu
+	int quantityFix();
+
 	// confirm the  reciept
 	void confirm();
 
