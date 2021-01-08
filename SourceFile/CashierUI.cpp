@@ -408,3 +408,8 @@ void CashierUI::printReciept(){
     std::cout << '\n';
 }
 
+
+int CashierUI::quantityFix(){
+
+	return 0;
+}

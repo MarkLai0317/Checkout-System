@@ -634,7 +634,9 @@ void SupplierUI::printReciept(){
 }
 
 
-
+int SupplierUI::quantityFix(){
+    return 0;
+}
 
 
 

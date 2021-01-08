@@ -88,6 +88,8 @@ private:
 	// into reciept, but don't need to print total price
 	void printReciept();
 
+	int quantityFix();
+
 
 	// confirm the old and new reciept
 	void confirm();
