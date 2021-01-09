@@ -80,24 +80,70 @@ void ManagerUI::nextOperation(){
 
 void ManagerUI::inventoryPrint(){
     cout << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
+    cout << "|" << "   ID   " << "|" <<  "|" << "     種類     " << "|" << "|" << "       品名       " << "|" << "|"<< "       價格       " << "|" << "|" << "       庫存       "  << "|" << RESET << endl;
+
     for(int i=begin; i<inventory_result.size() && i<begin+PAGE_SIZE; i++){
-        cout << inventory_result[i].getId() << " " << inventory_result[i].getCategory() << " " << inventory_result[i].getName() << " " << inventory_result[i].getPrice() << " " << inventory_result[i].getQuantity() << endl;
+        string tmp;
+        for (int j = 0; j < 106; j++) printborder();
+        cout << '\n';
+
+        string conv = to_string(inventory_result[i].getId());
+        tmp.push_back(' ');
+        tmp.push_back(conv);
+        for (int i = 0; i < 9 - conv.size(); i++) 
+            tmp.push_back(' ');
+
+        string conv = to_string(inventory_result[i].getCategory());
+        tmp.push_back(' ');
+        tmp.push_back(conv);
+        for (int i = 0; i < 15 - conv.size(); i++)
+            tmp.push_back(' ');
+
+        string conv = to_string(inventory_result[i].getName());
+        tmp.push_back(' ');
+        tmp.push_back(conv);
+        for (int i = 0; i < 19 - conv.size(); i++)
+            tmp.push_back(' ');
+
+        string conv = to_string(inventory_result[i].getPrice());
+        tmp.push_back(' ');
+        tmp.push_back(conv);
+        for (int i = 0; i < 19 - conv.size(); i++)
+            tmp.push_back(' ');
+
+        string conv = to_string(inventory_result[i].getQuantity());
+        tmp.push_back(' ');
+        tmp.push_back(conv);
+        for (int i = 0; i < 19 - conv.size(); i++)
+            tmp.push_back(' ');
+        
+        printcontent_w(tmp);
+        tmp.clear();
+        cout << '\n';
+
     }
-    cout << RESET;
+    
 }
 
 void ManagerUI::activityPrint(){
-    cout << BACK_GROUND_BLUE << FORE_GROUND_BLACK;
-    cout << "|" << "       時間        " << "|" << "|" << " supply/purchase "  << "|" << "|" << "   種類   " << "|" << "|" << "      品名      " << "|" << "|" << " 價格 " << "|" << "|" << " 庫存 " << "|" << endl;
     cout << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
+    cout << "|" << "       時間       " << "|" << "|" << "  supply/purchase "  << "|" << "|" << "       種類       " << "|" << "|" << "       品名       " << "|" << "|" << "       價格       " << "|" << "|" << "       庫存       " << "|" << RESET << endl;
+
     for(int i=begin; i<activity_result.size() && i<begin+PAGE_SIZE; i++){
-        for(int j=0; j<activity_result[0].size(); j++){
-            //if(j==1) cout << left << "|" << setw(12) << activity_result[i][j] << right << setw(6) << "|" << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
-            //else if(j==2) cout << left << "|" << setw(12) << activity_result[i][j] << right << setw(3 - 5+activity_result[i][j].size()/3) << "|" << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
-            //else cout << "|" << activity_result[i][j] << "|" << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
-            cout << activity_result[i][j] << " " << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
+        string tmp;
+        for(int j = 0; j < 120; j++) printborder();
+        cout << '\n';
+        for(int j=0; j<activity_result[0].size(); j++){  
+            tmp.push_back(' ');
+            tmp.push_back(activity_result[i][j]);
+            if(j == 2 || j == 3)
+                for (int i = 0; i < 19 - activity_result[i][j].size()*2/3; i++) tmp.push_back(' ');
+            else
+                for (int i = 0; i < 19 - activity_result[i][j].size(); i++) tmp.push_back(' ');
         }
-        cout << RESET << endl;
+        printcontent_w(tmp);
+        tmp.clear();
+        cout << '\n';
     }
 }
 
