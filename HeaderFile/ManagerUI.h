@@ -25,7 +25,7 @@ class ManagerUI : public UserInterface{
 
         virtual int inputQuantity() {return 0;}
 
-        virtual int quantityFix() { return 0; }
+        virtual int quantityFix(int i, std::vector<GoodInventory> &menu) { return 0; }
 
         virtual int sizeOfReciept() {return 0;}
 
