@@ -86,37 +86,43 @@ void ManagerUI::inventoryPrint(){
         string tmp;
         for (int j = 0; j < 106; j++) printborder();
         cout << '\n';
+        string conv;
 
-        string conv = to_string(inventory_result[i].getId());
+        conv = to_string(inventory_result[i].getId());
         tmp.push_back(' ');
-        tmp.push_back(conv);
+        tmp += conv;
         for (int i = 0; i < 9 - conv.size(); i++) 
             tmp.push_back(' ');
+        conv.clear();
 
-        string conv = to_string(inventory_result[i].getCategory());
+        conv = to_string(inventory_result[i].getCategory());
         tmp.push_back(' ');
-        tmp.push_back(conv);
+        tmp += conv;
         for (int i = 0; i < 15 - conv.size(); i++)
             tmp.push_back(' ');
+        conv.clear();
 
-        string conv = to_string(inventory_result[i].getName());
+        conv = to_string(inventory_result[i].getName());
         tmp.push_back(' ');
-        tmp.push_back(conv);
+        tmp += conv;
         for (int i = 0; i < 19 - conv.size(); i++)
             tmp.push_back(' ');
+        conv.clear();
 
-        string conv = to_string(inventory_result[i].getPrice());
+        conv = to_string(inventory_result[i].getPrice());
         tmp.push_back(' ');
-        tmp.push_back(conv);
+        tmp += conv;
         for (int i = 0; i < 19 - conv.size(); i++)
             tmp.push_back(' ');
+        conv.clear();
 
-        string conv = to_string(inventory_result[i].getQuantity());
+        conv = to_string(inventory_result[i].getQuantity());
         tmp.push_back(' ');
-        tmp.push_back(conv);
+        tmp += conv;
         for (int i = 0; i < 19 - conv.size(); i++)
             tmp.push_back(' ');
-        
+        conv.clear();
+
         printcontent_w(tmp);
         tmp.clear();
         cout << '\n';
@@ -135,7 +141,7 @@ void ManagerUI::activityPrint(){
         cout << '\n';
         for(int j=0; j<activity_result[0].size(); j++){  
             tmp.push_back(' ');
-            tmp.push_back(activity_result[i][j]);
+            tmp += activity_result[i][j];
             if(j == 2 || j == 3)
                 for (int i = 0; i < 19 - activity_result[i][j].size()*2/3; i++) tmp.push_back(' ');
             else
