@@ -200,8 +200,9 @@ int UserInterface::inputReciept(){
 
 
 
-void UserInterface::printborder(){
-    std::cout << FORE_GROUND_BLACK << BACK_GROUND_GREEN << ' ' << RESET;
+void UserInterface::printborder(int n){
+    for(int i=0; i < n; i++) 
+		std::cout << FORE_GROUND_BLACK << BACK_GROUND_GREEN << ' ' << RESET;
 }
 void UserInterface::printcontent_b(std::string str){
     std::cout << FORE_GROUND_BLACK << BACK_GROUND_BLUE << str << RESET;
@@ -295,14 +296,12 @@ void UserInterface::printMenu(std::vector <GoodInventory> &menu){
 
     for (int i = 0; i < mu.size(); ++i){
 		for(int j = 0; j < 30; j++) std::cout << " ";
-        printborder();
-        printborder();
+        printborder(2);
         if (i % 2)
             printcontent_w(mu[i]);
         else
             printcontent_b(mu[i]);
-        printborder();
-        printborder();
+        printborder(2);
         std::cout << '\n';
     }
     std::cout << '\n';
