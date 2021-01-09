@@ -87,10 +87,10 @@ void ManagerUI::inventoryPrint(){
     cout << "|" << "   ID   " << "|" <<  "|" << "     種類     " << "|" << "|" << "          品名          " << "|" << "|"<< "       價格       " << "|" << "|" << "       庫存       "  << "|" << RESET << endl;
 
     for(int i=begin; i<inventory_result.size() && i<begin+PAGE_SIZE; i++){
-        string tmp;
         printborder( INVENTORY_ROW_LEN );
         cout << endl;
-        string conv;
+
+        string tmp="", conv;
 
         conv = to_string(inventory_result[i].getId());
         tmp.push_back(' ');
@@ -128,7 +128,6 @@ void ManagerUI::inventoryPrint(){
         conv.clear();
 
         printcontent_w(tmp);
-        tmp.clear();
         cout << endl;
 
     }
@@ -140,9 +139,10 @@ void ManagerUI::activityPrint(){
     cout << "|" << "        時間        " << "|" << "|" << "   supply/purchase  "  << "|" << "|" << "        種類        " << "|" << "|" << "        品名        " << "|" << "|" << "        價格        " << "|" << "|" << "        庫存        " << "|" << RESET << endl;
 
     for(int i=begin; i<activity_result.size() && i<begin+PAGE_SIZE; i++){
-        string tmp;
         printborder( ACTIVITY_ROW_LEN );
         cout << endl;
+        
+        string tmp;
         for(int j=0; j<activity_result[0].size(); j++){  
             tmp.push_back(' ');
             tmp += activity_result[i][j];
@@ -154,7 +154,6 @@ void ManagerUI::activityPrint(){
                     tmp.push_back(' ');
         }
         printcontent_w(tmp);
-        tmp.clear();
         cout << endl;
     }
 }
