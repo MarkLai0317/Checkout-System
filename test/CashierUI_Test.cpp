@@ -13,7 +13,7 @@ using namespace std;
 
 int main(){
 
-	chdir("desktop/oop_final_project/bin");
+	chdir("~/desktop/oop_final_project/bin");
 	CashierUI ui;
 
 	ui.cashierSystem();

@@ -4,7 +4,7 @@
 
 int main(){
 
-	chdir("desktop/oop_final_project/bin");
+	chdir("~/desktop/oop_final_project/bin");
 	SupplierUI ui;
 
 	ui.supplierSystem();

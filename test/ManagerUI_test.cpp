@@ -3,7 +3,7 @@
 
 int main(){
 
-	chdir("desktop/oop_final_project/bin");
+	chdir("~/desktop/oop_final_project/bin");
     ManagerUI test;
     test.managerSystem();
 
