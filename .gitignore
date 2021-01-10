@@ -1,2 +1,5 @@
 .vscode
 .DS_Store
+ManagerUI_test
+CashierUI_Test
+SupplierUI_Test

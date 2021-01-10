@@ -1,13 +1,10 @@
 #include <iostream>
 #include <vector>
 #include "../HeaderFile/UserInterface.h"
-#include "../HeaderFile/CashierUI.h"
 using namespace std;
 //correct
 
 static const char* category_string[] = {"碗裝泡麵", "包裝餅乾", "利樂包", "寶特瓶", "酒"};
-
-
 
 
 void UserInterface::clearScreen(){
@@ -36,10 +33,10 @@ void UserInterface::idPage(){
 		// need to print the text to warn user
 		clearScreen();
 		printMenu(good_need_print);/////////////////////////
-		for(int i = 0; i < 78; ++i)
+		for(int i = 0; i < 68; ++i)
 			cout << " ";
 		cout << "MENU\n";
-		for(int i = 0; i < 53; ++i)
+		for(int i = 0; i < 43; ++i)
 			cout << " ";
 		cout << "We don't have this product. please choose the valid id.\n";
 		chosen_id = inputId();
@@ -115,7 +112,7 @@ void UserInterface::recieptPage(){
 
 int UserInterface::inputId(){
 	string ID;
-	for(int i = 0; i < 70; ++i)
+	for(int i = 0; i < 60; ++i)
 			cout << " ";
 	cout << "ID of good (b : Back) : ";
 	getline(cin, ID);
@@ -149,28 +146,35 @@ int UserInterface::inputId(){
 
 
 int UserInterface::inputReciept(){
-	string cmd;
-	for(int i = 0; i < 65; ++i)
+	for(int i = 0; i < 48; ++i)
 		cout << " ";
-	cout << "Delete the good (c : Confirm , b : Back)" << endl;
-	for(int i = 0 ; i < 77; ++i)
+	cout << "Delete the good (i: input, c : Confirm , b : Back)" << endl;
+	for(int i = 0 ; i < 67; ++i)
 		cout << " ";
 	cout << "Your option : ";
-	getline(cin, cmd);
 
-	// back command
-	if(cmd == "b")
-		return BACK;
+	while( true ){
+		char cmd = getKeyboardChar();
 
-	// confirm command
-	if(cmd == "c")
-		return CONFIRM;
+		// back command
+		if(cmd == 'b')
+			return BACK;
+		// confirm command
+		if(cmd == 'c')
+			return CONFIRM;
+
+		if(cmd == 'i')
+			break;
+	}
 	
+	string input_id_be_delete;
+	getline(cin, input_id_be_delete);
+
 	// judge whether the command is invalid
 	// if the command is invalid(true)
 	bool cmd_invalid = false;
-	for(int i = 0 ; i < cmd.size(); ++i){
-		if(cmd[i] < '0' || cmd[i] > '9'){
+	for(int i = 0 ; i < input_id_be_delete.size(); ++i){
+		if(input_id_be_delete[i] < '0' || input_id_be_delete[i] > '9'){
 			cmd_invalid = true;
 			break;
 		}
@@ -180,7 +184,7 @@ int UserInterface::inputReciept(){
 		return INVALID;
 
 	// convert the order of good want to delete from string to int
-	int order = stoi(cmd);
+	int order = stoi(input_id_be_delete);
 
 	// the delete order should start from 1 and can't larger than the total order
 	if(order <= 0 || order > sizeOfReciept())
@@ -196,8 +200,9 @@ int UserInterface::inputReciept(){
 
 
 
-void UserInterface::printborder(){
-    std::cout << FORE_GROUND_BLACK << BACK_GROUND_GREEN << ' ' << RESET;
+void UserInterface::printborder(int n){
+    for(int i=0; i < n; i++) 
+		std::cout << FORE_GROUND_BLACK << BACK_GROUND_GREEN << ' ' << RESET;
 }
 void UserInterface::printcontent_b(std::string str){
     std::cout << FORE_GROUND_BLACK << BACK_GROUND_BLUE << str << RESET;
@@ -258,8 +263,8 @@ void UserInterface::printMenu(std::vector <GoodInventory> &menu){
     tmp.clear();
     for (int i = 0; i < menu.size(); ++i){
         for (int j = 0; j < 8; ++j) tmp.push_back(' ');
-        std::string q = std::to_string(menu[i].getQuantity());
-        std::string p = std::to_string(menu[i].getPrice());
+		std::string q = std::to_string(menu[i].getQuantity() - quantityFix(i, menu));
+		std::string p = std::to_string(menu[i].getPrice());
         std::string d = std::to_string(menu[i].getId());
         tmp += d;
         for (int j = 0; j < 8 - d.size(); ++j) tmp.push_back(' ');
@@ -290,15 +295,13 @@ void UserInterface::printMenu(std::vector <GoodInventory> &menu){
     std::cout << '\n';
 
     for (int i = 0; i < mu.size(); ++i){
-	for(int j = 0; j < 40; j++) std::cout << " ";
-        printborder();
-        printborder();
+		for(int j = 0; j < 30; j++) std::cout << " ";
+        printborder(2);
         if (i % 2)
             printcontent_w(mu[i]);
         else
             printcontent_b(mu[i]);
-        printborder();
-        printborder();
+        printborder(2);
         std::cout << '\n';
     }
     std::cout << '\n';

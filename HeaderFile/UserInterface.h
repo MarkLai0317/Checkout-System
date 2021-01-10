@@ -2,6 +2,8 @@
 #define _USERINTERFACE_H
 
 #include <vector>
+#include <unistd.h>
+#include <termios.h>
 
 #include "GoodInventory.h"
 #include "MainSystem.h"
@@ -37,6 +39,9 @@
 #define WIDe 80
 
 enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NAME_STATUS, PRICE_STATUS, NEWGOOD_STATUS, OLDGOOD_STATUS, INVENTORY_PAGE, ACTIVITY_PAGE};
+
+
+
 
 class UserInterface{
 
@@ -90,11 +95,9 @@ class UserInterface{
 		// need to show id, name, quantity, and price $        
         void printMenu(std::vector<GoodInventory> &menu);
 
-        virtual int quantityFix() = 0;
+		virtual int quantityFix(int i, std::vector<GoodInventory> &menu) = 0;
 
-        
-
-        void printborder();
+		void printborder(int);
         void printcontent_b(std::string str);
         void printcontent_w(std::string str);
 	    void printcontent_br(std::string str);
@@ -148,6 +151,26 @@ class UserInterface{
 
         MainSystem search;
 
+
+		char getKeyboardChar() {
+			char buf = 0;
+			struct termios old = {0};
+			if (tcgetattr(0, &old) < 0)
+					perror("tcsetattr()");
+			old.c_lflag &= ~ICANON;
+			old.c_lflag &= ~ECHO;
+			old.c_cc[VMIN] = 1;
+			old.c_cc[VTIME] = 0;
+			if (tcsetattr(0, TCSANOW, &old) < 0)
+					perror("tcsetattr ICANON");
+			if (read(0, &buf, 1) < 0)
+					perror ("read()");
+			old.c_lflag |= ICANON;
+			old.c_lflag |= ECHO;
+			if (tcsetattr(0, TCSADRAIN, &old) < 0)
+					perror ("tcsetattr ~ICANON");
+			return (buf);
+		}
 
 };
 
