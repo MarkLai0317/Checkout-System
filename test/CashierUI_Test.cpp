@@ -21,6 +21,8 @@ int main(){
 	//cout << ui.page_status << endl;
 	system("clear");
 	system("pwd");
+
+	cout << chdir("~");
 	return 0;
 
 
