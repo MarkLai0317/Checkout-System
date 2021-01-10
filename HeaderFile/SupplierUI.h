@@ -18,15 +18,8 @@ public:
 
 	void supplierSystem();
 
-	// Get all the needed iput and put them into GoodsInventory.
-	// The Good need to be put into activity_buffer for printing the table
-	// ,and return the Goods to the system
-	//===============uncertain==================
-	//GoodsInventory inputGoods();
-
 
 private:
-
 
 
 	void categoryPage();
@@ -36,7 +29,7 @@ private:
 	void namePage();
 
 	void pricePage();
-	// 
+
 	// 1.Need to see if we have the chosen category.
 	//   If we don't have, print warning and return INVALID
 	//
@@ -68,20 +61,7 @@ private:
 	int inputQuantity();
 
 
-
-	// 1.Input the Nth order of the reciept that user want to delete and return N(數字) 
-	//   Input 'c' means comfirm the reciept, return CONFIRM.
-	//   Input 'b' means back to last page, return BACK.
-	//================in UserInterface==================
-	//int inputReciept();
-
 	int sizeOfReciept();
-
-	
-
-	//================in UserInterface==================
-	//void quantityPage();
-
 
 	// print out the goods that has been input 
 	// into reciept, but don't need to print total price
@@ -96,7 +76,6 @@ private:
 
 
 	void deleteOrder(int chosen_order);
-
 
 
 
@@ -116,6 +95,7 @@ private:
 	// A vector that temporary store the input
 	// of user and need to be printed after input a object
 	std::vector<GoodInventory> old_reciept;
+	
 	std::vector<GoodInventory> new_reciept;
 
 };

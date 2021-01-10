@@ -45,27 +45,31 @@ enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NAME_S
 
 class UserInterface{
 
-    protected:
+    
+    public:
 
         UserInterface(){}
 
-        //=============Page===============
-        virtual void categoryPage() = 0;
 
+    protected:
+
+        
+        //=============Page===============
+        
         void idPage();
 
+        void recieptPage();
+
+        virtual void categoryPage() = 0;
 
         virtual void quantityPage() = 0;
-
-        void recieptPage();
 
         //=================================
 
 
-
         //=============input==================
-    	virtual int inputCategory() = 0;
-
+    	
+        int inputReciept();
 
 	    // 1.Need to see if we have the chosen ID
 		//   If we don't have, it's a invalid input--> return INVALID.
@@ -74,6 +78,7 @@ class UserInterface{
 		// 3.same as above 3.
     	int inputId();
 
+        virtual int inputCategory() = 0;
 
 	    // 1.Need to see if we have the chosen Quantity.
 		//   If we don't have enough goods, tell customer that the goods has only X left
@@ -83,48 +88,51 @@ class UserInterface{
 		//   input 'b' means back to choose id --> return BACK
     	virtual int inputQuantity() = 0;
 
-
-        int inputReciept();
-
-
-        // see the size of reciept
-        virtual int sizeOfReciept() = 0;
         //====================================
+        
+
+        //===============Menu===================
 
         // recieve list of goods and print with nice format
 		// need to show id, name, quantity, and price $        
         void printMenu(std::vector<GoodInventory> &menu);
 
-		virtual int quantityFix(int i, std::vector<GoodInventory> &menu) = 0;
-
 		void printborder(int);
+
         void printcontent_b(std::string str);
+
         void printcontent_w(std::string str);
+
 	    void printcontent_br(std::string str);
+
 	    void printcontent_r(std::string str);
+
 	    void printcontent_g(std::string str);
     
+        virtual int quantityFix(int i, std::vector<GoodInventory> &menu) = 0;
+        //=====================================
+        
 
+
+        //==========reciept====================
         virtual void printReciept() = 0;
-       
 
         // confirm the reciept
         virtual void confirm() = 0;
 
         virtual void addReciept() = 0;
 
-        virtual void deleteOrder(int chosen_order) = 0;
+        // see the size of reciept
+        virtual int sizeOfReciept() = 0;
 
-
-        
+        virtual void deleteOrder(int chosen_order) = 0; 
 
         void clearScreen();
         	
+        char getKeyboardChar();
+
 
     protected:
-
-
-    	
 
 
     	// the recent chose category
@@ -146,31 +154,10 @@ class UserInterface{
     	status page_status = CATEGORY_STATUS;
 
 
-
     	//used to interact with Main System;
 
         MainSystem search;
 
-
-		char getKeyboardChar() {
-			char buf = 0;
-			struct termios old = {0};
-			if (tcgetattr(0, &old) < 0)
-					perror("tcsetattr()");
-			old.c_lflag &= ~ICANON;
-			old.c_lflag &= ~ECHO;
-			old.c_cc[VMIN] = 1;
-			old.c_cc[VTIME] = 0;
-			if (tcsetattr(0, TCSANOW, &old) < 0)
-					perror("tcsetattr ICANON");
-			if (read(0, &buf, 1) < 0)
-					perror ("read()");
-			old.c_lflag |= ICANON;
-			old.c_lflag |= ECHO;
-			if (tcsetattr(0, TCSADRAIN, &old) < 0)
-					perror ("tcsetattr ~ICANON");
-			return (buf);
-		}
 
 };
 

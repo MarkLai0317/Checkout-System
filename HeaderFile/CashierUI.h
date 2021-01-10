@@ -24,28 +24,14 @@ public:
 
 	void cashierSystem();
 
-
-
-
-
-//private:
-
-	
-
+private:
 
 
 	// things to do in category page
 	void categoryPage();
 
-	// things to do in id page
-	//================in UserInterface==================
-	//void idPage();
-
-
-	// things to do in quantity page
-	//================in UserInterface==================
+	
 	void quantityPage();
-
 
 
 	// 1.Need to see if we have the chosen category.
@@ -60,13 +46,6 @@ public:
 	//  --> print some text to tell the user
 	int inputCategory();
 
-	// 1.Need to see if we have the chosen ID
-	//   If we don't have, it's a invalid input--> return INVALID.
-	// 2.return the valid id input
-	//   input 'b' means back to the last page, return BACK
-	// 3.same as above 3.
-	//================in UserInterface==================
-	//int inputId();
 
 
 	// 1.Need to see if we have the chosen Quantity.
@@ -77,17 +56,13 @@ public:
 	//   input 'b' means back to choose id --> return BACK
 	int inputQuantity();
 
-    
 	//  see the size of reciept
 	int sizeOfReciept();
+	
 	// print reciept with reciept format like 7
 	// 每項要有編號
 	// 最後需要print總價
 	void printReciept();
-	// recieve list of goods and print with nice format
-	// need to show id, name, quantity, and price $  
-	//================in UserInterface==================
-	//void printMenu(&vector<GoodInventory>);
 
 	// fix quntity print in menu
 	int quantityFix(int i, std::vector<GoodInventory> &menu);
@@ -109,45 +84,7 @@ private:
 
 	std::vector<GoodInventory> reciept;
 
-	//================in UserInterface==================
-	//int category_now;
-
-	// check this variable to determine
-	// whether to print warning  
-    //================in UserInterface==================
-    //bool input_invalid = false;
 	
-
-
-    // the recent chose id
-	//================in UserInterface==================
-	//int id_now;
-
-
-
-	//================in UserInterface==================
-	//bool terminate = false;
-
-	// 分辨現在在哪一層 
-	//================in UserInterface==================
-	//status page_status = CATEGORY_STATUS;
-
-	
-	// the list of goods that buyer has choose
-	//================in UserInterface==================
-	//vector<GoodInventory> reciept;
-
-	// use fuction of Main System
-
-
-
-	//================in UserInterface==================
-	//SearchSystem search;
-
-
-
-
-
 
 };
 
