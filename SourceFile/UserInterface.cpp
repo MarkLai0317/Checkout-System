@@ -61,28 +61,28 @@ void UserInterface::idPage(){
 
 
 
-void UserInterface::recieptPage(){
+void UserInterface::receiptPage(){
 
 	this->input_invalid = false;
 	clearScreen();
 	//virtual
-	printReciept();
+	printReceipt();
 
-	int chosen_order = inputReciept();
+	int chosen_order = inputReceipt();
 
 	while(chosen_order == INVALID){
 		this->input_invalid = true;
 		clearScreen();
-		printReciept();
+		printReceipt();
 
 		//cout << "Please input Valid choice!\n\n";
-		chosen_order = inputReciept();
+		chosen_order = inputReceipt();
 	}
 
 	// when user choose to confirm the purchase
 	if(chosen_order == CONFIRM){
 
-		// return reciept to system and clear the reciept
+		// return receipt to system and clear the receipt
 		
 		//virtual
 		confirm();
@@ -145,7 +145,7 @@ int UserInterface::inputId(){
 
 
 
-int UserInterface::inputReciept(){
+int UserInterface::inputReceipt(){
 	for(int i = 0; i < 48; ++i)
 		cout << " ";
 	cout << "Delete the good (i: input, c : Confirm , b : Back)" << endl;
@@ -187,11 +187,11 @@ int UserInterface::inputReciept(){
 	int order = stoi(input_id_be_delete);
 
 	// the delete order should start from 1 and can't larger than the total order
-	if(order <= 0 || order > sizeOfReciept())
+	if(order <= 0 || order > sizeOfReceipt())
 		return INVALID;
 		
 	// legal input then return the index of vector(order - 1)
-	if(order <= sizeOfReciept() && order > 0)
+	if(order <= sizeOfReceipt() && order > 0)
 		return (order - 1);
 
 	return INVALID;

@@ -25,7 +25,7 @@ void SupplierUI::supplierSystem(){
 		}
 		else if(this->page_status == RECIEPT_STATUS){
 
-			recieptPage();
+			receiptPage();
 		}
 		else if(this->page_status == NAME_STATUS){
 			namePage();
@@ -59,7 +59,7 @@ void SupplierUI::categoryPage(){
 		this->terminate = true;
 			
 	}
-	// user choose to see the reciept
+	// user choose to see the receipt
 	else if(chosen_category == RECIEPT){
 		
 		this->page_status = RECIEPT_STATUS;
@@ -128,9 +128,9 @@ void SupplierUI::quantityPage(){
     }
 	else{
 
-		// put the chosen good to the reciept vector.
+		// put the chosen good to the receipt vector.
 		quantity_now = chosen_quantity;
-		addReciept();
+		addReceipt();
 		if(old_new_status == OLDGOOD_STATUS)this->page_status = ID_STATUS;
         else if(old_new_status == NEWGOOD_STATUS)this->page_status = CATEGORY_STATUS;
 
@@ -482,8 +482,8 @@ int SupplierUI::inputQuantity(){
 
 
 
-int SupplierUI::sizeOfReciept(){
-	return (old_reciept.size() + new_reciept.size());
+int SupplierUI::sizeOfReceipt(){
+	return (old_receipt.size() + new_receipt.size());
 }
 
 
@@ -491,34 +491,34 @@ int SupplierUI::sizeOfReciept(){
 void SupplierUI::confirm(){
 
 
-	// return all reciept and resize them
-	search.supplyConfirm(old_reciept, new_reciept);
-	old_reciept.resize(0);
-	new_reciept.resize(0);
+	// return all receipt and resize them
+	search.supplyConfirm(old_receipt, new_receipt);
+	old_receipt.resize(0);
+	new_receipt.resize(0);
 
 }
 
-void SupplierUI::addReciept(){
+void SupplierUI::addReceipt(){
     if(old_new_status == OLDGOOD_STATUS){
-        for (int i = 0; i < old_reciept.size(); ++i){
-            if (old_reciept[i].getId() == id_now){
-                old_reciept[i] = GoodInventory(old_reciept[i].getId(),old_reciept[i].getCategory(), 
-                                               old_reciept[i].getName(), old_reciept[i].getPrice(), 
-                                               old_reciept[i].getQuantity()+ quantity_now);
+        for (int i = 0; i < old_receipt.size(); ++i){
+            if (old_receipt[i].getId() == id_now){
+                old_receipt[i] = GoodInventory(old_receipt[i].getId(),old_receipt[i].getCategory(), 
+                                               old_receipt[i].getName(), old_receipt[i].getPrice(), 
+                                               old_receipt[i].getQuantity()+ quantity_now);
                 return;
             }
         }
-        old_reciept.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
+        old_receipt.push_back(search.findInventoryByIdAndSetQuantity(id_now, quantity_now));
     }else{
-        for (int i = 0; i < new_reciept.size(); ++i){
-            if (new_reciept[i].getName() == name_now){
-                new_reciept[i] = GoodInventory(new_reciept[i].getId(),new_reciept[i].getCategory(), 
-                                               new_reciept[i].getName(), new_reciept[i].getPrice(), 
-                                               new_reciept[i].getQuantity()+ quantity_now);
+        for (int i = 0; i < new_receipt.size(); ++i){
+            if (new_receipt[i].getName() == name_now){
+                new_receipt[i] = GoodInventory(new_receipt[i].getId(),new_receipt[i].getCategory(), 
+                                               new_receipt[i].getName(), new_receipt[i].getPrice(), 
+                                               new_receipt[i].getQuantity()+ quantity_now);
                 return;
             }
         }
-        new_reciept.push_back(GoodInventory(-1, category_string[category_now], name_now, price_now, quantity_now));
+        new_receipt.push_back(GoodInventory(-1, category_string[category_now], name_now, price_now, quantity_now));
     }
 }
 
@@ -527,10 +527,10 @@ void SupplierUI::addReciept(){
 void SupplierUI::deleteOrder(int chosen_order){
 
 
-	if(chosen_order < old_reciept.size()){
-		old_reciept.erase(old_reciept.begin() + chosen_order);
+	if(chosen_order < old_receipt.size()){
+		old_receipt.erase(old_receipt.begin() + chosen_order);
 	}else{
-		new_reciept.erase(new_reciept.begin() + chosen_order - old_reciept.size());
+		new_receipt.erase(new_receipt.begin() + chosen_order - old_receipt.size());
 	}
 }
 
@@ -539,18 +539,18 @@ void SupplierUI::deleteOrder(int chosen_order){
 
 
 
-void SupplierUI::printReciept(){
-    std::vector<GoodInventory> merged_reciept;
-    merged_reciept.reserve(old_reciept.size() + new_reciept.size());
-    merged_reciept.insert(merged_reciept.end(), old_reciept.begin(), old_reciept.end());
-    merged_reciept.insert(merged_reciept.end(), new_reciept.begin(), new_reciept.end());
+void SupplierUI::printReceipt(){
+    std::vector<GoodInventory> merged_receipt;
+    merged_receipt.reserve(old_receipt.size() + new_receipt.size());
+    merged_receipt.insert(merged_receipt.end(), old_receipt.begin(), old_receipt.end());
+    merged_receipt.insert(merged_receipt.end(), new_receipt.begin(), new_receipt.end());
     std::vector<std::string> rcp;
     std::string tmp;
     for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
     rcp.push_back(tmp);
     tmp.clear();
     for (int i = 0; i < ((WIDE - 1) / 2) - 3; ++i) tmp.push_back(' ');
-    tmp += "Reciept";
+    tmp += "Receipt";
     for (int i = 0; i < ((WIDE - 1) / 2) - 3; ++i) tmp.push_back(' ');
     rcp.push_back(tmp);
     tmp.clear();
@@ -572,18 +572,18 @@ void SupplierUI::printReciept(){
     rcp.push_back(tmp);
     tmp.clear();
     int total = 0;
-    for (int i = 0; i < merged_reciept.size(); ++i){
+    for (int i = 0; i < merged_receipt.size(); ++i){
         for (int j = 0; j < 5; ++j) tmp.push_back(' ');
         std::string o = std::to_string(i+1);
         tmp += o;
         for (int j = 0; j < 7 - o.size(); ++j) tmp.push_back(' ');
-        std::string q = std::to_string(merged_reciept[i].getQuantity());
-        std::string p = std::to_string(merged_reciept[i].getPrice());
-        std::string pq = std::to_string(merged_reciept[i].getPrice() * merged_reciept[i].getQuantity());
+        std::string q = std::to_string(merged_receipt[i].getQuantity());
+        std::string p = std::to_string(merged_receipt[i].getPrice());
+        std::string pq = std::to_string(merged_receipt[i].getPrice() * merged_receipt[i].getQuantity());
         tmp += q;
         tmp += " x ";
-        tmp += merged_reciept[i].getName();
-        for (int j = 0; j < WIDE - 10 - q.size() - 2 - 3 - merged_reciept[i].getName().size()*2/3 - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
+        tmp += merged_receipt[i].getName();
+        for (int j = 0; j < WIDE - 10 - q.size() - 2 - 3 - merged_receipt[i].getName().size()*2/3 - q.size() - 3 - p.size() - 3 - 3 - 5 - 10; ++j) tmp.push_back('.');
         tmp += q;
         tmp += " x ";
         tmp += p;
@@ -592,7 +592,7 @@ void SupplierUI::printReciept(){
         tmp += pq;
         for (int j = 0; j < 15 - pq.size(); ++j) tmp.push_back(' ');
         rcp.push_back(tmp);
-        total += merged_reciept[i].getPrice() * merged_reciept[i].getQuantity();
+        total += merged_receipt[i].getPrice() * merged_receipt[i].getQuantity();
         tmp.clear();
         for (int i = 0; i < WIDE; ++i) tmp.push_back(' ');
         rcp.push_back(tmp);

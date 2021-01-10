@@ -12,9 +12,9 @@ class MainSystem{
     public:
 
         //return all in inventory
-        std::vector<GoodInventory> getInventory();
+        std::vector< GoodInventory > getInventory();
         //return all in actibity
-        std::vector<std::vector<std::string> > getActivity();
+        std::vector< std::vector<std::string> > getActivity();
         
         
         // return all goodInvantory of the input category
@@ -25,15 +25,14 @@ class MainSystem{
         //return the goodInventory of tech input id
         GoodInventory findInventoryByIdAndSetQuantity(int input_id, int input_quantity);
 
-        // Find the good of input id and set the quantity to input_quantity for reciept.     
+        // Find the good of input id and set the quantity to input_quantity for receipt.     
         std::vector<GoodInventory> findInventoriesByCategory(std::string input_category);
 
         // use id search the quantity of that good
         int findQuantityOfGood(int input_id);
 
-        // put the reciept to database for processing 
+        // put the receipt to database for processing 
         void purchaseConfirm(std::vector<GoodInventory>);
-
         
         void supplyConfirm(std::vector<GoodInventory>, std::vector<GoodInventory>);
 
@@ -45,7 +44,7 @@ class MainSystem{
 
         std::vector<Good> tableToGoods(std::vector< std::vector<std::string> >);
         std::vector<GoodInventory> tableToInventories( std::vector< std::vector<std::string> > );
-        std::vector<GoodActivity> tableToActivities( std::vector< std::vector<std::string> > );
+        //std::vector<GoodActivity> tableToActivities( std::vector< std::vector<std::string> > );
 
 };
 

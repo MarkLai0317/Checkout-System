@@ -15,7 +15,51 @@ class ManagerUI : public UserInterface{
 
         void managerSystem();
 
+    private:
+
+        //刷新
+        void refreshTable();
+
+        //輸出
+        void inventoryPrint();
+
+        void activityPrint();
+
+        //吃行為
+        void nextOperation();
+
+        void searchOp();
+
+        //搜尋倉庫
+        void inventorySearch();
+
+        void invIdSearch();
+
+        void invNameSearch();
+
+        void invCategorySearch();
+
+        //搜尋活動
+        void activitySearch();
+
+        void actTypeSearch();
+
+        void actNameSearch();
+
+        void actCategorySearch();
+
+
+        //紀錄全部東西的table跟搜尋結果的table
+        std::vector<GoodInventory> inventory_table, inventory_result;
+
+        std::vector<std::vector<std::string> > activity_table, activity_result;
+
+        //紀錄開始頁碼
+        int begin;
+
+    
     protected:
+        //UserInterface繼承下來不會用到的 virtual function
 
         virtual void categoryPage() {}
 
@@ -27,49 +71,15 @@ class ManagerUI : public UserInterface{
 
         virtual int quantityFix(int i, std::vector<GoodInventory> &menu) { return 0; }
 
-        virtual int sizeOfReciept() {return 0;}
+        virtual int sizeOfReceipt() {return 0;}
 
-        virtual void printReciept() {}
+        virtual void printReceipt() {}
 
         virtual void confirm() {}
 
-        virtual void addReciept() {}
+        virtual void addReceipt() {}
 
         virtual void deleteOrder(int chosen_order) {}
-
-    private:
-
-        void refreshTable();
-
-        void inventoryPrint();
-
-        void activityPrint();
-
-        void nextOperation();
-
-        void searchOp();
-
-        void inventorySearch();
-
-        void invIdSearch();
-
-        void invNameSearch();
-
-        void invCategorySearch();
-
-        void activitySearch();
-
-        void actTypeSearch();
-
-        void actNameSearch();
-
-        void actCategorySearch();
-
-        std::vector<GoodInventory> inventory_table, inventory_result;
-
-        std::vector<std::vector<std::string> > activity_table, activity_result;
-
-        int begin;
 
 };
 

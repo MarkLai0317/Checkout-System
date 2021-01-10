@@ -38,7 +38,7 @@ private:
 	//   If we don't have, print warning and return INVALID
 	// 2.Return the valid category input.
 	//   Input 'q' means quit, return QUIT.
-	//   Input 's' means see reciept, return RECIEPT
+	//   Input 's' means see receipt, return RECIEPT
 	//
 	// 3.When implementation, using string to get the input will be easier to identify invalid input
 	//   so do other input.
@@ -56,6 +56,7 @@ private:
 	//   input 'b' means back to choose id --> return BACK
 	int inputQuantity();
 
+
 	//  see the size of reciept
 	int sizeOfReciept();
 	
@@ -64,14 +65,15 @@ private:
 	// 最後需要print總價
 	void printReciept();
 
+
 	// fix quntity print in menu
 	int quantityFix(int i, std::vector<GoodInventory> &menu);
 
-	// confirm the  reciept
+	// confirm the  receipt
 	void confirm();
 
-	// add the good choose to the reciept
-	void addReciept();
+	// add the good choose to the receipt
+	void addReceipt();
 
 	//delete one goods chosen by customer
 	void deleteOrder(int order);
@@ -82,9 +84,10 @@ private:
 
 
 
-	std::vector<GoodInventory> reciept;
+	std::vector<GoodInventory> receipt;
 
 	
+
 
 };
 

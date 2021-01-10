@@ -15,7 +15,8 @@ using namespace std;
 ManagerUI::ManagerUI(){
     //cout << "constructing ManagerUI..." << endl;
     begin = 0;
-    this->page_status = ACTIVITY_PAGE;
+    //cout << "Initialize to Inventory Page" << endl;
+    this->page_status = INVENTORY_PAGE;
     inventory_result = inventory_table = search.getInventory();
     activity_result = activity_table = search.getActivity();
 }
@@ -51,7 +52,6 @@ void ManagerUI::refreshTable(){
 }
 
 void ManagerUI::nextOperation(){
-    
 
     bool input_success = false;
     while( !input_success ){
@@ -69,12 +69,17 @@ void ManagerUI::nextOperation(){
             begin = 0;
             this->page_status = ACTIVITY_PAGE;
         }else if( op == 's'){
+            // 要做 Search
             this->searchOp();
         }else if( op =='q' ){
+            //要退出
             this->terminate = true;
         }else if( op==',' ){
-            if(begin >= PAGE_SIZE) begin -= PAGE_SIZE;
+            //上一頁
+            if(begin >= PAGE_SIZE)
+                begin -= PAGE_SIZE;
         }else if( op=='.' ){
+            //下一頁
             if(page_status == INVENTORY_PAGE && begin + PAGE_SIZE <= inventory_result.size())
                 begin += PAGE_SIZE;
             else if(page_status == ACTIVITY_PAGE && begin + PAGE_SIZE <= activity_result.size())
@@ -91,10 +96,10 @@ void ManagerUI::inventoryPrint(){
     cout << "|" << "   ID   " << "|" <<  "|" << "     種類     " << "|" << "|" << "          品名          " << "|" << "|"<< "       價格       " << "|" << "|" << "       庫存       "  << "|" << RESET << endl;
 
     for(int i=begin; i<inventory_result.size() && i<begin+PAGE_SIZE; i++){
-        string tmp;
         printborder( INVENTORY_ROW_LEN );
         cout << endl;
-        string conv;
+
+        string tmp="", conv;
 
         conv = to_string(inventory_result[i].getId());
         tmp.push_back(' ');
@@ -132,7 +137,6 @@ void ManagerUI::inventoryPrint(){
         conv.clear();
 
         printcontent_w(tmp);
-        tmp.clear();
         cout << endl;
 
     }
@@ -144,9 +148,10 @@ void ManagerUI::activityPrint(){
     cout << "|" << "        時間        " << "|" << "|" << "   supply/purchase  "  << "|" << "|" << "        種類        " << "|" << "|" << "        品名        " << "|" << "|" << "        價格        " << "|" << "|" << "       進貨量       " << "|" << RESET << endl;
 
     for(int i=begin; i<activity_result.size() && i<begin+PAGE_SIZE; i++){
-        string tmp;
         printborder( ACTIVITY_ROW_LEN );
         cout << endl;
+        
+        string tmp;
         for(int j=0; j<activity_result[0].size(); j++){  
             tmp.push_back(' ');
             tmp += activity_result[i][j];
@@ -158,7 +163,6 @@ void ManagerUI::activityPrint(){
                     tmp.push_back(' ');
         }
         printcontent_w(tmp);
-        tmp.clear();
         cout << endl;
     }
 }

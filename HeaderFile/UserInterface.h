@@ -62,7 +62,9 @@ class UserInterface{
 
         virtual void categoryPage() = 0;
 
+
         virtual void quantityPage() = 0;
+
 
         //=================================
 
@@ -87,6 +89,7 @@ class UserInterface{
 		// 2.return the valid id input
 		//   input 'b' means back to choose id --> return BACK
     	virtual int inputQuantity() = 0;
+
 
         //====================================
         
@@ -117,10 +120,11 @@ class UserInterface{
         //==========reciept====================
         virtual void printReciept() = 0;
 
-        // confirm the reciept
+
+        // confirm the receipt
         virtual void confirm() = 0;
 
-        virtual void addReciept() = 0;
+        virtual void addReceipt() = 0;
 
         // see the size of reciept
         virtual int sizeOfReciept() = 0;
