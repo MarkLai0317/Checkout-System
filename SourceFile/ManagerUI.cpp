@@ -34,7 +34,7 @@ void ManagerUI::managerSystem(){
             cout << "------------------------------" << begin << "~" << ((begin + PAGE_SIZE)<activity_result.size() ? begin+PAGE_SIZE : activity_result.size()) << "--------------------------------" << endl;
         }
         
-        cout << "Press 1: inventory page, 2: activity page, s: search in this page, q: quit"  << endl;
+        cout << "Press 1: 庫存頁面, 2: 進出貨紀錄頁面, s: 搜尋, q: 退出"  << endl;
 
         this->nextOperation();
     }
@@ -174,7 +174,7 @@ void ManagerUI::searchOp(){
 void ManagerUI::inventorySearch(){
     inventory_result.clear();
     cout << "--------------------------------------------------------------" << endl;
-    cout << "Search by i: id, n: name, c: category, b: back" << endl;
+    cout << "搜尋方式 i: ID, n: 品名, c: 種類, b: 上一頁" << endl;
 
     bool input_success = false;
     while( !input_success ){
@@ -198,7 +198,7 @@ void ManagerUI::inventorySearch(){
 
 void ManagerUI::invIdSearch(){
     string input;
-    cout << "Input ID: "; cin >> input;
+    cout << "輸入 ID: "; cin >> input;
 
     for(int i=0; i<inventory_table.size(); i++){
         if( inventory_table[i].getId() ==  stoi(input)){
@@ -210,7 +210,7 @@ void ManagerUI::invIdSearch(){
 
 void ManagerUI::invNameSearch(){
     string input;
-    cout << "Input Name: "; cin >> input;
+    cout << "輸入 名稱: "; cin >> input;
 
     for(int i=0; i<inventory_table.size(); i++){
         if( inventory_table[i].getName() ==  input){
@@ -222,7 +222,7 @@ void ManagerUI::invNameSearch(){
 
 void ManagerUI::invCategorySearch(){
     string input;
-    cout << "Input Category: "; cin >> input;
+    cout << "輸入 種類: "; cin >> input;
 
     for(int i=0; i<inventory_table.size(); i++){
         if( inventory_table[i].getCategory() ==  input){
@@ -234,7 +234,7 @@ void ManagerUI::invCategorySearch(){
 void ManagerUI::activitySearch(){
     activity_result.clear();
     cout << "--------------------------------------------------------------" << endl;
-    cout << "Search by t: type, n: name, c: category, b: back" << endl;
+    cout << "搜尋 t: 進/出貨, n: 名字, c: 種類, b: 上一頁" << endl;
 
     bool input_success = false;
     while( !input_success ){
@@ -259,7 +259,7 @@ void ManagerUI::activitySearch(){
 void ManagerUI::actTypeSearch(){
     string input;
     cout << "--------------------------------------------------------------" << endl;
-    cout << "p: purchase s: supply" << flush;
+    cout << "p: 賣出 s: 進貨" << flush;
 
     bool input_success = false;
     while( !input_success ){
@@ -285,7 +285,7 @@ void ManagerUI::actTypeSearch(){
 
 void ManagerUI::actNameSearch(){
     string input;
-    cout << "Input Name: "; cin >> input;
+    cout << "輸入名稱: "; cin >> input;
 
     for(int i=0; i<activity_table.size(); i++){
         if( activity_table[i][3] ==  input){
@@ -296,7 +296,7 @@ void ManagerUI::actNameSearch(){
 
 void ManagerUI::actCategorySearch(){
     string input;
-    cout << "Input Category: "; cin >> input;
+    cout << "輸入種類: "; cin >> input;
 
     for(int i=0; i<activity_table.size(); i++){
         if( activity_table[i][2] ==  input){
