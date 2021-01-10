@@ -4,7 +4,7 @@
 #include <string.h>
 #include "../HeaderFile/ManagerUI.h"
 
-#define PAGE_SIZE 15
+#define PAGE_SIZE 10
 #define CHINESE_LEN 2/3
 
 #define INVENTORY_ROW_LEN 92
@@ -22,7 +22,7 @@ ManagerUI::ManagerUI(){
 
 void ManagerUI::managerSystem(){
 
-    cout << "Begin?" << endl; cin.get();
+    //cout << "Begin?" << endl; cin.get();
 
     while( !terminate ){
 
@@ -51,8 +51,7 @@ void ManagerUI::refreshTable(){
 }
 
 void ManagerUI::nextOperation(){
-    //初始化，才不會卡在搜尋結果
-    inventory_result = inventory_table, activity_result = activity_table;
+    
 
     bool input_success = false;
     while( !input_success ){
@@ -60,9 +59,13 @@ void ManagerUI::nextOperation(){
 
         input_success = true;
         if(op == '1'){
+            //初始化，才不會卡在搜尋結果
+            inventory_result = inventory_table, activity_result = activity_table;
             begin = 0;
             this->page_status = INVENTORY_PAGE;
         }else if( op == '2' ){
+            //初始化，才不會卡在搜尋結果
+            inventory_result = inventory_table, activity_result = activity_table;
             begin = 0;
             this->page_status = ACTIVITY_PAGE;
         }else if( op == 's'){
@@ -79,6 +82,7 @@ void ManagerUI::nextOperation(){
         }else{
             input_success = false;
         }
+
     }
 }
 
@@ -137,7 +141,7 @@ void ManagerUI::inventoryPrint(){
 
 void ManagerUI::activityPrint(){
     cout << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
-    cout << "|" << "        時間        " << "|" << "|" << "   supply/purchase  "  << "|" << "|" << "        種類        " << "|" << "|" << "        品名        " << "|" << "|" << "        價格        " << "|" << "|" << "        庫存        " << "|" << RESET << endl;
+    cout << "|" << "        時間        " << "|" << "|" << "   supply/purchase  "  << "|" << "|" << "        種類        " << "|" << "|" << "        品名        " << "|" << "|" << "        價格        " << "|" << "|" << "       進貨量       " << "|" << RESET << endl;
 
     for(int i=begin; i<activity_result.size() && i<begin+PAGE_SIZE; i++){
         string tmp;
