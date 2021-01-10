@@ -40,6 +40,9 @@
 
 enum status {CATEGORY_STATUS, ID_STATUS, QUANTITY_STATUS, RECIEPT_STATUS, NAME_STATUS, PRICE_STATUS, NEWGOOD_STATUS, OLDGOOD_STATUS, INVENTORY_PAGE, ACTIVITY_PAGE};
 
+
+
+
 class UserInterface{
 
     protected:
@@ -94,7 +97,7 @@ class UserInterface{
 
 		virtual int quantityFix(int i, std::vector<GoodInventory> &menu) = 0;
 
-		void printborder();
+		void printborder(int);
         void printcontent_b(std::string str);
         void printcontent_w(std::string str);
 	    void printcontent_br(std::string str);

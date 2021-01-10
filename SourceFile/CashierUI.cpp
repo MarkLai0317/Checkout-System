@@ -404,12 +404,10 @@ void CashierUI::printReciept(){
 
     for (int i = 0; i < rcp.size(); ++i){
 	    for(int j = 0; j < 30; ++j) std::cout << " "; 
-        printborder();
-        printborder();
+        printborder( 2 );
         if(i%2) printcontent_w(rcp[i]);
         else printcontent_b(rcp[i]);
-        printborder();
-        printborder();
+        printborder( 2 );
         std::cout << '\n';
     }
     std::cout << '\n';

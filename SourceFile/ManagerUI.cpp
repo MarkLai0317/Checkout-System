@@ -4,14 +4,18 @@
 #include <string.h>
 #include "../HeaderFile/ManagerUI.h"
 
-#define PAGE_SIZE 10
+#define PAGE_SIZE 15
+#define CHINESE_LEN 2/3
+
+#define INVENTORY_ROW_LEN 92
+#define ACTIVITY_ROW_LEN 132
 
 using namespace std;
 
 ManagerUI::ManagerUI(){
     //cout << "constructing ManagerUI..." << endl;
     begin = 0;
-    this->page_status = INVENTORY_PAGE;
+    this->page_status = ACTIVITY_PAGE;
     inventory_result = inventory_table = search.getInventory();
     activity_result = activity_table = search.getActivity();
 }
@@ -80,46 +84,52 @@ void ManagerUI::nextOperation(){
 
 void ManagerUI::inventoryPrint(){
     cout << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
-    cout << "|" << "   ID   " << "|" <<  "|" << "     種類     " << "|" << "|" << "       品名       " << "|" << "|"<< "       價格       " << "|" << "|" << "       庫存       "  << "|" << RESET << endl;
+    cout << "|" << "   ID   " << "|" <<  "|" << "     種類     " << "|" << "|" << "          品名          " << "|" << "|"<< "       價格       " << "|" << "|" << "       庫存       "  << "|" << RESET << endl;
 
     for(int i=begin; i<inventory_result.size() && i<begin+PAGE_SIZE; i++){
         string tmp;
-        for (int j = 0; j < 106; j++) printborder();
-        cout << '\n';
+        printborder( INVENTORY_ROW_LEN );
+        cout << endl;
+        string conv;
 
-        string conv = to_string(inventory_result[i].getId());
+        conv = to_string(inventory_result[i].getId());
         tmp.push_back(' ');
-        tmp.push_back(conv);
-        for (int i = 0; i < 9 - conv.size(); i++) 
+        tmp += conv;
+        for (int cnt = 0; cnt < 9 - conv.size(); cnt++) 
             tmp.push_back(' ');
+        conv.clear();
 
-        string conv = to_string(inventory_result[i].getCategory());
+        conv = inventory_result[i].getCategory();
         tmp.push_back(' ');
-        tmp.push_back(conv);
-        for (int i = 0; i < 15 - conv.size(); i++)
+        tmp += conv;
+        for (int cnt = 0; cnt < 15 - conv.size()*CHINESE_LEN; cnt++)
             tmp.push_back(' ');
+        conv.clear();
 
-        string conv = to_string(inventory_result[i].getName());
+        conv = inventory_result[i].getName();
         tmp.push_back(' ');
-        tmp.push_back(conv);
-        for (int i = 0; i < 19 - conv.size(); i++)
+        tmp += conv;
+        for (int cnt = 0; cnt < 25 - conv.size()*CHINESE_LEN; cnt++)
             tmp.push_back(' ');
+        conv.clear();
 
-        string conv = to_string(inventory_result[i].getPrice());
+        conv = to_string(inventory_result[i].getPrice());
         tmp.push_back(' ');
-        tmp.push_back(conv);
-        for (int i = 0; i < 19 - conv.size(); i++)
+        tmp += conv;
+        for (int cnt = 0; cnt < 19 - conv.size(); cnt++)
             tmp.push_back(' ');
+        conv.clear();
 
-        string conv = to_string(inventory_result[i].getQuantity());
+        conv = to_string(inventory_result[i].getQuantity());
         tmp.push_back(' ');
-        tmp.push_back(conv);
-        for (int i = 0; i < 19 - conv.size(); i++)
+        tmp += conv;
+        for (int cnt = 0; cnt < 19 - conv.size(); cnt++)
             tmp.push_back(' ');
-        
+        conv.clear();
+
         printcontent_w(tmp);
         tmp.clear();
-        cout << '\n';
+        cout << endl;
 
     }
     
@@ -127,23 +137,25 @@ void ManagerUI::inventoryPrint(){
 
 void ManagerUI::activityPrint(){
     cout << BACK_GROUND_WHITE << FORE_GROUND_BLACK;
-    cout << "|" << "       時間       " << "|" << "|" << "  supply/purchase "  << "|" << "|" << "       種類       " << "|" << "|" << "       品名       " << "|" << "|" << "       價格       " << "|" << "|" << "       庫存       " << "|" << RESET << endl;
+    cout << "|" << "        時間        " << "|" << "|" << "   supply/purchase  "  << "|" << "|" << "        種類        " << "|" << "|" << "        品名        " << "|" << "|" << "        價格        " << "|" << "|" << "        庫存        " << "|" << RESET << endl;
 
     for(int i=begin; i<activity_result.size() && i<begin+PAGE_SIZE; i++){
         string tmp;
-        for(int j = 0; j < 120; j++) printborder();
-        cout << '\n';
+        printborder( ACTIVITY_ROW_LEN );
+        cout << endl;
         for(int j=0; j<activity_result[0].size(); j++){  
             tmp.push_back(' ');
-            tmp.push_back(activity_result[i][j]);
+            tmp += activity_result[i][j];
             if(j == 2 || j == 3)
-                for (int i = 0; i < 19 - activity_result[i][j].size()*2/3; i++) tmp.push_back(' ');
+                for (int cnt=0; cnt< 21 - activity_result[i][j].size()*CHINESE_LEN; cnt++)
+                    tmp.push_back(' ');
             else
-                for (int i = 0; i < 19 - activity_result[i][j].size(); i++) tmp.push_back(' ');
+                for (int cnt=0; cnt < 21 - activity_result[i][j].size(); cnt++)
+                    tmp.push_back(' ');
         }
         printcontent_w(tmp);
         tmp.clear();
-        cout << '\n';
+        cout << endl;
     }
 }
 
