@@ -39,16 +39,20 @@ class ManagerUI : public UserInterface{
 
     private:
 
+        //刷新
         void refreshTable();
 
+        //輸出
         void inventoryPrint();
 
         void activityPrint();
 
+        //吃行為
         void nextOperation();
 
         void searchOp();
 
+        //搜尋倉庫
         void inventorySearch();
 
         void invIdSearch();
@@ -57,6 +61,7 @@ class ManagerUI : public UserInterface{
 
         void invCategorySearch();
 
+        //搜尋活動
         void activitySearch();
 
         void actTypeSearch();
@@ -65,10 +70,13 @@ class ManagerUI : public UserInterface{
 
         void actCategorySearch();
 
+
+        //紀錄全部東西的table跟搜尋結果的table
         std::vector<GoodInventory> inventory_table, inventory_result;
 
         std::vector<std::vector<std::string> > activity_table, activity_result;
 
+        //紀錄開始頁碼
         int begin;
 
 };
