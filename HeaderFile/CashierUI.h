@@ -57,13 +57,13 @@ private:
 	int inputQuantity();
 
 
-	//  see the size of reciept
-	int sizeOfReciept();
+	//  see the size of receipt
+	int sizeOfReceipt();
 	
-	// print reciept with reciept format like 7
+	// print receipt with receipt format like 7
 	// 每項要有編號
 	// 最後需要print總價
-	void printReciept();
+	void printReceipt();
 
 
 	// fix quntity print in menu

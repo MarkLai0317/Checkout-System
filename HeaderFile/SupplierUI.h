@@ -61,7 +61,7 @@ private:
 	int inputQuantity();
 
 
-	int sizeOfReciept();
+	int sizeOfReceipt();
 
 
 	// print out the goods that has been input 
@@ -96,9 +96,9 @@ private:
 	// A vector that temporary store the input
 	// of user and need to be printed after input a object
 
-	std::vector<GoodInventory> old_reciept;
+	std::vector<GoodInventory> old_receipt;
 	
-	std::vector<GoodInventory> new_reciept;
+	std::vector<GoodInventory> new_receipt;
 
 
 };

@@ -58,7 +58,7 @@ class UserInterface{
         
         void idPage();
 
-        void recieptPage();
+        void receiptPage();
 
         virtual void categoryPage() = 0;
 
@@ -71,7 +71,7 @@ class UserInterface{
 
         //=============input==================
     	
-        int inputReciept();
+        int inputReceipt();
 
 	    // 1.Need to see if we have the chosen ID
 		//   If we don't have, it's a invalid input--> return INVALID.
@@ -117,8 +117,8 @@ class UserInterface{
         
 
 
-        //==========reciept====================
-        virtual void printReciept() = 0;
+        //==========receipt====================
+        virtual void printReceipt() = 0;
 
 
         // confirm the receipt
@@ -126,8 +126,8 @@ class UserInterface{
 
         virtual void addReceipt() = 0;
 
-        // see the size of reciept
-        virtual int sizeOfReciept() = 0;
+        // see the size of receipt
+        virtual int sizeOfReceipt() = 0;
 
         virtual void deleteOrder(int chosen_order) = 0; 
 
