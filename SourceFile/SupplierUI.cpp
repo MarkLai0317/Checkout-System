@@ -9,6 +9,7 @@ static const char* category_string[] = {"碗裝泡麵", "包裝餅乾", "利樂�
 
 void SupplierUI::supplierSystem(){
 
+    system("clear");
 	while(!terminate){
 
 		if(this->page_status == CATEGORY_STATUS) {
@@ -34,6 +35,7 @@ void SupplierUI::supplierSystem(){
 			pricePage();
 		}
 	}
+    system("clear");
 }
 
 void SupplierUI::categoryPage(){
@@ -365,7 +367,7 @@ int SupplierUI::inputName(){
     if(name == "b")
         return BACK;
     
-    if(name.size() > 30)
+    if(name.size() > 30 || name.size() == 0)
         return INVALID;
 
     for(int i = 0 ; i < name.size(); ++i){
@@ -387,26 +389,30 @@ int SupplierUI::inputName(){
 
 int SupplierUI::inputPrice(){
     
+    cout << "\n";
+
+    for(int i = 0 ; i < 66; ++i)
+            cout << " " ;
+
+
     if(old_new_status == OLDGOOD_STATUS)
         cout << "Mode : Old Good" << endl;
     if(old_new_status == NEWGOOD_STATUS)
         cout << "Mode : New Good" << endl;
         
+    cout << endl;
 
+    for(int i = 0 ; i < 66; ++i)
+            cout << " " ;
+    cout << "Category : " << category_string[category_now] << endl << endl;
+    
+    for(int i = 0 ; i < 66; ++i)
+            cout << " " ;
+    cout << "Name : " << name_now << endl << endl;
 
-    if(category_now == SNACK)
-        cout << "Category : " << category_string[0] << endl;
-    if(category_now == DRINK)
-        cout << "Category : " << category_string[1] << endl;
-    if(category_now == DAILY)
-        cout << "Category : " << category_string[2] << endl;
-    if(category_now == CLOTHES)
-        cout << "Category : " << category_string[3] << endl;
-    if(category_now == ELECTRONIC)
-        cout << "Category : " << category_string[4] << endl;
-    cout << "Name : " << name_now << endl;
-
-    cout << "Please input the price you want to sell, or press b for backing to previous page:";
+    for(int i = 0 ; i < 66; ++i)
+            cout << " " ;
+    cout << "input price:";
     string price_str;
     getline(cin, price_str);
 
@@ -436,28 +442,38 @@ int SupplierUI::inputQuantity(){
     // old: category id
     // new: category name price
 
+    cout << endl;
+
     if(old_new_status == OLDGOOD_STATUS){
         for(int i = 0 ; i < 65; ++i)
             cout << " " ;
-		cout << "Supply Mode : Old" << endl;
+		cout << "Supply Mode : Old" << endl << endl;
         for(int i = 0 ; i < 64; ++i)
             cout << " " ;
-		cout << "Category : " << category_string[category_now] << endl;
+		cout << "Category : " << category_string[category_now] << endl << endl;
         for(int i = 0 ; i < 70; ++i)
             cout << " " ;
-		cout << "ID : " << id_now << endl;
+		cout << "ID : " << id_now << endl << endl;
 	}
 	
 	if(old_new_status == NEWGOOD_STATUS){
-		cout << "Supply Mode : New" << endl;
-		cout << "Category : " << category_string[category_now] << endl;
-		cout << "Name : " << name_now << endl;
-		cout << "Price : " << price_now << endl;
+		for(int i = 0 ; i < 66; ++i)
+            cout << " " ;
+        cout << "Supply Mode : New" << endl << endl;
+		for(int i = 0 ; i < 66; ++i)
+            cout << " " ;
+        cout << "Category : " << category_string[category_now] << endl << endl;
+		for(int i = 0 ; i < 66; ++i)
+            cout << " " ;
+        cout << "Name : " << name_now << endl << endl;
+		for(int i = 0 ; i < 66; ++i)
+            cout << " " ;
+        cout << "Price : " << price_now << endl << endl;
 	}
     cout << endl;
     for(int i = 0 ; i < 47; ++i)
             cout << " " ;
-    cout << "Quantity of good (b : back) : ";
+    cout << "Quantity (b : back) : ";
     string quantity_str;
     getline(cin, quantity_str);
 
