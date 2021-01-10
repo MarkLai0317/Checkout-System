@@ -15,28 +15,6 @@ class ManagerUI : public UserInterface{
 
         void managerSystem();
 
-    protected:
-
-        virtual void categoryPage() {}
-
-        virtual void quantityPage() {}
-
-        virtual int inputCategory() {return 0;}
-
-        virtual int inputQuantity() {return 0;}
-
-        virtual int quantityFix(int i, std::vector<GoodInventory> &menu) { return 0; }
-
-        virtual int sizeOfReceipt() {return 0;}
-
-        virtual void printReceipt() {}
-
-        virtual void confirm() {}
-
-        virtual void addReceipt() {}
-
-        virtual void deleteOrder(int chosen_order) {}
-
     private:
 
         //刷新
@@ -78,6 +56,30 @@ class ManagerUI : public UserInterface{
 
         //紀錄開始頁碼
         int begin;
+
+    
+    protected:
+        //UserInterface繼承下來不會用到的 virtual function
+
+        virtual void categoryPage() {}
+
+        virtual void quantityPage() {}
+
+        virtual int inputCategory() {return 0;}
+
+        virtual int inputQuantity() {return 0;}
+
+        virtual int quantityFix(int i, std::vector<GoodInventory> &menu) { return 0; }
+
+        virtual int sizeOfReceipt() {return 0;}
+
+        virtual void printReceipt() {}
+
+        virtual void confirm() {}
+
+        virtual void addReceipt() {}
+
+        virtual void deleteOrder(int chosen_order) {}
 
 };
 
