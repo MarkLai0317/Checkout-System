@@ -22,7 +22,7 @@ ManagerUI::ManagerUI(){
 
 void ManagerUI::managerSystem(){
 
-    cout << "Begin?" << endl; cin.get();
+    //cout << "Begin?" << endl; cin.get();
 
     while( !terminate ){
 

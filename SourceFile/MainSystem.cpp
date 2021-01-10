@@ -34,7 +34,7 @@ GoodInventory MainSystem::findInventoryByName(std::string input_name){
     return tableToInventories(file.getResult())[0];
 }
 
-// Find the good of input id and set the quantity to input_quantity for reciept.     
+// Find the good of input id and set the quantity to input_quantity for receipt.     
 GoodInventory MainSystem::findInventoryByIdAndSetQuantity(int input_id, int input_quantity){
     GoodInventory tmp = findInventoryById(input_id);
 
@@ -54,51 +54,51 @@ int MainSystem::findQuantityOfGood(int input_id){
     return findInventoryById(input_id).getQuantity();
 }
 
-// put the reciept to database for processing 
-void MainSystem::purchaseConfirm(std::vector<GoodInventory> the_reciept){
+// put the receipt to database for processing 
+void MainSystem::purchaseConfirm(std::vector<GoodInventory> the_receipt){
     FileConnector inventory_file("Inventory.csv");
 
-    for(int i=0; i<the_reciept.size(); i++){
-        std::string target_id = std::to_string(the_reciept[i].getId());
+    for(int i=0; i<the_receipt.size(); i++){
+        std::string target_id = std::to_string(the_receipt[i].getId());
         inventory_file.search("id", target_id);
         std::vector<std::string> result = inventory_file.getResult()[0];
-        inventory_file.update("id", target_id, "quantity", std::to_string(stoi(result[4]) - the_reciept[i].getQuantity()));
+        inventory_file.update("id", target_id, "quantity", std::to_string(stoi(result[4]) - the_receipt[i].getQuantity()));
     }
 
     //file.close():
 
     FileConnector activity_file("Activity.csv");
 
-    for(GoodInventory i : the_reciept){
+    for(GoodInventory i : the_receipt){
         activity_file.append(addActivity(i, "purchase"));
     }
 
     //file.close();
 }
 
-void MainSystem::supplyConfirm(std::vector<GoodInventory> old_reciept, std::vector<GoodInventory> new_reciept){
+void MainSystem::supplyConfirm(std::vector<GoodInventory> old_receipt, std::vector<GoodInventory> new_receipt){
 
     //std::cout << "opening Inventory.csv" << std::endl;
 
     FileConnector inventory_file("Inventory.csv");
 
     //std::cout << "Inserting old good into Inventory..." << std::endl;
-    for(int i=0; i<old_reciept.size(); i++){
-        std::string target_id = std::to_string(old_reciept[i].getId());
+    for(int i=0; i<old_receipt.size(); i++){
+        std::string target_id = std::to_string(old_receipt[i].getId());
         inventory_file.search("id", target_id);
         std::vector<std::string> result = inventory_file.getResult()[0];
-        inventory_file.update("id", target_id, "quantity", std::to_string(stoi(result[4]) + old_reciept[i].getQuantity()));
+        inventory_file.update("id", target_id, "quantity", std::to_string(stoi(result[4]) + old_receipt[i].getQuantity()));
     }
 
     //std::cout << "Appending new good into Inventory..." << std::endl;
-    for(int i=0; i<new_reciept.size(); i++){
+    for(int i=0; i<new_receipt.size(); i++){
         //std::cout << "Inventory size is " << inventory_file.getResult().size() << std::endl;
 
         std::string id = std::to_string(inventory_file.getResult().size())
-             , category = new_reciept[i].getCategory()
-             , name = new_reciept[i].getName()
-             , price = std::to_string(new_reciept[i].getPrice())
-             , quantity = std::to_string(new_reciept[i].getQuantity());
+             , category = new_receipt[i].getCategory()
+             , name = new_receipt[i].getName()
+             , price = std::to_string(new_receipt[i].getPrice())
+             , quantity = std::to_string(new_receipt[i].getQuantity());
 
         inventory_file.append( {id, category, name, price, quantity} );
     }
@@ -108,10 +108,10 @@ void MainSystem::supplyConfirm(std::vector<GoodInventory> old_reciept, std::vect
     //std::cout << "Appending new activity..." << std::endl;
     FileConnector activity_file("Activity.csv");
 
-    for(GoodInventory i : old_reciept){
+    for(GoodInventory i : old_receipt){
         activity_file.append(addActivity(i, "supply"));
     }
-    for(GoodInventory i : new_reciept){
+    for(GoodInventory i : new_receipt){
         activity_file.append(addActivity(i, "supply"));
     }
 

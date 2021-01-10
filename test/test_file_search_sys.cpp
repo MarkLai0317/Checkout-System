@@ -25,10 +25,10 @@ int main(){
 
     cout << "type enter to add new purchase: "; cin.get();
     //add new purchase
-    vector<GoodInventory> reciept;
-    reciept.push_back( GoodInventory(3, "包裝餅乾", "湖池屋", 10, 90) );
-    reciept.push_back( GoodInventory(2, "碗裝泡麵", "統一牛肉", 1200, 10) );
-    sys.purchaseConfirm( reciept );
+    vector<GoodInventory> receipt;
+    receipt.push_back( GoodInventory(3, "包裝餅乾", "湖池屋", 10, 90) );
+    receipt.push_back( GoodInventory(2, "碗裝泡麵", "統一牛肉", 1200, 10) );
+    sys.purchaseConfirm( receipt );
 
     cout << "type enter to supply new and old product: "; cin.get();
     //supply new and old product

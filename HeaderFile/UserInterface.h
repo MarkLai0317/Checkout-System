@@ -57,7 +57,7 @@ class UserInterface{
 
         virtual void quantityPage() = 0;
 
-        void recieptPage();
+        void receiptPage();
 
         //=================================
 
@@ -84,11 +84,11 @@ class UserInterface{
     	virtual int inputQuantity() = 0;
 
 
-        int inputReciept();
+        int inputReceipt();
 
 
-        // see the size of reciept
-        virtual int sizeOfReciept() = 0;
+        // see the size of receipt
+        virtual int sizeOfReceipt() = 0;
         //====================================
 
         // recieve list of goods and print with nice format
@@ -105,13 +105,13 @@ class UserInterface{
 	    void printcontent_g(std::string str);
     
 
-        virtual void printReciept() = 0;
+        virtual void printReceipt() = 0;
        
 
-        // confirm the reciept
+        // confirm the receipt
         virtual void confirm() = 0;
 
-        virtual void addReciept() = 0;
+        virtual void addReceipt() = 0;
 
         virtual void deleteOrder(int chosen_order) = 0;
 

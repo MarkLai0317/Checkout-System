@@ -52,7 +52,7 @@ public:
 	//   If we don't have, print warning and return INVALID
 	// 2.Return the valid category input.
 	//   Input 'q' means quit, return QUIT.
-	//   Input 's' means see reciept, return RECIEPT
+	//   Input 's' means see receipt, return RECIEPT
 	//
 	// 3.When implementation, using string to get the input will be easier to identify invalid input
 	//   so do other input.
@@ -78,12 +78,12 @@ public:
 	int inputQuantity();
 
     
-	//  see the size of reciept
-	int sizeOfReciept();
-	// print reciept with reciept format like 7
+	//  see the size of receipt
+	int sizeOfReceipt();
+	// print receipt with receipt format like 7
 	// 每項要有編號
 	// 最後需要print總價
-	void printReciept();
+	void printReceipt();
 	// recieve list of goods and print with nice format
 	// need to show id, name, quantity, and price $  
 	//================in UserInterface==================
@@ -92,11 +92,11 @@ public:
 	// fix quntity print in menu
 	int quantityFix(int i, std::vector<GoodInventory> &menu);
 
-	// confirm the  reciept
+	// confirm the  receipt
 	void confirm();
 
-	// add the good choose to the reciept
-	void addReciept();
+	// add the good choose to the receipt
+	void addReceipt();
 
 	//delete one goods chosen by customer
 	void deleteOrder(int order);
@@ -107,7 +107,7 @@ private:
 
 
 
-	std::vector<GoodInventory> reciept;
+	std::vector<GoodInventory> receipt;
 
 	//================in UserInterface==================
 	//int category_now;
@@ -135,7 +135,7 @@ private:
 	
 	// the list of goods that buyer has choose
 	//================in UserInterface==================
-	//vector<GoodInventory> reciept;
+	//vector<GoodInventory> receipt;
 
 	// use fuction of Main System
 

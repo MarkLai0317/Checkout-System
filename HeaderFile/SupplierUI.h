@@ -69,13 +69,13 @@ private:
 
 
 
-	// 1.Input the Nth order of the reciept that user want to delete and return N(數字) 
-	//   Input 'c' means comfirm the reciept, return CONFIRM.
+	// 1.Input the Nth order of the receipt that user want to delete and return N(數字) 
+	//   Input 'c' means comfirm the receipt, return CONFIRM.
 	//   Input 'b' means back to last page, return BACK.
 	//================in UserInterface==================
-	//int inputReciept();
+	//int inputReceipt();
 
-	int sizeOfReciept();
+	int sizeOfReceipt();
 
 	
 
@@ -84,15 +84,15 @@ private:
 
 
 	// print out the goods that has been input 
-	// into reciept, but don't need to print total price
-	void printReciept();
+	// into receipt, but don't need to print total price
+	void printReceipt();
 
 	int quantityFix(int i, std::vector<GoodInventory> &menu);
 
-	// confirm the old and new reciept
+	// confirm the old and new receipt
 	void confirm();
 
-	void addReciept();
+	void addReceipt();
 
 
 	void deleteOrder(int chosen_order);
@@ -115,8 +115,8 @@ private:
 
 	// A vector that temporary store the input
 	// of user and need to be printed after input a object
-	std::vector<GoodInventory> old_reciept;
-	std::vector<GoodInventory> new_reciept;
+	std::vector<GoodInventory> old_receipt;
+	std::vector<GoodInventory> new_receipt;
 
 };
 

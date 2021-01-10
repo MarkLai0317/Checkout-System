@@ -27,13 +27,13 @@ class ManagerUI : public UserInterface{
 
         virtual int quantityFix(int i, std::vector<GoodInventory> &menu) { return 0; }
 
-        virtual int sizeOfReciept() {return 0;}
+        virtual int sizeOfReceipt() {return 0;}
 
-        virtual void printReciept() {}
+        virtual void printReceipt() {}
 
         virtual void confirm() {}
 
-        virtual void addReciept() {}
+        virtual void addReceipt() {}
 
         virtual void deleteOrder(int chosen_order) {}
 
