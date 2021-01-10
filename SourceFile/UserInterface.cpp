@@ -10,7 +10,7 @@ static const char* category_string[] = {"碗裝泡麵", "包裝餅乾", "利樂�
 void UserInterface::clearScreen(){
     std::cout << std::flush;
     system("clear");
- }
+}
 
 
 //correct
