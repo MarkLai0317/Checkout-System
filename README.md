@@ -1,4 +1,4 @@
-# oop_final_project
+# Checkout-System
 
 ## 分三個使用者，分別有各自的UI
 
