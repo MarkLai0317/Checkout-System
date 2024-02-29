@@ -24,3 +24,8 @@
  - 插入資料到 Database。
  - 拿出 Database 資料。
  - 可以獨立運作並不只能配合這個系統。
+
+##  system architecture
+![architecture](./arch.png)
+
+
